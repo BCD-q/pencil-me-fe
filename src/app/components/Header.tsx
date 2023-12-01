@@ -23,7 +23,7 @@ const Header: React.FC = () => {
                 그룹
                 <div className='flex text-sm ml-20 text-stone-800'>오늘</div>  
             </div>
-            <div className='bg-neutral-200 text-xs h-7 text-gray-400 font-thin pt-2 pl-3'>
+            <div className='bg-neutral-200 text-xs h-7 text-gray-400 text-[9px] pt-2 pl-3'>
                 오늘의 작업들
             </div>
         </header>       
