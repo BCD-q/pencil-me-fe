@@ -18,12 +18,12 @@ const Header: React.FC = () => {
                 />
             <div className='flex items-end text-sm mt-16 ml-2 text-lime-400 ml-0'>
                 <CgChevronLeft
-                    className='text-xl'
+                    className='text-[1.4rem]'
                 />
-                그룹
-                <div className='flex text-sm ml-20 text-stone-800'>오늘</div>  
+                <div className=''>그룹</div>
+                <div className='flex text-sm ml-20 text-stone-800 font-semibold'>오늘</div>  
             </div>
-            <div className='bg-neutral-200 text-xs h-7 text-gray-400 text-[9px] pt-2 pl-3'>
+            <div className='bg-neutral-200 text-xs h-7 text-gray-400 text-[8.8px] font-semibold pt-2 pl-3'>
                 오늘의 작업들
             </div>
         </header>       
