@@ -1,5 +1,5 @@
+import Footer from '@/component/common/Footer';
 import Header from '@/component/common/Header';
-import GroupFooter from '@/component/group/GroupFooter';
 
 export default function RootLayout({
   children,
@@ -10,7 +10,7 @@ export default function RootLayout({
     <div className="flex flex-col h-screen">
       <Header />
       <main className="flex-grow">{children}</main>
-      <GroupFooter />
+      <Footer />
     </div>
   );
 }

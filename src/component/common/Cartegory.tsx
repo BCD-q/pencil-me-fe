@@ -8,14 +8,14 @@ export default function Cartegory({
   return (
     <div className="flex flex-row justify-center h-8">
       {children === '오늘' ? (
-        <Link href="/group" className="absolute left-0 ">
+        <Link href="../group" className="absolute left-0 ">
           <button className="mr-auto border-none shadow-none btn btn-sm bg-inherit text-lime-500">
             <IoIosArrowBack className="w-4 h-4 mr-[-6px]" />
             그룹
           </button>
         </Link>
       ) : children === '수정' ? (
-        <Link href="/today" className="absolute left-0 ">
+        <Link href="/main" className="absolute left-0 ">
           <button className="mr-auto border-none shadow-none btn btn-sm bg-inherit text-lime-500">
             <IoIosArrowBack className="w-4 h-4 mr-[-6px]" />
             오늘

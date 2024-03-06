@@ -24,7 +24,7 @@ export default function RegisterInput(): JSX.Element {
         className="w-11/12 mx-auto mt-2 rounded-lg input input-bordered "
       />
       <Link
-        href="../today"
+        href="../main"
         className="btn bg-[#78be5e] mt-10 mb-6 text-white w-11/12 mx-auto text-lg"
       >
         <button>회원가입</button>

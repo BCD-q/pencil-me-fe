@@ -18,25 +18,25 @@ interface MyLinks {
 const links: Array<MyLinks> = [
   {
     id: 1,
-    path: '/today',
+    path: '../../main',
     text: '오늘',
     icon: <IoMdCalendar className="w-10 h-6 pr-2" />,
   },
   {
     id: 2,
-    path: '/inspiration',
+    path: '../../main/inspiration',
     text: '영감',
     icon: <FaRegLightbulb className="w-10 h-5 pr-2" />,
   },
   {
     id: 3,
-    path: '/check',
+    path: '../../main/check',
     text: '목표 점검',
     icon: <MdChecklist className="w-10 mr-3 h-6 pl-1" />,
   },
   {
     id: 4,
-    path: '/profile',
+    path: '../../main/profile',
     text: '프로필',
     icon: <RxAvatar className="w-10 mr-1 h-6 pr-1" />,
   },
@@ -47,6 +47,10 @@ const Footer: React.FC = () => {
 
   const pathname = usePathname();
 
+  const onClick = () => {
+    console.log(pathname);
+  };
+
   return (
     <div className="flex w-full h-20 bg-gray-100 md:hidden">
       {links.map((link) => {
@@ -56,8 +60,9 @@ const Footer: React.FC = () => {
           <Link key={id} href={path} legacyBehavior>
             <a
               className={`relative flex flex-col w-1/4 h-12 border-none mx-auto rounded-md shadow-none btn bg-inherit ${
-                pathname === path ? 'text-[#78be5e] bg-inherit' : ''
+                `../..${pathname}` === path ? 'text-[#78be5e] bg-inherit' : ''
               }`}
+              onClick={onClick}
             >
               {icon}
               <div className="text-[8px] absolute mr-2 bottom-0">{text}</div>
