@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { QueryClientProvider } from 'react-query';
 
 import AddGroupModal from '@/container/group/AddGroupModal';
@@ -11,8 +11,7 @@ import Cartegory from '../../component/common/Cartegory';
 import useGroupStore from '../../modules/groupStore';
 
 export default function Group(): React.ReactElement {
-  const { groupModalOpen, setGroupModalOpen } = useGroupStore();
-  const [group, setGroup] = useState<string>('');
+  const { groupModalOpen } = useGroupStore();
 
   return (
     <div className="flex flex-col h-full">
