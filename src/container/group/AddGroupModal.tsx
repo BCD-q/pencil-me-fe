@@ -11,7 +11,20 @@ export default function AddGroupModal(): JSX.Element {
   const [groupName, setGroupName] = useState<categoryProps>();
   const modalBackground = useRef<HTMLDivElement>(null);
 
-  const setGroup = async () => {};
+  const setGroup = async () => {
+    if (groupName) {
+      await fetch('http://localhost:3001/groups', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          groupName: groupName.categoryName,
+        }),
+      });
+      setGroupModalClose();
+    }
+  };
 
   return (
     <div
@@ -25,12 +38,20 @@ export default function AddGroupModal(): JSX.Element {
         className="flex w-10/12 mx-auto mt-2 text-center rounded-lg just-center input input-bordered"
         onChange={(e) => setGroupName({ categoryName: e.target.value })}
       />
-      <button
-        className="flex items-end justify-center flex-1 my-2 "
-        onClick={setGroupModalClose}
-      >
-        닫기
-      </button>
+      <div className="flex justify-evenly mt-4">
+        <button
+          className="btn w-20 text-white rounded-2xl bg-gray-300"
+          onClick={setGroup}
+        >
+          등록
+        </button>
+        <button
+          className="btn text-white w-20 rounded-2xl bg-gray-300"
+          onClick={setGroupModalClose}
+        >
+          닫기
+        </button>
+      </div>
     </div>
   );
 }
