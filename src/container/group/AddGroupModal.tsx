@@ -40,13 +40,13 @@ export default function AddGroupModal(): JSX.Element {
       />
       <div className="flex justify-evenly mt-4">
         <button
-          className="btn w-20 text-white rounded-2xl bg-gray-300"
+          className="btn w-20 text-white rounded-md bg-[#78be5e]"
           onClick={setGroup}
         >
           등록
         </button>
         <button
-          className="btn text-white w-20 rounded-2xl bg-gray-300"
+          className="btn text-white w-20 rounded-md bg-[#78be5e]"
           onClick={setGroupModalClose}
         >
           닫기

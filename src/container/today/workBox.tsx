@@ -58,8 +58,18 @@ export default function WorkBox(): JSX.Element {
         ))}
       </ul>
       <div className="text-xs text-gray-400">처리 중인 작업들</div>
-      <div className="flex px-3 py-2 w-5/6 mt-2 mb-2 h-10 mx-auto skeleton bg-[#78be5e] rounded-md text-white">
-        안녕 난 펭수야
+      <div className="flex flex-col w-5/6 mb-2 mx-auto rounded-sm text-white">
+        <ul className="flex flex-col">
+          <li className="bg-[#78be5e] skeleton p-3 mt-2 mb-2 rounded-md">
+            안녕 난 펭수야
+          </li>
+          <li className="bg-[#78be5e] skeleton p-3 mt-2 mb-2 rounded-md">
+            안녕 난 펭수야
+          </li>
+          <li className="bg-[#78be5e] skeleton p-3 mt-2 mb-2 rounded-md">
+            안녕 난 펭수야
+          </li>
+        </ul>
       </div>
       <div className="flex justify-end w-full">
         <Input />
