@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {IoPaperPlaneOutline} from 'react-icons/io5'
-import {Button} from '../../resource/daisyui/Button'
 
 export default function Input(): React.ReactElement {
   const [inputText, setInputText] = useState('')

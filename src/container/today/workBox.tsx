@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import { FaRegStar, FaStar } from 'react-icons/fa';
 
 // reg는 빈별
 import 'swiper/css';
@@ -34,6 +33,12 @@ const todoList: todoList[] = [
     date: '2021-09-01',
     isImportant: false,
   },
+  {
+    id: 4,
+    title: '초콜릿 먹기',
+    date: '2021-09-01',
+    isImportant: false,
+  },
 ];
 
 export default function WorkBox(): JSX.Element {
@@ -58,17 +63,16 @@ export default function WorkBox(): JSX.Element {
         ))}
       </ul>
       <div className="text-xs text-gray-400">처리 중인 작업들</div>
-      <div className="flex flex-col w-5/6 mb-2 mx-auto rounded-sm text-white">
-        <ul className="flex flex-col">
-          <li className="bg-[#78be5e] skeleton p-3 mt-2 mb-2 rounded-md">
-            안녕 난 펭수야
-          </li>
-          <li className="bg-[#78be5e] skeleton p-3 mt-2 mb-2 rounded-md">
-            안녕 난 펭수야
-          </li>
-          <li className="bg-[#78be5e] skeleton p-3 mt-2 mb-2 rounded-md">
-            안녕 난 펭수야
-          </li>
+      <div className="flex flex-col w-5/6 mb-1 mx-auto rounded-sm text-white">
+        <ul>
+          {todoList.map((item) => (
+            <li
+              key={item.id}
+              className="bg-[#78be5e] skeleton p-3 mt-2 mb-2 rounded-md"
+            >
+              {item.title}
+            </li>
+          ))}
         </ul>
       </div>
       <div className="flex justify-end w-full">
