@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
+
+import GroupBox from '@/component/group/GroupBox';
 
 import Cartegory from '../../component/common/Cartegory';
 import useGroupStore from '../../modules/groupStore';
@@ -24,7 +26,9 @@ export default function Group(): React.ReactElement {
         <button className="flex justify-start w-11/12 h-12 pt-2 pl-4 text-lg bg-white rounded-b-lg hover:bg-gray-300 ">
           주요 목표
         </button>
+        <GroupBox />
       </div>
+
       {groupModalOpen && <AddGroupModal />}
     </div>
   );

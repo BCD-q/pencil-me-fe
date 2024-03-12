@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <div className="flex w-full h-20 bg-gray-100 md:hidden">
+    <div className="flex w-full h-20 bg-gray-100 xl:hidden">
       {links.map((link) => {
         const { id, path, text, icon } = link;
 
