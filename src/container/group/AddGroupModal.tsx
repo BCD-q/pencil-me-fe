@@ -8,6 +8,7 @@ export type categoryProps = {
 
 export default function AddGroupModal(): JSX.Element {
   const { groupModalOpen, setGroupModalClose } = useGroupStore();
+
   const [groupName, setGroupName] = useState<categoryProps | undefined>();
   const modalBackground = useRef<HTMLDivElement>(null);
 
@@ -22,7 +23,7 @@ export default function AddGroupModal(): JSX.Element {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: groupName.categoryName,
+          name: groupName.categoryName;
         }),
       });
       setGroupModalClose();
