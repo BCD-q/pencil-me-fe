@@ -27,18 +27,6 @@ const todoList: todoList[] = [
     date: '2021-09-01',
     isImportant: false,
   },
-  {
-    id: 3,
-    title: '집밥 먹기',
-    date: '2021-09-01',
-    isImportant: false,
-  },
-  {
-    id: 4,
-    title: '초콜릿 먹기',
-    date: '2021-09-01',
-    isImportant: false,
-  },
 ];
 
 export default function WorkBox(): JSX.Element {
@@ -62,7 +50,7 @@ export default function WorkBox(): JSX.Element {
           </Swiper>
         ))}
       </ul>
-      <div className="text-xs text-gray-400">처리 중인 작업들</div>
+      <div className="text-xs ml-2 text-gray-400">처리 중인 작업들</div>
       <div className="flex flex-col w-5/6 mb-1 mx-auto rounded-sm text-white">
         <ul>
           {todoList.map((item) => (
