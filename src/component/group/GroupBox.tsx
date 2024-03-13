@@ -1,10 +1,12 @@
-'use client';
-
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export default function GroupBox(): JSX.Element {
+import useGroupStore from '@/modules/groupStore';
+
+export default function GroupBox(): Promise<JSX.Element> {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [category, setCategory] = useState<string[]>();
+  const { groupModalOpen } = useGroupStore();
 
   const viewCategory = async () => {
     const res = await fetch(`${apiKey}categories`, {
@@ -16,13 +18,18 @@ export default function GroupBox(): JSX.Element {
 
   useEffect(() => {
     viewCategory();
-  }, []);
+  }, [groupModalOpen]);
 
   return (
     <div className="flex flex-col items-center justify-start flex-grow bg-gray-200 border-8">
       {category &&
-        category.map((item) => (
-          <button className="flex justify-start w-11/12 h-12 pt-2 pl-4 text-lg border-b-2 bg-white hover:bg-gray-300 rounded-sm">
+        category.map((item, index) => (
+          <button
+            className={`flex justify-start w-11/12 h-12 pt-2 pl-4 text-lg border-b-[1px] bg-white rounded-sm ${
+              index === 0 ? 'rounded-t-lg' : ''
+            } ${index === category.length - 1 ? 'rounded-b-lg' : ''}`}
+            key={index}
+          >
             {item.categoryName}
           </button>
         ))}

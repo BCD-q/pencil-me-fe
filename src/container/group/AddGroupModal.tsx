@@ -23,7 +23,7 @@ export default function AddGroupModal(): JSX.Element {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: groupName.categoryName;
+          name: groupName.categoryName,
         }),
       });
       setGroupModalClose();
