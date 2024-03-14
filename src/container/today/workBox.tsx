@@ -4,38 +4,18 @@ import React, { useRef, useState } from 'react';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import useTodayStore from '@/modules/todayStore';
+
 import Input from '../../component/today/Input';
 import TodoBox from '../../component/today/TodoBox';
-
-export interface todoList {
-  id: number;
-  title: string;
-  date: string;
-  isImportant: boolean;
-}
-
-const todoList: todoList[] = [
-  {
-    id: 1,
-    title: '캡스톤 디자인 과제 끝내기',
-    date: '2021-09-01',
-    isImportant: false,
-  },
-  {
-    id: 2,
-    title: '프로젝트 발표자료 만들기',
-    date: '2021-09-01',
-    isImportant: false,
-  },
-];
 
 export default function WorkBox(): JSX.Element {
   return (
     <div className="flex flex-col flex-1 h-full overflow-auto">
       <ul className="h-full">
-        {todoList.map((item) => (
-          <Swiper key={item.id}>
-            <SwiperSlide key={item.id}>
+        {todoList.map((item, index) => (
+          <Swiper key={index}>
+            <SwiperSlide key={index}>
               <TodoBox item={item} />
             </SwiperSlide>
             <SwiperSlide>
@@ -53,9 +33,9 @@ export default function WorkBox(): JSX.Element {
       <div className="text-xs ml-2 text-gray-400">처리 중인 작업들</div>
       <div className="flex flex-col w-5/6 mb-1 mx-auto rounded-sm text-white">
         <ul>
-          {todoList.map((item) => (
+          {todoList.map((item, index) => (
             <li
-              key={item.id}
+              key={index}
               className="bg-[#78be5e] skeleton p-3 mt-2 mb-2 rounded-md"
             >
               {item.title}

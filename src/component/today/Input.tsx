@@ -1,23 +1,34 @@
-import React, {useState} from 'react'
-import {IoPaperPlaneOutline} from 'react-icons/io5'
+import React, { useState } from 'react';
+import { IoPaperPlaneOutline } from 'react-icons/io5';
 
 export default function Input(): React.ReactElement {
-  const [inputText, setInputText] = useState('')
-  const [error, setError] = useState<string | null>(null)
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const [inputText, setInputText] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value)
-  }
+    setInputText(e.target.value);
+  };
 
   const handleKeyUpInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleButtonClick()
+      handleButtonClick();
     }
-  }
+  };
 
   const handleButtonClick = async () => {
-    if (inputText === '') return
-  }
+    if (inputText === '') return;
+
+    const res = await fetch(`${apiKey}language`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        memberDialog: inputText,
+      }),
+    });
+  };
 
   return (
     <>
@@ -32,11 +43,12 @@ export default function Input(): React.ReactElement {
         />
         <button
           className="bg-[#78be5e] flex justify-center my-auto items-center whitespace-nowrap text-white btn min-h-4 h-10"
-          onClick={handleButtonClick}>
+          onClick={handleButtonClick}
+        >
           <IoPaperPlaneOutline className="w-5 h-5" />
           전송
         </button>
       </div>
     </>
-  )
+  );
 }
