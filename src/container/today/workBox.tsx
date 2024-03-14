@@ -10,13 +10,15 @@ import Input from '../../component/today/Input';
 import TodoBox from '../../component/today/TodoBox';
 
 export default function WorkBox(): JSX.Element {
+  const todoList = useTodayStore((state) => state.todoList);
+
   return (
     <div className="flex flex-col flex-1 h-full overflow-auto">
       <ul className="h-full">
         {todoList.map((item, index) => (
           <Swiper key={index}>
             <SwiperSlide key={index}>
-              <TodoBox item={item} />
+              <TodoBox />
             </SwiperSlide>
             <SwiperSlide>
               <div className="flex items-center w-full bg-white">

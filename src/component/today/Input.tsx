@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
 
+import useTodayStore from '@/modules/todayStore';
+
 export default function Input(): React.ReactElement {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [inputText, setInputText] = useState('');
+  const [todo, setTodo] = useState('');
   const [error, setError] = useState<string | null>(null);
+
+  const todoList = useTodayStore((state) => state.todoList);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
@@ -19,15 +24,22 @@ export default function Input(): React.ReactElement {
   const handleButtonClick = async () => {
     if (inputText === '') return;
 
-    const res = await fetch(`${apiKey}language`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        memberDialog: inputText,
-      }),
-    });
+    if (inputText) {
+      console.log(inputText);
+      console.log(todoList);
+      const res = await fetch(`${apiKey}language`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          memberDialog: inputText,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+      setInputText('');
+    }
   };
 
   return (
