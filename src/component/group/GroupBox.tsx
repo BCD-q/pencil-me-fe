@@ -3,9 +3,15 @@ import { useEffect, useState } from 'react';
 
 import useGroupStore from '@/modules/groupStore';
 
-export default function GroupBox(): Promise<JSX.Element> {
+interface category {
+  categoryId: number;
+  memberId: number;
+  categoryName: string;
+}
+
+export default function GroupBox(): JSX.Element {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-  const [category, setCategory] = useState<string[]>();
+  const [category, setCategory] = useState<category[]>();
   const { groupModalOpen } = useGroupStore();
 
   const viewCategory = async () => {
