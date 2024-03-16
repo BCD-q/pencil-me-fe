@@ -4,9 +4,8 @@ import { FaRegStar, FaStar } from 'react-icons/fa';
 import useTodayStore from '@/modules/todayStore';
 
 export default function TodoBox() {
-  const { memberId, categoryId, title, contents, deadline, isImportant } =
-    useTodayStore();
-
+  const todoList = useTodayStore((state) => state.todoList);
+  const { categoryId, title, deadline, isImportant } = todoList[0];
   return (
     <>
       <li

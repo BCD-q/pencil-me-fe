@@ -3,7 +3,16 @@ import { IoPaperPlaneOutline } from 'react-icons/io5';
 
 import useTodayStore from '@/modules/todayStore';
 
-export default function Input(): React.ReactElement {
+interface TodoItem {
+  memberId: number;
+  categoryId: number;
+  title: string;
+  contents: string;
+  deadline: string;
+  isImportant: boolean;
+}
+
+export default function Input() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [inputText, setInputText] = useState('');
   const [todo, setTodo] = useState('');
@@ -25,8 +34,6 @@ export default function Input(): React.ReactElement {
     if (inputText === '') return;
 
     if (inputText) {
-      console.log(inputText);
-      console.log(todoList);
       const res = await fetch(`${apiKey}language`, {
         method: 'POST',
         headers: {
@@ -38,6 +45,17 @@ export default function Input(): React.ReactElement {
       });
       const data = await res.json();
       console.log(data);
+
+      const newTodo: TodoItem = {
+        memberId: data.data.memberId,
+        categoryId: data.data.categoryId,
+        title: data.data.title,
+        contents: data.data.contents,
+        deadline: data.data.deadline,
+        isImportant: false,
+      };
+      useTodayStore.getState().todoList.push(newTodo);
+      console.log(todoList);
       setInputText('');
     }
   };
