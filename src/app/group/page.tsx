@@ -8,7 +8,7 @@ import AddGroupModal from '@/container/group/AddGroupModal';
 import Cartegory from '../../component/common/Cartegory';
 import useGroupStore from '../../modules/groupStore';
 
-export default function Group(): Promise<JSX.Element> {
+export default function Group(): JSX.Element {
   const { groupModalOpen } = useGroupStore();
 
   return (
