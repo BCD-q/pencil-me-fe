@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 
 // Reg는 빈별
@@ -6,6 +9,17 @@ import useTodayStore from '@/modules/todayStore';
 export default function TodoBox() {
   const todoList = useTodayStore((state) => state.todoList);
   const { categoryId, title, deadline, isImportant } = todoList[0];
+  const [important, setImportant] = useState<boolean>(isImportant);
+
+  const handleStarClick = () => {
+    if (isImportant === true) {
+      useTodayStore.getState().todoList[0].isImportant = false;
+    } else {
+      useTodayStore.getState().todoList[0].isImportant = true;
+    }
+    console.log(isImportant);
+    setImportant(!important);
+  };
   return (
     <>
       <li
@@ -17,7 +31,7 @@ export default function TodoBox() {
           <div className="text-gray-700">{title}</div>
           <div className="text-sm text-gray-400">{deadline}</div>
         </div>
-        <button className="w-4 h-4 ml-auto">
+        <button className="w-4 h-4 ml-auto" onClick={handleStarClick}>
           {isImportant ? <FaStar className="text-[#78be5e]" /> : <FaRegStar />}
         </button>
       </li>

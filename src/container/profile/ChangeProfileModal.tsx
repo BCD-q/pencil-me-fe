@@ -16,7 +16,7 @@ export default function ChangeProfileModal(): JSX.Element {
 
   return (
     <div
-      className="absolute z-10 flex flex-col w-4/5 max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white shadow-md min-h-48 h-1/5 top-1/2 left-1/2 rounded-xl"
+      className="absolute z-10 flex flex-col w-4/5 max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white shadow-xl border-2 min-h-48 h-1/5 top-1/2 left-1/2 rounded-xl"
       ref={modalBackground}
     >
       <div className="flex justify-center my-4">프로필</div>

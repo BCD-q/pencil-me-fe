@@ -32,7 +32,7 @@ export default function WorkBox(): JSX.Element {
           </Swiper>
         ))}
       </ul>
-      <div className="text-xs ml-2 text-gray-400">처리 중인 작업들</div>
+      {/* <div className="text-xs ml-2 text-gray-400">처리 중인 작업들</div>
       <div className="flex flex-col w-5/6 mb-1 mx-auto rounded-sm text-white">
         <ul>
           {todoList.map((item, index) => (
@@ -44,7 +44,7 @@ export default function WorkBox(): JSX.Element {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
       <div className="flex justify-end w-full">
         <Input />
       </div>
