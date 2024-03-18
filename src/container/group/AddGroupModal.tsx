@@ -32,7 +32,7 @@ export default function AddGroupModal(): JSX.Element {
 
   return (
     <div
-      className="absolute z-10 flex flex-col w-4/5  h-48 -translate-x-1/2 -translate-y-1/2 bg-white shadow-md top-1/2 left-1/2 rounded-xl md:w-2/5 md:h-52"
+      className="absolute z-10 flex flex-col w-4/5  h-48 -translate-x-1/2 -translate-y-1/2 bg-white shadow-xl border-2 top-1/2 left-1/2 rounded-xl md:w-2/5 md:h-52"
       ref={modalBackground}
     >
       <div className="flex justify-center my-4">그룹명</div>

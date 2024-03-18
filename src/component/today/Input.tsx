@@ -34,6 +34,7 @@ export default function Input() {
     if (inputText === '') return;
 
     if (inputText) {
+      setInputText('');
       const res = await fetch(`${apiKey}language`, {
         method: 'POST',
         headers: {
@@ -56,7 +57,6 @@ export default function Input() {
       };
       useTodayStore.getState().todoList.push(newTodo);
       console.log(todoList);
-      setInputText('');
     }
   };
 
