@@ -10,5 +10,5 @@ export default function Check() {
         </button>
       </div>
     </div>
-  )
+  );
 }
