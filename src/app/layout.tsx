@@ -2,6 +2,8 @@ import { Inter } from 'next/font/google';
 
 import clsx from 'clsx';
 
+import Providers from '@/component/providers';
+
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -19,7 +21,7 @@ export default function RootLayout({
           'w-full m-auto h-screen flex flex-col bg-slate-50',
         )}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
