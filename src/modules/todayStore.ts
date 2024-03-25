@@ -11,10 +11,15 @@ interface TodoItem {
 
 interface TodayStore {
   todoList: TodoItem[];
+  addTodo: (newTodo: TodoItem) => void;
 }
 
 const useTodayStore = create<TodayStore>((set) => ({
   todoList: [],
+  addTodo: (newTodo: TodoItem) =>
+    set((prevState) => ({
+      todoList: [...prevState.todoList, newTodo],
+    })),
 }));
 
 export default useTodayStore;

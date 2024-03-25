@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
 
 import useTodayStore from '@/modules/todayStore';
+import addTodo from '@/modules/todayStore';
 
 interface TodoItem {
   memberId: number;
@@ -18,7 +19,7 @@ export default function Input() {
   const [todo, setTodo] = useState('');
   const [error, setError] = useState<string | null>(null);
 
-  const todoList = useTodayStore((state) => state.todoList);
+  const { todoList, addTodo } = useTodayStore();
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
@@ -55,7 +56,8 @@ export default function Input() {
         deadline: data.data.deadline,
         isImportant: false,
       };
-      useTodayStore.getState().todoList.push(newTodo);
+
+      addTodo(newTodo);
       console.log(todoList);
     }
   };
