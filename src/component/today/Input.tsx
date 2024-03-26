@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
 
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+
+import { fetchTodo } from '@/libs';
 import useTodayStore from '@/modules/todayStore';
-import addTodo from '@/modules/todayStore';
 
 interface TodoItem {
   memberId: number;
@@ -60,6 +63,20 @@ export default function Input() {
       addTodo(newTodo);
       console.log(todoList);
     }
+  };
+
+  const GroupQuery = () => {
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
+    const { isLoading, isError, data, error } = useQuery({
+      queryKey: ['todo'],
+      queryFn: fetchTodo,
+    });
+
+    if (isLoading) return <div></div>;
+    if (isError) return <div>Error</div>;
+
+    return <></>;
   };
 
   return (

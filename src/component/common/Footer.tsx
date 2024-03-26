@@ -55,7 +55,6 @@ const Footer: React.FC = () => {
     <div className="flex w-full h-20 bg-gray-100 xl:hidden">
       {links.map((link) => {
         const { id, path, text, icon } = link;
-
         return (
           <Link key={id} href={path} legacyBehavior>
             <a
@@ -65,7 +64,7 @@ const Footer: React.FC = () => {
               onClick={onClick}
             >
               {icon}
-              <div className="text-[8px] absolute mr-2 bottom-0">{text}</div>
+              <div className="text-[10px] absolute mr-2 bottom-0">{text}</div>
             </a>
           </Link>
         );

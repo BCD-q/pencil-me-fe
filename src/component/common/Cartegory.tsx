@@ -9,8 +9,8 @@ export default function Cartegory({
     <div className="flex flex-row justify-center h-8">
       {children === '오늘' ? (
         <Link href="../group" className="absolute left-0 ">
-          <button className="mr-auto border-none shadow-none btn btn-sm bg-inherit text-lime-500">
-            <IoIosArrowBack className="w-4 h-4 mr-[-6px]" />
+          <button className="mr-auto border-none shadow-none btn btn-sm bg-inherit text-lime-500 text-lg">
+            <IoIosArrowBack className="w-5 h-5 mr-[-12px]" />
             그룹
           </button>
         </Link>

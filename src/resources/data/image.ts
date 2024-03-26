@@ -10,6 +10,6 @@ export const randomImage = (
 ): string => picsumUrl(U.random(w, w + delta), U.random(h, h + delta));
 
 export const randomAvatar = () => {
-  const size = U.random(100, 200);
+  const size = U.random(155, 160);
   return picsumUrl(size, size);
 };
