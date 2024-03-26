@@ -25,7 +25,7 @@ const links: Array<MyLinks> = [
   {
     id: 2,
     path: '../../main/inspiration',
-    text: '영감',
+    text: '동기 부여',
     icon: <FaRegLightbulb className="w-10 h-5 pr-2" />,
   },
   {

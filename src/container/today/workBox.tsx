@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import BlankText from '@/component/common/BlankText';
 import useTodayStore from '@/modules/todayStore';
 
 import Input from '../../component/today/Input';
@@ -14,6 +15,7 @@ export default function WorkBox(): JSX.Element {
 
   return (
     <div className="flex flex-col flex-1 h-full overflow-auto">
+      {todoList.length === 0 && <BlankText />}
       <ul className="h-full">
         {todoList.map((item, index) => (
           <Swiper key={index}>
