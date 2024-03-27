@@ -7,8 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import BlankText from '@/component/common/BlankText';
 import useTodayStore from '@/modules/todayStore';
 
-import Input from '../../component/today/Input';
-import TodoBox from '../../component/today/TodoBox';
+import Input from './Input';
+import TodoBox from './TodoBox';
 
 export default function WorkBox(): JSX.Element {
   const todoList = useTodayStore((state) => state.todoList);

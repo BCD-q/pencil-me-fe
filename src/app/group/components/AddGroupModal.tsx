@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import useGroupStore from '../../modules/groupStore';
+import useGroupStore from '../../../modules/groupStore';
 
 export type categoryProps = {
   categoryName: string;

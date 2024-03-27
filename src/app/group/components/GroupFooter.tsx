@@ -2,7 +2,7 @@
 
 import { RiAddBoxFill } from 'react-icons/ri';
 
-import useGroupStore from '../../modules/groupStore';
+import useGroupStore from '../../../modules/groupStore';
 
 export default function GroupFooter() {
   const { groupModalOpen, setGroupModalOpen } = useGroupStore();

@@ -1,5 +1,5 @@
+import AvatarBox from '@/app/main/profile/components/AvatarBox';
 import Cartegory from '@/component/common/Cartegory';
-import AvatarBox from '@/container/profile/AvatarBox';
 
 export default function ProfilePage(): JSX.Element {
   return (

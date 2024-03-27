@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 
-import GroupBox from '@/component/group/GroupBox';
-import AddGroupModal from '@/container/group/AddGroupModal';
+import AddGroupModal from '@/app/group/components/AddGroupModal';
+import GroupBox from '@/app/group/components/GroupBox';
 
 import Cartegory from '../../component/common/Cartegory';
 import useGroupStore from '../../modules/groupStore';

@@ -1,4 +1,4 @@
-import Cartegory from '../common/Cartegory';
+import Cartegory from '../../../component/common/Cartegory';
 
 export type MyDetails = {
   cartegory?: string;
