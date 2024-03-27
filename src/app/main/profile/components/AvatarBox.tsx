@@ -1,7 +1,7 @@
 'use client';
 
-import useProfileStore from '../../modules/profileStore';
-import * as D from '../../resources/data';
+import useProfileStore from '../../../../modules/profileStore';
+import * as D from '../../../../resources/data';
 import ChangeProfileModal from './ChangeProfileModal';
 
 export default function AvatarBox(): JSX.Element {

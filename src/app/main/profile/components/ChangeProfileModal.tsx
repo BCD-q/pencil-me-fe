@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 
-import useProfileStore from '../../modules/profileStore';
+import useProfileStore from '../../../../modules/profileStore';
 
 export type profileProps = {
   profileName: string;

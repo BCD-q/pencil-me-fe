@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
 
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-
-import { fetchTodo } from '@/libs';
 import useTodayStore from '@/modules/todayStore';
 
 interface TodoItem {
@@ -39,13 +35,18 @@ export default function Input() {
 
     if (inputText) {
       setInputText('');
-      const res = await fetch(`${apiKey}language`, {
+      const res = await fetch('http://capstone-fastapi.na2ru2.me/language/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          memberDialog: inputText,
+          memberId: 1,
+          memberName: '홍길동',
+          memberEmail: 'test@test.com',
+          memberStatement:
+            '내일 저녁 9시에 메트로부민과 퓨처의 아돈트러스트유를 듣고 춤을 출거야',
+          requestedDate: '2021-11-22T14:00',
         }),
       });
       const data = await res.json();
@@ -63,20 +64,6 @@ export default function Input() {
       addTodo(newTodo);
       console.log(todoList);
     }
-  };
-
-  const GroupQuery = () => {
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-
-    const { isLoading, isError, data, error } = useQuery({
-      queryKey: ['todo'],
-      queryFn: fetchTodo,
-    });
-
-    if (isLoading) return <div></div>;
-    if (isError) return <div>Error</div>;
-
-    return <></>;
   };
 
   return (

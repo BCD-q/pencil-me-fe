@@ -2,9 +2,9 @@
 
 import React from 'react';
 
+import WorkBox from '@/app/main/components/workBox';
 import Cartegory from '@/component/common/Cartegory';
 import WorkBar from '@/component/common/Workbar';
-import WorkBox from '@/container/today/workBox';
 
 const TodayPage = () => {
   return (

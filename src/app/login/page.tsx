@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import LoginInput from '@/container/Login/LoginInput';
+import LoginInput from '@/app/login/components/LoginInput';
 
 import BubbleImage from '../../resources/images/common/BubbleImage.png';
 
