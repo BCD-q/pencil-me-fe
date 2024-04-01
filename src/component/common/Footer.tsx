@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 import { FaRegLightbulb } from 'react-icons/fa6';
 import { IoMdCalendar } from 'react-icons/io';
@@ -20,52 +20,45 @@ const links: Array<MyLinks> = [
     id: 1,
     path: '../../main',
     text: '오늘',
-    icon: <IoMdCalendar className="w-10 h-6 pr-2" />,
+    icon: <IoMdCalendar className="w-10 h-6" />,
   },
   {
     id: 2,
     path: '../../main/inspiration',
     text: '동기 부여',
-    icon: <FaRegLightbulb className="w-10 h-5 pr-2" />,
+    icon: <FaRegLightbulb className="w-10 h-5" />,
   },
   {
     id: 3,
     path: '../../main/check',
     text: '목표 점검',
-    icon: <MdChecklist className="w-10 mr-3 h-6 pl-1" />,
+    icon: <MdChecklist className="w-10 h-6" />,
   },
   {
     id: 4,
     path: '../../main/profile',
     text: '프로필',
-    icon: <RxAvatar className="w-10 mr-1 h-6 pr-1" />,
+    icon: <RxAvatar className="w-10 h-6" />,
   },
 ];
 
-const Footer: React.FC = () => {
-  const router = useRouter();
-
+const Footer = () => {
   const pathname = usePathname();
 
-  const onClick = () => {
-    console.log(pathname);
-  };
-
   return (
-    <div className="flex w-full h-20 bg-gray-100 xl:hidden">
+    <div className="flex px-4 py-1 border-t-2 sticky bottom-0 bg-slate-50">
       {links.map((link) => {
         const { id, path, text, icon } = link;
         return (
-          <Link key={id} href={path} legacyBehavior>
-            <a
-              className={`relative flex flex-col w-1/4 h-12 border-none mx-auto rounded-md shadow-none btn bg-inherit ${
-                `../..${pathname}` === path ? 'text-[#78be5e] bg-inherit' : ''
-              }`}
-              onClick={onClick}
-            >
-              {icon}
-              <div className="text-[10px] absolute mr-2 bottom-0">{text}</div>
-            </a>
+          <Link
+            key={`footer-${id}`}
+            href={path}
+            className={`flex flex-1 flex-col items-center justify-center ${
+              `../..${pathname}` === path ? 'text-[#78be5e]' : ''
+            }`}
+          >
+            {icon}
+            <div className="text-[10px]">{text}</div>
           </Link>
         );
       })}
