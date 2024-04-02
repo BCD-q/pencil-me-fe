@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <div className="flex flex-col h-screen">
-      <main className="flex-grow mt-6">{children}</main>
+      <main className="flex-grow">{children}</main>
       <GroupFooter />
     </div>
   );
