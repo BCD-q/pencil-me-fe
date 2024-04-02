@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface TodoItem {
+export interface TodoItem {
   memberId: number;
   categoryId: number;
   title: string;

@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import BlankText from '@/component/common/BlankText';
 import useTodayStore from '@/modules/todayStore';
+import { TodoItem } from '@/modules/todayStore';
 
 import Input from './Input';
 import TodoBox from './TodoBox';
@@ -20,7 +21,7 @@ export default function WorkBox(): JSX.Element {
         {todoList.map((item, index) => (
           <Swiper key={index}>
             <SwiperSlide key={index}>
-              <TodoBox />
+              <TodoBox item={item} />
             </SwiperSlide>
             <SwiperSlide>
               <div className="flex items-center w-full bg-white">

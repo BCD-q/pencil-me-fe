@@ -11,9 +11,7 @@ const TodayPage = () => {
     <div className="relative flex flex-col h-full">
       <Cartegory>오늘</Cartegory>
       <WorkBar>오늘의 작업들</WorkBar>
-      <div className="flex-1 h-full">
-        <WorkBox />
-      </div>
+      <WorkBox />
     </div>
   );
 };

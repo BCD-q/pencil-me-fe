@@ -65,20 +65,6 @@ export default function Input() {
     }
   };
 
-  const GroupQuery = () => {
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-
-    const { isLoading, isError, data, error } = useQuery({
-      queryKey: ['todo'],
-      queryFn: fetchTodo,
-    });
-
-    if (isLoading) return <div></div>;
-    if (isError) return <div>Error</div>;
-
-    return <></>;
-  };
-
   return (
     <>
       <div className="flex w-full gap-2 px-2 py-3 bg-white rounded-t-2xl">
