@@ -1,5 +1,5 @@
 const Header: React.FC = () => {
-  return <div className="w-full h-4 bg-inherit"></div>;
+  return <div className="w-full bg-inherit"></div>;
 };
 
 export default Header;

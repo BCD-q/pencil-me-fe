@@ -6,7 +6,7 @@ export default function Cartegory({
   children,
 }: PropsWithChildren): React.ReactElement {
   return (
-    <div className="flex flex-row justify-center h-8">
+    <div className="flex flex-row justify-center h-8 fixed top-0 left-0 right-0 bg-gray-100 border-b-2">
       {children === '오늘' ? (
         <Link href="../group" className="absolute left-0 ">
           <button className="mr-auto border-none shadow-none btn btn-sm bg-inherit text-lime-500 text-lg">

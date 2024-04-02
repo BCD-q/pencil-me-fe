@@ -1,8 +1,8 @@
 import Cartegory from '@/component/common/Cartegory';
 import WorkBar from '@/component/common/Workbar';
 
-import BottonInspiration from './components/BottomInspi';
-import Carousel from './components/Carousel';
+import BottonInspiration from './components/BottomCarousel';
+import Carousel from './components/TopCarousel';
 
 export default function InspirationPage(): JSX.Element {
   return (

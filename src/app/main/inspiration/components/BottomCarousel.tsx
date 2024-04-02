@@ -8,6 +8,9 @@ export default function BottonInspiration() {
       <BottomCarousel />
       <BottomCarousel />
       <BottomCarousel />
+      <BottomCarousel />
+      <BottomCarousel />
+      <BottomCarousel />
     </div>
   );
 }

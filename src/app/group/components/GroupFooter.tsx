@@ -13,7 +13,7 @@ export default function GroupFooter() {
   };
 
   return (
-    <div className="relative flex w-full h-20 bg-inherit">
+    <div className="flex w-full sticky bg-inherit">
       <button
         className="absolute border-none top-2 left-4 btn btn-outline btn-success text-[#78be5e]"
         onClick={toggleModal}
