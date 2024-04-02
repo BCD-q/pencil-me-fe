@@ -1,11 +1,21 @@
 import Cartegory from '@/component/common/Cartegory';
 import WorkBar from '@/component/common/Workbar';
 
+import BottonInspiration from './components/BottomInspi';
+import Carousel from './components/Carousel';
+
 export default function InspirationPage(): JSX.Element {
   return (
-    <div className="relative h-full">
+    <div className="h-full">
       <Cartegory>영감</Cartegory>
       <WorkBar>오늘의 제안</WorkBar>
+      <div className="bg-white h-48">
+        <Carousel />
+      </div>
+      <WorkBar>이런건 어때요?</WorkBar>
+      <div className="bg-white h-1/3">
+        <BottonInspiration />
+      </div>
     </div>
   );
 }
