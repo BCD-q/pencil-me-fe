@@ -27,7 +27,7 @@ export default function GroupBox(): JSX.Element {
   }, [groupModalOpen]);
 
   return (
-    <div className="flex flex-col flex-grow items-center bg-gray-200 border-8">
+    <div className="flex flex-col h-full items-center bg-gray-200 border-8 overflow-y-scroll">
       {category &&
         category.map((item, index) => (
           <button

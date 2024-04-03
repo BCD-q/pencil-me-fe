@@ -2,7 +2,7 @@ import BottomCarousel from './BottonComponent';
 
 export default function BottonInspiration() {
   return (
-    <div className="carousel carousel-vertical h-full bg-white">
+    <div className="h-full flex flex-wrap carousel bg-white">
       <BottomCarousel />
       <BottomCarousel />
       <BottomCarousel />
