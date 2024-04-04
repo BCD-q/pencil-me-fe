@@ -13,12 +13,11 @@ export default function GroupFooter() {
   };
 
   return (
-    <div className="flex sticky bottom-0 bg-gray-100 rounded-t-xl">
+    <div className="flex sticky bottom-0 shadow-xl border-t-8 border-gray-100 bg-gray-100 rounded-t-xl">
       <button
-        className=" border-none top-2 left-4 btn btn-outline btn-success text-[#78be5e]"
+        className="ml-2 border-none top-2 left-4 btn btn-outline rounded-2xl btn-success text-[#78be5e] text-lg"
         onClick={toggleModal}
       >
-        <RiAddBoxFill className="text-[#78be5e]" />
         그룹 추가
       </button>
     </div>

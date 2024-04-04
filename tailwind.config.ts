@@ -8,6 +8,13 @@ const config: Config = {
         footer: 'calc(100vh - 80px)',
       },
     },
+    screens: {
+      xs: '400px',
+      sm: '600px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+    },
   },
   plugins: [require('daisyui')],
   daisyui: {

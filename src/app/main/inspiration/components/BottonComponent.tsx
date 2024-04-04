@@ -6,7 +6,7 @@ export default function BottomCarousel() {
   return (
     <div className="h-fit">
       <main className="flex my-2">
-        <div className="rounded-xl h-1/2 w-36 sm:w-48 shadow-xl mx-2 flex-col border-2">
+        <div className="rounded-xl h-1/2 w-36 xs:w-36 sm:w-44 shadow-xl mx-2 flex-col border-2">
           <Image src={BubbleImage} alt="" className="" />
           <div className="bg-gray-100 flex h-1/4">
             <div className="flex-col w-2/3 whitespace-nowrap overflow-hidden text-ellipsis mx-2">
