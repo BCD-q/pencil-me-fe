@@ -21,6 +21,13 @@ export default function Cartegory({
             오늘
           </button>
         </Link>
+      ) : children === '디테일' ? (
+        <Link href="/main/inspiration" className="absolute left-0 ">
+          <button className="mr-auto border-none shadow-none btn btn-sm bg-inherit text-lime-500 text-lg">
+            <IoIosArrowBack className="w-6 h-6 mr-[-10px] mt-[1px]" />
+            영감
+          </button>
+        </Link>
       ) : (
         ''
       )}
