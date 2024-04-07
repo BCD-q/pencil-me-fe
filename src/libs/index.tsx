@@ -5,3 +5,10 @@ export const fetchTodo = async () => {
 
   await axios.patch(`${apiKey}language`);
 };
+
+export const fetchInspiration = async () => {
+  const response = await axios.get(
+    'https://dog.ceo/api/breed/hound/images/random/20',
+  );
+  return response.data;
+};
