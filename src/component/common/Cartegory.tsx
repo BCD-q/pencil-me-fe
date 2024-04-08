@@ -31,7 +31,7 @@ export default function Cartegory({
       ) : (
         ''
       )}
-      <div className="mt-1 text-xl sm:text-2xl">{children}</div>
+      <div className=" text-lg sm:text-xl">{children}</div>
     </div>
   );
 }

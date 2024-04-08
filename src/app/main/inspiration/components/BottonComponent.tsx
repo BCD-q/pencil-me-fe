@@ -6,12 +6,18 @@ export default function BottomCarousel({ data }: { data: any }) {
   return (
     <div className="h-fit">
       <main className="flex my-2">
-        <div className="rounded-xl h-1/2 w-36 xs:w-36 sm:w-44 shadow-xl mx-2 flex-col border-2">
-          <img src={data} alt="" className="w-36 h-36" />
+        <div className="rounded-xl h-1/2 w-28 xs:w-36 sm:w-44 shadow-xl mx-2 flex-col border-2">
+          <img
+            src={data}
+            alt=""
+            className="w-36 h-36 sm:w-44 sm:h-44 rounded-t-lg"
+          />
           <div className="bg-gray-100 flex h-1/4">
             <div className="flex-col w-2/3 whitespace-nowrap overflow-hidden text-ellipsis mx-2">
-              <div className="text-xs w-20 ml-1">서버 기술 블로그</div>
-              <div className="text-xs w-20 ml-1 text-gray-300">
+              <div className="text-[10px] xs:text-sm w-20 ml-1">
+                서버 기술 블로그
+              </div>
+              <div className="text-[8px] xs:text-xs w-20 ml-1 text-gray-300">
                 인천대학교 앱센터
               </div>
             </div>
