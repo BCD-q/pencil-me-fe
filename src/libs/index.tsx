@@ -7,8 +7,14 @@ export const fetchTodo = async () => {
 };
 
 export const fetchInspiration = async () => {
-  const response = await axios.get(
-    'https://dog.ceo/api/breed/hound/images/random/20',
-  );
-  return response.data;
+  try {
+    const response: any = await axios.get(
+      'https://dog.ceo/api/breed/hound/images/random/20',
+    );
+
+    console.log(response.data.message);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
