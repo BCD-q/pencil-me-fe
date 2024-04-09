@@ -48,9 +48,6 @@ export default function WorkBox(): JSX.Element {
           ))}
         </ul>
       </div> */}
-      <div className="flex justify-end w-full">
-        <Input />
-      </div>
     </div>
   );
 }

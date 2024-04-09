@@ -8,12 +8,8 @@ import { IoMdCalendar } from 'react-icons/io';
 import { MdChecklist } from 'react-icons/md';
 import { RxAvatar } from 'react-icons/rx';
 
-interface MyLinks {
-  id: number;
-  path: string;
-  text: string;
-  icon: JSX.Element;
-}
+import Input from '@/app/main/components/Input';
+import { MyLinks } from '@/types';
 
 const links: Array<MyLinks> = [
   {
@@ -46,22 +42,25 @@ const Footer = () => {
   const pathname = usePathname();
 
   return (
-    <div className="flex px-4 py-1 border-t-2 sticky bottom-0 bg-slate-50">
-      {links.map((link) => {
-        const { id, path, text, icon } = link;
-        return (
-          <Link
-            key={`footer-${id}`}
-            href={path}
-            className={`flex flex-1 flex-col items-center justify-center ${
-              `../..${pathname}` === path ? 'text-[#78be5e]' : ''
-            }`}
-          >
-            {icon}
-            <div className="text-[10px]">{text}</div>
-          </Link>
-        );
-      })}
+    <div className="flex flex-col sticky bottom-0">
+      {pathname === '/main' && <Input />}
+      <div className="flex px-4 py-1 border-t-2 bg-slate-50">
+        {links.map((link) => {
+          const { id, path, text, icon } = link;
+          return (
+            <Link
+              key={`footer-${id}`}
+              href={path}
+              className={`flex flex-1 flex-col items-center justify-center ${
+                `../..${pathname}` === path ? 'text-[#78be5e]' : ''
+              }`}
+            >
+              {icon}
+              <div className="text-[10px]">{text}</div>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };

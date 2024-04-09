@@ -67,7 +67,7 @@ export default function Input() {
 
   return (
     <>
-      <div className="flex w-full gap-2 px-2 py-3 bg-white rounded-t-2xl shadow-2xl">
+      <div className="flex w-full sticky gap-2 px-2 py-3 bg-white rounded-t-2xl shadow-2xl">
         <input
           type="text"
           placeholder="이렇게 입력해보세요"

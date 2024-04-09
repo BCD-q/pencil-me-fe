@@ -10,8 +10,7 @@ export default function BottonCarousel() {
     queryFn: () => fetchInspiration(),
   });
 
-  if (isLoading)
-    return <div className="loading loading-spinner loading-md m-auto"></div>;
+  if (isLoading) return <div className="loading loading-spinner w-full"></div>;
 
   return (
     <ul className="inline-grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 m-4 gap-3">
