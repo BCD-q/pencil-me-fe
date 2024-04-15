@@ -3,11 +3,7 @@ import type { Config } from 'tailwindcss';
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {
-      minHeight: {
-        footer: 'calc(100vh - 80px)',
-      },
-    },
+    extend: {},
     screens: {
       xs: '480px',
       sm: '600px',

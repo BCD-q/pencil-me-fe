@@ -33,7 +33,7 @@ export default function GroupBox(): JSX.Element {
           <button
             className={`flex justify-start w-11/12 h-12 pt-2 pl-4 text-lg border-b-[1px] bg-white rounded-sm ${
               index === 0 ? 'rounded-t-lg' : ''
-            } ${index === category.length - 1 ? 'rounded-b-lg' : ''}`}
+            } ${index === category.length - 1 ? 'rounded-b-lg ' : ''}`}
             key={index}
           >
             {item.categoryName}
