@@ -9,14 +9,14 @@ export default function CheckPage(): JSX.Element {
   return (
     <div className="flex flex-col h-full bg-gray-200">
       <Cartegory>목표 점검</Cartegory>
-      <div className="flex flex-col items-center h-36 mt-4">
+      <div className="flex flex-col items-center h-32 mt-4">
         <Link
           href=""
           className="flex justify-around w-11/12 h-12 mt-2 text-lg bg-white rounded-t-lg border-b-[1px]  border-gray-200"
         >
           <button className="w-1/4">오늘</button>
           <progress
-            className="progress rounded-lg bg-white progress-success w-4/5 my-auto h-1/2"
+            className="progress progress-success rounded-lg w-2/3 my-auto h-1/2"
             value="40"
             max="100"
           ></progress>
@@ -27,8 +27,8 @@ export default function CheckPage(): JSX.Element {
         >
           <button className="w-1/4">주요 목표</button>
           <progress
-            className="progress progress-success rounded-lg bg-white w-4/5 my-auto h-1/2"
-            value="75"
+            className="progress progress-success rounded-lg w-2/3 my-auto h-1/2"
+            value="60"
             max="100"
           ></progress>
         </Link>
