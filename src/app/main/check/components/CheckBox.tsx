@@ -13,123 +13,28 @@ interface category {
 const categories: Array<category> = [
   {
     categoryId: 1,
-    categoryName: '집에',
+    categoryName: '리액트 쿼리',
     score: 40,
   },
   {
     categoryId: 2,
-    categoryName: '가고',
-    score: 80,
+    categoryName: 'api 연동',
+    score: 72,
   },
   {
     categoryId: 3,
-    categoryName: '싶다',
-    score: 35,
+    categoryName: '리팩터링',
+    score: 55,
   },
   {
     categoryId: 4,
-    categoryName: '젠장할',
-    score: 65,
+    categoryName: '운동',
+    score: 20,
   },
   {
     categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
-  },
-  {
-    categoryId: 5,
-    categoryName: '인생',
-    score: 81,
+    categoryName: '발성 연습',
+    score: 40,
   },
 ];
 
@@ -137,7 +42,7 @@ export default function CheckBox() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
   return (
-    <div className="flex flex-col items-center h-[100vh]">
+    <div className="flex flex-col items-center">
       {categories &&
         categories.map((item, index) => (
           <Link
@@ -149,7 +54,7 @@ export default function CheckBox() {
           >
             <button className="w-1/4">{item.categoryName}</button>
             <progress
-              className="progress rounded-lg bg-white progress-success w-4/5 my-auto h-1/2"
+              className="progress progress-success rounded-lg w-2/3 my-auto h-1/2"
               value={item.score}
               max="100"
             ></progress>
