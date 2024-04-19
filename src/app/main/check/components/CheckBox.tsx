@@ -54,7 +54,7 @@ export default function CheckBox() {
           >
             <button className="w-1/4">{item.categoryName}</button>
             <progress
-              className="progress progress-success rounded-lg w-2/3 my-auto h-1/2"
+              className="progress progress-accent rounded-lg w-2/3 my-auto h-1/2"
               value={item.score}
               max="100"
             ></progress>
