@@ -14,7 +14,13 @@ const config: Config = {
   },
   plugins: [require('daisyui')],
   daisyui: {
-    themes: ['cupcake', 'emerald'],
+    themes: [
+      {
+        mytheme: {
+          accent: '#78be5e',
+        },
+      },
+    ],
   },
 };
 export default config;

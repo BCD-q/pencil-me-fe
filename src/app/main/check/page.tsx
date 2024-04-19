@@ -16,7 +16,7 @@ export default function CheckPage(): JSX.Element {
         >
           <button className="w-1/4">오늘</button>
           <progress
-            className="progress progress-success rounded-lg w-2/3 my-auto h-1/2"
+            className="progress progress-accent rounded-lg w-2/3 my-auto h-1/2"
             value="40"
             max="100"
           ></progress>
@@ -27,7 +27,7 @@ export default function CheckPage(): JSX.Element {
         >
           <button className="w-1/4">주요 목표</button>
           <progress
-            className="progress progress-success rounded-lg w-2/3 my-auto h-1/2"
+            className="progress progress-accent rounded-lg w-2/3 my-auto h-1/2"
             value="60"
             max="100"
           ></progress>
