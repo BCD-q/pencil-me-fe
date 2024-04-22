@@ -17,9 +17,12 @@ const config: Config = {
     themes: [
       {
         mytheme: {
+          primary: '#a991f7',
           accent: '#78be5e',
         },
       },
+      'cupcake',
+      'halloween',
     ],
   },
 };

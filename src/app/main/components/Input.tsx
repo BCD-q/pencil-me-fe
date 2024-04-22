@@ -77,10 +77,10 @@ export default function Input() {
           onKeyUp={handleKeyUpInput}
         />
         <button
-          className="bg-[#78be5e] flex justify-center my-auto items-center whitespace-nowrap text-white btn min-h-4 h-10"
+          className="bg-[#78be5e] flex justify-center my-auto items-center whitespace-nowrap text-white text-lg btn min-h-4 h-10"
           onClick={handleButtonClick}
         >
-          <IoPaperPlaneOutline className="w-5 h-5" />
+          <IoPaperPlaneOutline className="w-6 h-6" />
           전송
         </button>
       </div>

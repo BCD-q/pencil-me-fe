@@ -14,8 +14,11 @@ export default function Home() {
         >
           <button>로그인</button>
         </Link>
-        <Link href="register" className="w-11/12 mx-auto btn">
-          <button className="w-11/12 mx-auto btn">회원 가입</button>
+        <Link
+          href="register"
+          className="w-11/12 mx-auto btn border-none bg-gray-300"
+        >
+          <button className="w-11/12 border-none mx-auto">회원 가입</button>
         </Link>
       </div>
     </div>
