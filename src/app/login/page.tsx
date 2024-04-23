@@ -4,7 +4,7 @@ import LoginInput from '@/app/login/components/LoginInput';
 
 import BubbleImage from '../../resources/images/common/BubbleImage.png';
 
-export default function LoginPage(): JSX.Element {
+export default function LoginPage() {
   return (
     <div className="flex flex-col h-screen">
       <div className="flex flex-col my-auto">
