@@ -21,6 +21,7 @@ export default function LoginInput() {
       console.log(data);
       localStorage.setItem('token', data.data.token);
       axios.defaults.headers.common['Authorization'] = data.data.token;
+
       alert('로그인이 완료되었습니다!');
       router.push('/main');
     },
