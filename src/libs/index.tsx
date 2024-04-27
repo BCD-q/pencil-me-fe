@@ -14,3 +14,12 @@ export const fetchInspiration = async () => {
     console.error(error);
   }
 };
+
+// 그룹 불러올때 api
+export const fetchCategory = async () => {
+  try {
+    return await axios.get(`${apiKey}/categories`);
+  } catch (error) {
+    console.error(error);
+  }
+};

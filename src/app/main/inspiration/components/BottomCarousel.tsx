@@ -23,6 +23,8 @@ export default function BottonCarousel() {
 }
 
 function BottomComponent({ data }: { data: any }) {
+  const AddInspi = () => {};
+
   return (
     <li className="rounded-xl shadow-xl flex-col">
       <img
