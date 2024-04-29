@@ -17,10 +17,11 @@ export default function AddGroupModal(): JSX.Element {
   const setGroup = async () => {
     if (groupName) {
       console.log(groupName.categoryName);
-      await fetch(`${apiKey}categories`, {
+      await fetch(`${apiKey}/categories`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: localStorage.getItem('token') as string,
         },
         body: JSON.stringify({
           name: groupName.categoryName,
@@ -50,10 +51,16 @@ export default function AddGroupModal(): JSX.Element {
         onKeyUp={handleKeyUpInput}
       />
       <div className="flex justify-evenly flex-1 items-center">
-        <button className="btn rounded-lg" onClick={setGroup}>
+        <button
+          className="btn rounded-lg bg-accent text-white"
+          onClick={setGroup}
+        >
           등록
         </button>
-        <button className="btn rounded-lg" onClick={setGroupModalClose}>
+        <button
+          className="btn rounded-lg bg-accent text-white"
+          onClick={setGroupModalClose}
+        >
           닫기
         </button>
       </div>

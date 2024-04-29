@@ -39,10 +39,12 @@ export default function Input() {
 
     if (inputText) {
       setInputText('');
-      const res = await fetch(`${apiKey}language`, {
+      const res = await fetch(`${apiKey}/language`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          // prettier-ignore
+          'Authorization': localStorage.getItem('token'),
         },
         body: JSON.stringify({
           memberDialog: inputText,
