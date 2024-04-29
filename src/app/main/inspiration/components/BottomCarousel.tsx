@@ -23,14 +23,12 @@ export default function BottonCarousel() {
 }
 
 function BottomComponent({ data }: { data: any }) {
-  const AddInspi = () => {};
-
   return (
     <li className="rounded-xl shadow-xl flex-col">
       <img
         src={data}
         alt=""
-        className="rounded-t-lg w-full h-[100vw] sm:h-[33vw] lg:h-[20vw] flex-2 object-cover"
+        className="rounded-t-lg w-full h-[85vw] sm:h-[33vw] lg:h-[20vw] flex-2 object-cover"
       />
       <div className="flex justify-between items-center p-2">
         <div className="flex-1 overflow-hidden whitespace-nowrap my-auto">
