@@ -1,28 +1,26 @@
-import React, { useState } from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
 
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-import { fetchTodo } from '@/libs';
 import useTodayStore from '@/modules/todayStore';
 
 interface TodoItem {
-  memberId: number;
-  categoryId: number;
-  title: string;
-  contents: string;
-  deadline: string;
-  isImportant: boolean;
+  memberId?: number;
+  categoryId?: number;
+  title?: string;
+  contents?: string;
+  deadline?: string;
+  isFinished?: boolean;
 }
 
 export default function Input() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [inputText, setInputText] = useState('');
-  const [todo, setTodo] = useState('');
   const [error, setError] = useState<string | null>(null);
-
-  const { todoList, addTodo } = useTodayStore();
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
@@ -50,22 +48,28 @@ export default function Input() {
           memberDialog: inputText,
         }),
       });
-      const data = await res.json();
-      console.log(data);
+      const makeData = await res.json();
+      console.log(makeData);
 
       const newTodo: TodoItem = {
-        memberId: data.data.memberId,
-        categoryId: data.data.categoryId,
-        title: data.data.title,
-        contents: data.data.contents,
-        deadline: data.data.deadline,
-        isImportant: false,
+        title: makeData.data.title,
+        contents: makeData.data.contents,
+        categoryId: makeData.data.categoryId,
+        deadline: makeData.data.deadline,
+        isFinished: false,
       };
-
-      addTodo(newTodo);
-      console.log(todoList);
+      mutate(newTodo);
     }
   };
+
+  const { mutate } = useMutation({
+    mutationFn: (todo: TodoItem) => {
+      return axios.post(`${apiKey}/todos`, todo);
+    },
+    onSuccess: ({ data }) => {
+      console.log(data);
+    },
+  });
 
   return (
     <>

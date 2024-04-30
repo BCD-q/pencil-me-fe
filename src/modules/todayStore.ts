@@ -1,12 +1,12 @@
 import { create } from 'zustand';
 
 export interface TodoItem {
-  memberId: number;
-  categoryId: number;
-  title: string;
-  contents: string;
-  deadline: string;
-  isImportant: boolean;
+  memberId?: number;
+  categoryId?: number;
+  title?: string;
+  contents?: string;
+  deadline?: string;
+  isImportant?: boolean;
 }
 
 interface TodayStore {
