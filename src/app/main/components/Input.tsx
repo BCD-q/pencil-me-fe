@@ -6,8 +6,6 @@ import { IoPaperPlaneOutline } from 'react-icons/io5';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-import useTodayStore from '@/modules/todayStore';
-
 interface TodoItem {
   memberId?: number;
   categoryId?: number;
@@ -20,7 +18,6 @@ interface TodoItem {
 export default function Input() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [inputText, setInputText] = useState('');
-  const [error, setError] = useState<string | null>(null);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
@@ -41,8 +38,6 @@ export default function Input() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // prettier-ignore
-          'Authorization': localStorage.getItem('token'),
         },
         body: JSON.stringify({
           memberDialog: inputText,

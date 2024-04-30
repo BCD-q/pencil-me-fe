@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react';
+'use client';
+
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -7,13 +9,12 @@ import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import BlankText from '@/component/common/BlankText';
-import { TodoItem } from '@/modules/todayStore';
 
-import Input from './Input';
 import TodoBox from './TodoBox';
 
 export default function WorkBox(): JSX.Element {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const [todoList, setTodoList] = useState();
   const { data, error, isLoading } = useQuery({
     queryKey: ['todoList'],
     queryFn: () => {
@@ -25,9 +26,14 @@ export default function WorkBox(): JSX.Element {
     },
   });
 
+  useEffect(() => {
+    console.log(data?.data.data);
+  }, [data]);
+
   return (
     <div className="flex flex-col flex-1 h-full overflow-auto">
       <ul className="h-full">
+        {data?.data.data.length === 0 && <BlankText />}
         {data &&
           data.data.data.map((item, index) => (
             <Swiper key={index}>
