@@ -21,7 +21,7 @@ export default function GroupDataBox() {
 
   return (
     <ul className="h-full w-full">
-      {data?.data?.data.map((item: any, index: number) => {
+      {data?.data?.data.map((item: category, index: number) => {
         const isFirst = index === 0;
         const isLast = index === data.data.data.length - 1;
         const buttonClassName = `
