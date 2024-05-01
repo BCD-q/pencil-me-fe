@@ -15,7 +15,7 @@ import TodoBox from './TodoBox';
 export default function WorkBox(): JSX.Element {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [todoList, setTodoList] = useState();
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading, refetch } = useQuery({
     queryKey: ['todoList'],
     queryFn: () => {
       try {

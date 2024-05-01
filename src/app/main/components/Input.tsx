@@ -15,6 +15,10 @@ interface TodoItem {
   isFinished?: boolean;
 }
 
+interface LanguageData {
+  memberDialog: string;
+}
+
 export default function Input() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [inputText, setInputText] = useState('');
@@ -25,44 +29,28 @@ export default function Input() {
 
   const handleKeyUpInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleButtonClick();
+      mutate(inputText);
     }
   };
 
-  const handleButtonClick = async () => {
-    if (inputText === '') return;
-
-    if (inputText) {
-      setInputText('');
-      const res = await fetch(`${apiKey}/language`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          memberDialog: inputText,
-        }),
-      });
-      const makeData = await res.json();
-      console.log(makeData);
-
-      const newTodo: TodoItem = {
-        title: makeData.data.title,
-        contents: makeData.data.contents,
-        categoryId: makeData.data.categoryId,
-        deadline: makeData.data.deadline,
-        isFinished: false,
+  const { isPending, mutate } = useMutation({
+    mutationFn: (inputText: string) => {
+      const data: LanguageData = {
+        memberDialog: inputText,
       };
-      mutate(newTodo);
-    }
-  };
-
-  const { mutate } = useMutation({
-    mutationFn: (todo: TodoItem) => {
-      return axios.post(`${apiKey}/todos`, todo);
+      return axios.post(`${apiKey}/language`, data);
     },
     onSuccess: ({ data }) => {
       console.log(data);
+      const newTodo: TodoItem = {
+        title: data.data.title,
+        contents: data.data.contents,
+        categoryId: data.data.categoryId,
+        deadline: data.data.deadline,
+        isFinished: false,
+      };
+      setInputText('');
+      return axios.post(`${apiKey}/todos`, newTodo);
     },
   });
 
@@ -72,18 +60,25 @@ export default function Input() {
         <input
           type="text"
           placeholder="이렇게 입력해보세요"
-          className="w-full min-w-24 pl-2 h-12 rounded-md border border-gray-300 focus:outline-none focus:ring-2 bg-[#efeef1] mx-3 text-sm"
+          className="relative w-full min-w-24 pl-2 h-12 rounded-md border border-gray-300 focus:outline-none focus:ring-2 bg-[#efeef1] mx-3 text-sm"
           value={inputText}
           onChange={handleChangeInput}
           onKeyUp={handleKeyUpInput}
         />
         <button
           className="bg-[#78be5e] flex justify-center my-auto items-center whitespace-nowrap text-white text-lg btn min-h-4 h-10"
-          onClick={handleButtonClick}
+          onClick={() => mutate(inputText)}
         >
           <IoPaperPlaneOutline className="w-6 h-6" />
           전송
         </button>
+        {isPending && (
+          <div className="absolute bottom-20 w-[100vw]">
+            <div className="mx-auto pl-4 flex items-center skeleton bg-accent rounded-lg text-white w-11/12 h-12">
+              {inputText}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
