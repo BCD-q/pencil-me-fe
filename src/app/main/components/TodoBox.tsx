@@ -1,10 +1,6 @@
-'use client';
-
-import { useState } from 'react';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 
 // Reg는 빈별
-import useTodayStore from '@/modules/todayStore';
 import { TodoItem } from '@/modules/todayStore';
 
 export default function TodoBox({ item }: { item: TodoItem }) {
