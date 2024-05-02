@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
 
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
 interface TodoItem {
@@ -56,11 +56,11 @@ export default function Input() {
 
   return (
     <>
-      <div className="flex w-full sticky gap-2 px-2 py-3 bg-white rounded-t-2xl">
+      <div className="flex sticky px-2 py-3 bg-white rounded-t-2xl">
         <input
           type="text"
           placeholder="이렇게 입력해보세요"
-          className="relative w-full min-w-24 pl-2 h-12 rounded-md border border-gray-300 focus:outline-none focus:ring-2 bg-[#efeef1] mx-3 text-sm"
+          className="w-full min-w-24 pl-2 h-12 rounded-md border border-gray-300 focus:outline-none focus:ring-2 bg-[#efeef1] mx-3 text-sm"
           value={inputText}
           onChange={handleChangeInput}
           onKeyUp={handleKeyUpInput}
@@ -73,8 +73,8 @@ export default function Input() {
           전송
         </button>
         {isPending && (
-          <div className="absolute bottom-20 w-[100vw]">
-            <div className="mx-auto pl-4 flex items-center skeleton bg-accent rounded-lg text-white w-11/12 h-12">
+          <div className="absolute flex bottom-20 w-full">
+            <div className="mr-4 pl-4 w-full flex items-center skeleton bg-accent rounded-lg text-white h-12 text-sm">
               {inputText}
             </div>
           </div>

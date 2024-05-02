@@ -8,7 +8,7 @@ import WorkBar from '@/component/common/Workbar';
 
 const TodayPage = () => {
   return (
-    <div className="relative flex flex-col h-full">
+    <div className="flex flex-col w-[100vw]">
       <Cartegory>오늘</Cartegory>
       <WorkBar>오늘의 작업들</WorkBar>
       <WorkBox />
