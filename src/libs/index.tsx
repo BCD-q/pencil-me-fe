@@ -8,8 +8,10 @@ export const fetchTodo = async () => {
 
 // 영감 불러올때 api
 export const fetchInspiration = async () => {
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
   try {
-    return await axios.get('https://dog.ceo/api/breed/hound/images/random/20');
+    return await axios.get(`${apiKey}/interest-mapping`);
   } catch (error) {
     console.error(error);
   }
