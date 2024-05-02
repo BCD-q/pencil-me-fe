@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 import WorkBox from '@/app/main/components/workBox';

@@ -12,9 +12,17 @@ import BlankText from '@/component/common/BlankText';
 
 import TodoBox from './TodoBox';
 
+interface TodoItem {
+  memberId?: number;
+  categoryId?: number;
+  title?: string;
+  contents?: string;
+  deadline?: string;
+  isFinished?: boolean;
+}
+
 export default function WorkBox(): JSX.Element {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-  const [todoList, setTodoList] = useState();
   const { data, error, isLoading, refetch } = useQuery({
     queryKey: ['todoList'],
     queryFn: () => {
@@ -35,7 +43,7 @@ export default function WorkBox(): JSX.Element {
       <ul className="h-full">
         {data?.data.data.length === 0 && <BlankText />}
         {data &&
-          data.data.data.map((item, index) => (
+          data.data.data.map((item: TodoItem, index: number) => (
             <Swiper key={index}>
               <SwiperSlide key={index}>
                 <TodoBox item={item} />
