@@ -6,6 +6,8 @@ import { IoPaperPlaneOutline } from 'react-icons/io5';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
+import useTodayStore from '@/modules/todayStore';
+
 interface TodoItem {
   memberId?: number;
   categoryId?: number;
@@ -21,6 +23,7 @@ interface LanguageData {
 
 export default function Input() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const { todoList, addTodo } = useTodayStore();
   const [inputText, setInputText] = useState('');
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,18 +48,25 @@ export default function Input() {
       const newTodo: TodoItem = {
         title: data.data.title,
         contents: data.data.contents,
-        categoryId: data.data.categoryId,
+        categoryId: 4,
         deadline: data.data.deadline,
         isFinished: false,
       };
       setInputText('');
-      return axios.post(`${apiKey}/todos`, newTodo);
+      const postTodo = axios.post(`${apiKey}/todos`, newTodo);
+      postTodo.then(() => {
+        addTodo(newTodo);
+      });
+    },
+    onError: () => {
+      alert('전송에 실패했습니다!');
+      setInputText('');
     },
   });
 
   return (
     <>
-      <div className="flex sticky px-2 py-3 bg-white rounded-t-2xl">
+      <div className="flex sticky z-10 px-2 py-3 bg-white rounded-t-2xl">
         <input
           type="text"
           placeholder="이렇게 입력해보세요"
@@ -73,7 +83,7 @@ export default function Input() {
           전송
         </button>
         {isPending && (
-          <div className="absolute flex bottom-20 w-full">
+          <div className="absolute flex bottom-20 w-full z-10">
             <div className="mr-4 pl-4 w-full flex items-center skeleton bg-accent rounded-lg text-white h-12 text-sm">
               {inputText}
             </div>

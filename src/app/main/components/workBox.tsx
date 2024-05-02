@@ -9,6 +9,7 @@ import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import BlankText from '@/component/common/BlankText';
+import useTodayStore from '@/modules/todayStore';
 
 import TodoBox from './TodoBox';
 
@@ -22,8 +23,9 @@ interface TodoItem {
 }
 
 export default function WorkBox(): JSX.Element {
+  const { todoList, addTodo } = useTodayStore();
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-  const { data, error, isLoading, refetch } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ['todoList'],
     queryFn: () => {
       try {
@@ -35,11 +37,12 @@ export default function WorkBox(): JSX.Element {
   });
 
   useEffect(() => {
-    console.log(data?.data.data);
-  }, [data]);
+    console.log(todoList);
+    refetch();
+  }, [todoList]);
 
   return (
-    <div className="flex flex-col flex-1 h-full overflow-auto">
+    <div className="flex flex-col flex-1 h-screen z-0 overflow-y-hidden">
       <ul className="h-full">
         {data?.data.data.length === 0 && <BlankText />}
         {data &&

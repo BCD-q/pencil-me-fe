@@ -69,7 +69,7 @@ export default function GroupDataBox() {
     //   })}
     // </ul>
     <ul>
-      {testData.map((item: category, index: number) => {
+      {data?.data?.data.map((item: category, index: number) => {
         const isFirst = index === 0;
         const isLast = index === testData.length - 1;
         const buttonClassName = `
