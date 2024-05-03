@@ -49,6 +49,7 @@ export default function Interest() {
         Authorization: localStorage.getItem('token'),
       },
     }); // 쿼리스트링으로 요청 전송
+    alert('관심사 등록이 완료되었습니다!');
     router.push('/main');
   };
 
@@ -56,7 +57,7 @@ export default function Interest() {
     <div className="flex flex-col bg-gray-200 h-full w-full">
       <header className="w-full h-28 text-black text-2xl flex items-center justify-center">
         <GiClick className="w-14 h-14 mr-2" />
-        관심사를 눌러보세요!
+        관심사를 체크해주세요!
       </header>
       <ul className="h-[70vh] w-full overflow-y-auto">
         {data?.data?.data.map((item: InterestItem, index: number) => {

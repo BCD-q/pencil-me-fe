@@ -32,6 +32,7 @@ const testData = [
 ];
 
 export default function GroupDataBox() {
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const {
     groupModalOpen,
     setGroupModalClose,
@@ -52,6 +53,15 @@ export default function GroupDataBox() {
   if (isLoading)
     return <div className="flex loading loading-spinner w-2/5 mx-auto"></div>;
 
+  const deleteCategory = async (id: number | undefined) => {
+    try {
+      await axios.delete(`${apiKey}/categories/${id}`);
+      refetch();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     // <ul className="h-full w-full">
     //   {data?.data?.data.map((item: category, index: number) => {
@@ -68,12 +78,12 @@ export default function GroupDataBox() {
     //     );
     //   })}
     // </ul>
-    <ul>
+    <ul className="w-full mx-auto">
       {data?.data?.data.map((item: category, index: number) => {
         const isFirst = index === 0;
         const isLast = index === testData.length - 1;
         const buttonClassName = `
-          flex mx-auto w-11/12 h-12 items-center pl-4 text-lg border-b-[1px] bg-white
+          flex mx-auto overflow-hidden w-11/12 h-12 items-center pl-4 text-lg border-b-[1px] bg-white
           ${isFirst ? 'rounded-t-lg' : ''} ${isLast ? 'rounded-b-lg' : ''}
         `;
         return (
@@ -82,16 +92,23 @@ export default function GroupDataBox() {
               <button className={buttonClassName}>{item.categoryName}</button>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="flex items-center w-11/12 mx-auto bg-white">
+              <div className={buttonClassName}>
                 <div className="flex flex-row w-full h-12 text-sm text-white border-t">
-                  <div className="flex-1"></div>
+                  <div className="flex-1 text-black"></div>
                   <button
                     className="w-1/6 bg-orange-400"
                     onClick={setModGroupOpen}
                   >
                     수정
                   </button>
-                  <button className="w-1/6 bg-red-500">삭제</button>
+                  <button
+                    className="w-1/6 bg-red-500"
+                    onClick={() => {
+                      deleteCategory(item.categoryId);
+                    }}
+                  >
+                    삭제
+                  </button>
                 </div>
               </div>
             </SwiperSlide>
