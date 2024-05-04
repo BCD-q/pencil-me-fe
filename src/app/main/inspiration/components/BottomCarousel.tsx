@@ -15,11 +15,13 @@ export default function BottonCarousel() {
   if (isLoading)
     return (
       <>
-        {Array.from({ length: 15 }).map((_, index) => (
-          <>
-            <div className="skeleton w-11/12 h-[85vw] sm:h-[33vw] lg:h-[20vw] bg-gray-200 mt-4 mx-auto"></div>
-          </>
-        ))}
+        <ul className="inline-grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 m-2 gap-2 w-full mx-auto">
+          {Array.from({ length: 25 }).map((_, index) => (
+            <>
+              <div className="skeleton w-11/12 h-[33vh] sm:h-[33vw] lg:h-[20vw] bg-gray-200 mt-4 mx-auto"></div>
+            </>
+          ))}
+        </ul>
       </>
     );
 

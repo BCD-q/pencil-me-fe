@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import Cartegory from '@/component/common/Cartegory';
-import Container from '@/component/common/Container';
 
 import CheckBox from './components/CheckBox';
 
