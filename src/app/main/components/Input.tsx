@@ -41,19 +41,27 @@ export default function Input() {
       const data: LanguageData = {
         memberDialog: inputText,
       };
-      return axios.post(`${apiKey}/language`, data);
+      return axios.post(`${apiKey}/language`, data, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
     },
     onSuccess: ({ data }) => {
       console.log(data);
       const newTodo: TodoItem = {
         title: data.data.title,
         contents: data.data.contents,
-        categoryId: 4,
+        categoryId: 1,
         deadline: data.data.deadline,
         isFinished: false,
       };
       setInputText('');
-      const postTodo = axios.post(`${apiKey}/todos`, newTodo);
+      const postTodo = axios.post(`${apiKey}/todos`, newTodo, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
       postTodo.then(() => {
         addTodo(newTodo);
       });

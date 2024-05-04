@@ -29,7 +29,11 @@ export default function WorkBox(): JSX.Element {
     queryKey: ['todoList'],
     queryFn: () => {
       try {
-        return axios.get(`${apiKey}/todos`);
+        return axios.get(`${apiKey}/todos`, {
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
+        });
       } catch (e) {
         console.log(e);
       }
