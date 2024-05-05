@@ -5,8 +5,8 @@ interface GroupStore {
   groupModalOpen: boolean;
   setGroupModalOpen: () => void;
   setGroupModalClose: () => void;
-  setModGroupOpen: () => void;
-  setModGroupClose: () => void;
+  setModModalOpen: () => void;
+  setModModalClose: () => void;
 }
 
 const useGroupStore = create<GroupStore>()((set, get) => ({
@@ -14,8 +14,8 @@ const useGroupStore = create<GroupStore>()((set, get) => ({
   groupModalOpen: false,
   setGroupModalOpen: () => set({ groupModalOpen: true }),
   setGroupModalClose: () => set({ groupModalOpen: false }),
-  setModGroupOpen: () => set({ modModalOpen: true }),
-  setModGroupClose: () => set({ modModalOpen: false }),
+  setModModalOpen: () => set({ modModalOpen: true }),
+  setModModalClose: () => set({ modModalOpen: false }),
 }));
 
 export default useGroupStore;

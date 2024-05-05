@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -33,13 +34,16 @@ const testData = [
 
 export default function GroupDataBox() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const [key, setKey] = useState<number>();
   const {
     groupModalOpen,
     setGroupModalClose,
     modModalOpen,
-    setModGroupOpen,
-    setModGroupClose,
+    setModModalOpen,
+    setModModalClose,
   } = useGroupStore();
+
+  const router = useRouter();
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['category'],
@@ -47,6 +51,7 @@ export default function GroupDataBox() {
   });
 
   useEffect(() => {
+    router.refresh();
     refetch();
   }, [groupModalOpen, modModalOpen]);
 
@@ -63,32 +68,17 @@ export default function GroupDataBox() {
   };
 
   return (
-    // <ul className="h-full w-full">
-    //   {data?.data?.data.map((item: category, index: number) => {
-    //     const isFirst = index === 0;
-    //     const isLast = index === data.data.data.length - 1;
-    //     const buttonClassName = `
-    //       flex mx-auto w-11/12 h-12 pt-2 pl-4 text-lg border-b-[1px] bg-white
-    //       ${isFirst ? 'rounded-t-lg' : ''} ${isLast ? 'rounded-b-lg' : ''}
-    //     `;
-    //     return (
-    //       <button className={buttonClassName} key={index}>
-    //         {item.categoryName}
-    //       </button>
-    //     );
-    //   })}
-    // </ul>
-    <ul className="w-full mx-auto">
+    <ul className="w-full mx-auto overflow-hidden">
       {data?.data?.data.map((item: category, index: number) => {
         const isFirst = index === 0;
         const isLast = index === testData.length - 1;
         const buttonClassName = `
-          flex mx-auto overflow-hidden w-11/12 h-12 items-center pl-4 text-lg border-b-[1px] bg-white
+          flex mx-auto w-11/12 h-12 items-center pl-4 text-lg border-b-[1px] bg-white
           ${isFirst ? 'rounded-t-lg' : ''} ${isLast ? 'rounded-b-lg' : ''}
         `;
         return (
           <Swiper key={index}>
-            <SwiperSlide key={index}>
+            <SwiperSlide key={item.categoryId}>
               <button className={buttonClassName}>{item.categoryName}</button>
             </SwiperSlide>
             <SwiperSlide>
@@ -97,7 +87,11 @@ export default function GroupDataBox() {
                   <div className="flex-1 text-black"></div>
                   <button
                     className="w-1/6 bg-orange-400"
-                    onClick={setModGroupOpen}
+                    onClick={() => {
+                      console.log(item.categoryId);
+                      setKey(item.categoryId);
+                      setModModalOpen();
+                    }}
                   >
                     수정
                   </button>
@@ -115,7 +109,7 @@ export default function GroupDataBox() {
           </Swiper>
         );
       })}
-      {modModalOpen && <ModifyGroupModal />}
+      {modModalOpen && <ModifyGroupModal id={key} />}
     </ul>
   );
 }

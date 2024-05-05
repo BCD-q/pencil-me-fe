@@ -18,7 +18,7 @@ export default function BottonCarousel() {
         <ul className="inline-grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 m-2 gap-2 w-full mx-auto">
           {Array.from({ length: 25 }).map((_, index) => (
             <>
-              <div className="skeleton w-11/12 h-[33vh] sm:h-[33vw] lg:h-[20vw] bg-gray-200 mt-4 mx-auto"></div>
+              <div className="skeleton w-11/12 h-[40vh] sm:h-[40vw] lg:h-[23vw] bg-gray-200 mt-4 mx-auto"></div>
             </>
           ))}
         </ul>

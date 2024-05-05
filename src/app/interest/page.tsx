@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GiClick } from 'react-icons/gi';
 
 // useState 추가
@@ -37,9 +37,9 @@ export default function Interest() {
     }
   };
 
-  isLoading && (
-    <div className="flex loading loading-spinner w-2/5 mx-auto"></div>
-  );
+  useEffect(() => {
+    console.log(clickedItems);
+  }, [clickedItems]);
 
   const addInterest = async () => {
     const keywordsString = clickedItems.join(','); // 클릭된 키워드를 쉼표로 구분된 문자열로 변환
@@ -68,7 +68,7 @@ export default function Interest() {
           const buttonClassName = `
           flex mx-auto w-11/12 h-12 pt-2 pl-4 text-lg border-b-[1px] bg-white
           ${isFirst ? 'rounded-t-lg' : ''} ${isLast ? 'rounded-b-lg' : ''}
-          ${clicked ? 'bg-blue-200' : ''}`; // 클릭된 상태에 따라 배경색 변경
+          ${clicked ? 'bg-blue-300' : ''}`; // 클릭된 상태에 따라 배경색 변경
 
           return (
             <button
