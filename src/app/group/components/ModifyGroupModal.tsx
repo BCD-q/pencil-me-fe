@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+
 import useGroupStore from '../../../modules/groupStore';
 
 export type categoryProps = {
-  categoryName: string;
+  categoryName?: string;
 };
 
 export default function ModifyGroupModal({ id }: { id?: number }): JSX.Element {
@@ -14,27 +17,29 @@ export default function ModifyGroupModal({ id }: { id?: number }): JSX.Element {
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-  const setGroup = async () => {
-    if (groupName) {
-      console.log(id);
-      console.log(groupName.categoryName);
-      await fetch(`${apiKey}/categories/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem('token'),
+  const { mutate } = useMutation({
+    mutationFn: (groupName: categoryProps | undefined) => {
+      return axios.put(
+        `${apiKey}/categories/${id}`,
+        {
+          name: groupName?.categoryName,
         },
-        body: JSON.stringify({
-          name: groupName.categoryName,
-        }),
-      });
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem('token'),
+          },
+        },
+      );
+    },
+    onSuccess: () => {
       setModModalClose();
-    }
-  };
+    },
+  });
 
   const handleKeyUpInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      setGroup();
+      mutate(groupName);
     }
   };
 
@@ -54,9 +59,9 @@ export default function ModifyGroupModal({ id }: { id?: number }): JSX.Element {
       <div className="flex justify-evenly flex-1 bg-accent items-center rounded-b-lg">
         <button
           className=" w-1/2 bg-accent border-none text-white hover:bg-gray-200 h-full rounded-b-lg"
-          onClick={setGroup}
+          onClick={() => mutate(groupName)}
         >
-          등록
+          수정
         </button>
 
         <button
