@@ -48,13 +48,13 @@ export default function CheckBox() {
           <Link
             href=""
             className={`flex justify-around w-11/12 h-12 text-lg bg-white border-b-[1px] border-gray-200 ${
-              index === 0 ? 'rounded-t-lg' : ''
-            } ${index === categories.length - 1 ? 'rounded-b-lg mb-8' : ''}`}
+              index === 0 && categories.length !== 1 ? 'rounded-t-lg' : ''
+            } ${index === categories.length - 1 && categories.length !== 1 ? 'rounded-b-lg mb-8' : ''}`}
             key={index}
           >
             <button className="w-1/4">{item.categoryName}</button>
             <progress
-              className="progress progress-accent bg-gray-200 rounded-lg w-2/3 my-auto h-1/2"
+              className="progress progress-accent bg-gray-200 rounded-lg w-2/3 my-auto h-1/2 hover:animate-pulse"
               value={item.score}
               max="100"
             ></progress>

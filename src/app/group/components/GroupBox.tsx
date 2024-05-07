@@ -71,10 +71,10 @@ export default function GroupDataBox() {
     <ul className="w-full mx-auto overflow-hidden">
       {data?.data?.data.map((item: category, index: number) => {
         const isFirst = index === 0;
-        const isLast = index === testData.length - 1;
+        const isLast = index === data?.data?.data.length - 1;
         const buttonClassName = `
-          flex mx-auto w-11/12 h-12 items-center pl-4 text-lg border-b-[1px] bg-white
-          ${isFirst ? 'rounded-t-lg' : ''} ${isLast ? 'rounded-b-lg' : ''}
+          flex mx-auto w-11/12 h-12 items-center pl-4 text-lg border-b-[1px] bg-white hover:bg-gray-300
+          ${isFirst && data?.data?.data.length !== 1 ? 'rounded-t-lg' : ''} ${isLast && data?.data?.data.length !== 1 ? 'rounded-b-lg' : ''}
         `;
         return (
           <Swiper key={index}>
@@ -96,7 +96,7 @@ export default function GroupDataBox() {
                     수정
                   </button>
                   <button
-                    className="w-1/6 bg-red-500"
+                    className={`w-1/6 bg-red-500  ${isFirst && data?.data?.data.length !== 1 ? 'rounded-t-lg rounded-l-none' : ''} ${isLast && data?.data?.data.length !== 1 ? 'rounded-b-lg rounded-l-none' : ''}`}
                     onClick={() => {
                       deleteCategory(item.categoryId);
                     }}
