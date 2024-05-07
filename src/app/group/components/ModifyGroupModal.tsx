@@ -34,6 +34,7 @@ export default function ModifyGroupModal({ id }: { id?: number }): JSX.Element {
     },
     onSuccess: () => {
       setModModalClose();
+      window.location.reload();
     },
   });
 

@@ -8,9 +8,24 @@ export const fetchTodo = async () => {
 
 // 영감 불러올때 api
 export const fetchInspiration = async () => {
+  const Interests = localStorage.getItem('interests');
+  const data = {
+    keyword: Interests,
+  };
   try {
-    return await axios.get('https://dog.ceo/api/breed/hound/images/random/20');
+    return await axios.post(
+      'http://na2ru2.me:6380/inspiration/me?start=1',
+      {
+        keyword: [Interests],
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
   } catch (error) {
+    console.log(Interests);
     console.error(error);
   }
 };

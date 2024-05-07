@@ -1,9 +1,10 @@
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import 'swiper/css';
+import 'swiper/css/effect-fade';
+import { EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { fetchCategory } from '@/libs';
@@ -34,6 +35,7 @@ const testData = [
 
 export default function GroupDataBox() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
   const [key, setKey] = useState<number>();
   const {
     groupModalOpen,
@@ -43,15 +45,12 @@ export default function GroupDataBox() {
     setModModalClose,
   } = useGroupStore();
 
-  const router = useRouter();
-
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['category'],
     queryFn: fetchCategory,
   });
 
   useEffect(() => {
-    router.refresh();
     refetch();
   }, [groupModalOpen, modModalOpen]);
 
@@ -77,7 +76,7 @@ export default function GroupDataBox() {
           ${isFirst && data?.data?.data.length !== 1 ? 'rounded-t-lg' : ''} ${isLast && data?.data?.data.length !== 1 ? 'rounded-b-lg' : ''}
         `;
         return (
-          <Swiper key={index}>
+          <Swiper key={index} modules={[EffectFade]} effect="fade">
             <SwiperSlide key={item.categoryId}>
               <button className={buttonClassName}>{item.categoryName}</button>
             </SwiperSlide>

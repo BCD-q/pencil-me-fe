@@ -48,6 +48,7 @@ export default function Input() {
       });
     },
     onSuccess: ({ data }) => {
+      setInputText('');
       console.log(data);
       const newTodo: TodoItem = {
         title: data.data.title,
@@ -56,7 +57,6 @@ export default function Input() {
         deadline: data.data.deadline,
         isFinished: false,
       };
-      setInputText('');
       const postTodo = axios.post(`${apiKey}/todos`, newTodo, {
         headers: {
           Authorization: localStorage.getItem('token'),

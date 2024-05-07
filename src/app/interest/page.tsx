@@ -26,14 +26,17 @@ export default function Interest() {
 
   // 클릭된 관심사 아이템을 추적하기 위한 상태
   const [clickedItems, setClickedItems] = useState<number[]>([]);
+  const [interests, setInterests] = useState<string[]>([]);
 
-  const toggleClicked = (id: number) => {
+  const toggleClicked = (id: number, keyword: string) => {
     if (clickedItems.includes(id)) {
       // 이미 클릭된 경우 클릭 해제
       setClickedItems(clickedItems.filter((item) => item !== id));
+      setInterests(interests.filter((item) => item !== keyword));
     } else {
       // 클릭되지 않은 경우 클릭
       setClickedItems([...clickedItems, id]);
+      setInterests([...interests, keyword]);
     }
   };
 
@@ -50,6 +53,7 @@ export default function Interest() {
       },
     }); // 쿼리스트링으로 요청 전송
     alert('관심사 등록이 완료되었습니다!');
+    localStorage.setItem('interests', JSON.stringify(interests)); // 로컬스토리지에 관심사 저장
     router.push('/main');
   };
 
@@ -68,14 +72,14 @@ export default function Interest() {
           const buttonClassName = `
           flex mx-auto w-11/12 h-12 pt-2 pl-4 text-lg border-b-[1px] bg-white
           ${isFirst ? 'rounded-t-lg' : ''} ${isLast ? 'rounded-b-lg' : ''}
-          ${clicked ? 'bg-blue-300' : ''}`; // 클릭된 상태에 따라 배경색 변경
+          ${clicked ? 'bg-blue-200' : ''}`; // 클릭된 상태에 따라 배경색 변경
 
           return (
             <button
               className={buttonClassName}
               key={index}
               onClick={() => {
-                toggleClicked(item.id); // 클릭 토글 함수 호출
+                toggleClicked(item.id, item.keyword); // 클릭 토글 함수 호출
               }}
             >
               {item.keyword}

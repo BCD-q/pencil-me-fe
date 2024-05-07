@@ -8,18 +8,18 @@ import ExternalHeader from './components/ExternalHeader';
 export default function ExternalPage() {
   const param = useSearchParams();
 
-  const externalUrl = param.get('url');
+  const externalUrl: any = param.get('url');
 
   return (
     <div className="w-full h-[100vh]">
       <ExternalHeader />
       <iframe
         src={externalUrl}
-        frameborder="0"
+        frameBorder="0"
         width="100%"
-        height="100%"
+        height="90%"
       ></iframe>
-      <AddInspiFooter />
+      <AddInspiFooter url={externalUrl} />
     </div>
   );
 }
