@@ -37,7 +37,7 @@ export default function AvatarBox(): JSX.Element {
         프로필 변경하기
       </button>
       <button
-        className="bottom-12 flex btn ml-auto mt-auto w-1/3 text-accent bg-white rounded-xl border-none"
+        className="bottom-12 flex btn ml-auto mt-auto w-full text-accent rounded-xl border-none bg-gray-100 rounded-t-none rounded-l-none"
         onClick={() => {
           mutate(999);
         }}

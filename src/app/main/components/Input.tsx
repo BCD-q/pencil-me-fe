@@ -30,11 +30,11 @@ export default function Input() {
     setInputText(e.target.value);
   };
 
-  const handleKeyUpInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      mutate(inputText);
-    }
-  };
+  // const handleKeyUpInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  //   if (e.key === 'Enter') {
+  //     mutate(inputText);
+  //   }
+  // };
 
   const { isPending, mutate } = useMutation({
     mutationFn: (inputText: string) => {
@@ -81,7 +81,7 @@ export default function Input() {
           className="w-full min-w-24 pl-2 h-12 rounded-md border border-gray-300 focus:outline-none focus:ring-2 bg-[#efeef1] mx-3 text-sm"
           value={inputText}
           onChange={handleChangeInput}
-          onKeyUp={handleKeyUpInput}
+          // onKeyUp={handleKeyUpInput}
         />
         <button
           className="bg-[#78be5e] flex justify-center my-auto items-center whitespace-nowrap text-white text-lg btn min-h-4 h-10"

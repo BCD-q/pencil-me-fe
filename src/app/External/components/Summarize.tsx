@@ -19,15 +19,16 @@ export default function Summarize({ url }: { url: string }) {
 
   if (isLoading)
     return (
-      <div className="flex flex-col absolute bottom-[4rem] h-[30vh] w-full bg-accent">
-        <div className="loading-spinner"></div>
-        요약중입니다. 잠시만 기다려주세요
+      <div className="flex flex-col absolute bottom-[4rem] h-[30vh] w-full bg-accent rounded-t-xl">
+        <div className="w-1/2 mx-auto h-1/3 my-auto text-white">
+          요약중입니다. 잠시만 기다려주세요
+        </div>
       </div>
     );
 
   return (
-    <div className="flex flex-col absolute bottom-[4rem] h-[30vh] bg-accent">
-      <div className="mx-auto my-8 w-1/3 text-white h-1/6">
+    <div className="flex flex-col w-full absolute bottom-[4rem] h-[30vh] bg-accent rounded-t-xl">
+      <div className="mx-auto my-8 w-3/4 text-white h-1/6 border-b-2">
         {data?.data?.result.data.title}
       </div>
       <div className="text-white text-md sm:text-lg w-5/6 mx-auto">

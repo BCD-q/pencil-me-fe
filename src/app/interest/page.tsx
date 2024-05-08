@@ -20,7 +20,11 @@ export default function Interest() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['interests'],
     queryFn: () => {
-      return axios.get(`${apiKey}/interests`);
+      return axios.get(`${apiKey}/interests`, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
     },
   });
 
@@ -54,25 +58,26 @@ export default function Interest() {
     }); // 쿼리스트링으로 요청 전송
     alert('관심사 등록이 완료되었습니다!');
     localStorage.setItem('interests', JSON.stringify(interests)); // 로컬스토리지에 관심사 저장
-    router.push('/main');
+    router.push('/group');
   };
 
   return (
-    <div className="flex flex-col bg-gray-200 h-full w-full">
-      <header className="w-full h-28 text-black text-2xl flex items-center justify-center">
-        <GiClick className="w-14 h-14 mr-2" />
-        관심사를 체크해주세요!
+    <div className="flex flex-col bg-accent h-full w-full">
+      <header className="w-full h-28 text-black text-2xl bg-white flex items-center justify-center">
+        취향 설정
       </header>
-      <ul className="h-[70vh] w-full overflow-y-auto">
+      <div className="ml-4 mt-4 bg-accent text-white text-xl w-full">
+        좋아하는 주제를 탭하세요
+      </div>
+      <ul className="m-2 inline-grid grid-cols-3 gap-2 overflow-y-auto">
         {data?.data?.data.map((item: InterestItem, index: number) => {
           const isFirst = index === 0;
           const isLast = index === data.data.data.length - 1;
           const clicked = clickedItems.includes(item.id); // 클릭 여부 확인
 
           const buttonClassName = `
-          flex mx-auto w-11/12 h-12 pt-2 pl-4 text-lg border-b-[1px] bg-white
-          ${isFirst ? 'rounded-t-lg' : ''} ${isLast ? 'rounded-b-lg' : ''}
-          ${clicked ? 'bg-blue-200' : ''}`; // 클릭된 상태에 따라 배경색 변경
+          flex mx-auto w-[30vw] h-[30vw] m-2 gap-2 h-1/2 justify-center items-center  text-md bg-white rounded-full
+          ${clicked ? 'bg-blue-300' : ''}`; // 클릭된 상태에 따라 배경색 변경
 
           return (
             <button

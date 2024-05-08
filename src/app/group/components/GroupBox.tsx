@@ -59,7 +59,12 @@ export default function GroupDataBox() {
 
   const deleteCategory = async (id: number | undefined) => {
     try {
-      await axios.delete(`${apiKey}/categories/${id}`);
+      await axios.delete(`${apiKey}/categories/${id}`, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
+      window.location.reload();
       refetch();
     } catch (e) {
       console.log(e);
@@ -73,7 +78,7 @@ export default function GroupDataBox() {
         const isLast = index === data?.data?.data.length - 1;
         const buttonClassName = `
           flex mx-auto w-11/12 h-12 items-center pl-4 text-lg border-b-[1px] bg-white hover:bg-gray-300
-          ${isFirst && data?.data?.data.length !== 1 ? 'rounded-t-lg' : ''} ${isLast && data?.data?.data.length !== 1 ? 'rounded-b-lg' : ''}
+          ${isFirst && data?.data?.data.length !== 1 ? 'rounded-t-lg' : ''} ${isFirst && data?.data?.data.length == 1 ? 'rounded-lg' : ''} ${isLast && data?.data?.data.length !== 1 ? 'rounded-b-lg' : ''}
         `;
         return (
           <Swiper key={index} modules={[EffectFade]} effect="fade">
@@ -95,7 +100,7 @@ export default function GroupDataBox() {
                     수정
                   </button>
                   <button
-                    className={`w-1/6 bg-red-500  ${isFirst && data?.data?.data.length !== 1 ? 'rounded-t-lg rounded-l-none' : ''} ${isLast && data?.data?.data.length !== 1 ? 'rounded-b-lg rounded-l-none' : ''}`}
+                    className={`w-1/6 bg-red-500  ${isFirst && data?.data?.data.length !== 1 ? 'rounded-t-lg rounded-tl-none' : ''} ${isLast && data?.data?.data.length !== 1 ? 'rounded-b-lg rounded-bl-none' : ''}`}
                     onClick={() => {
                       deleteCategory(item.categoryId);
                     }}

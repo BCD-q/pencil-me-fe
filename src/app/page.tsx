@@ -10,13 +10,13 @@ export default function Home() {
         <Image src={PencilMe} alt="" className="w-4/5 mx-auto" />
         <Link
           href="login"
-          className="btn bg-[#78be5e] mt-20 mb-6 text-white w-11/12 mx-auto"
+          className="btn rounded-2xl bg-[#78be5e] mt-20 mb-6 text-white w-11/12 mx-auto"
         >
           <button>로그인</button>
         </Link>
         <Link
           href="register"
-          className="w-11/12 mx-auto btn border-none bg-gray-200"
+          className="w-11/12 rounded-2xl mx-auto btn border-none bg-gray-200"
         >
           <button className="w-11/12 border-none mx-auto">회원 가입</button>
         </Link>

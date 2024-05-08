@@ -7,7 +7,6 @@ import ExternalHeader from './components/ExternalHeader';
 
 export default function ExternalPage() {
   const param = useSearchParams();
-
   const externalUrl: any = param.get('url');
 
   return (

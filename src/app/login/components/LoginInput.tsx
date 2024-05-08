@@ -15,7 +15,7 @@ export default function LoginInput() {
 
   const { mutate } = useMutation({
     mutationFn: (Info: LoginInfoRequest) => {
-      return axios.post(`${apiKey}/members/login`, Info);
+      return axios.post(`${apiKey}/members/sign-in`, Info);
     },
     onSuccess: ({ data }) => {
       console.log(data);

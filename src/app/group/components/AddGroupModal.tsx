@@ -31,12 +31,6 @@ export default function AddGroupModal(): JSX.Element {
     }
   };
 
-  const handleKeyUpInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      setGroup();
-    }
-  };
-
   return (
     <div
       className="absolute z-10 flex flex-col w-4/5  h-48 -translate-x-1/2 -translate-y-1/2 bg-white shadow-xl top-1/2 left-1/2 rounded-xl md:w-2/5 md:h-52 opacity-100"
@@ -48,7 +42,6 @@ export default function AddGroupModal(): JSX.Element {
         placeholder="그룹명을 입력해주세요"
         className="flex w-10/12 mx-auto mb-8 text-center rounded-lg just-center input input-bordered"
         onChange={(e) => setGroupName({ categoryName: e.target.value })}
-        onKeyUp={handleKeyUpInput}
       />
       <div className="flex justify-evenly flex-1 bg-accent items-center rounded-b-lg">
         <button

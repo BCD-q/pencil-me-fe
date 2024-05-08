@@ -21,7 +21,7 @@ export default function RegisterInput(): JSX.Element {
 
   const mutation = useMutation({
     mutationFn: (Info: Info) => {
-      return axios.post(`${apiKey}/members`, Info);
+      return axios.post(`${apiKey}/members/sign-up`, Info);
     },
     onSuccess: () => {
       alert('회원가입이 완료되었습니다!');

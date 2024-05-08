@@ -14,6 +14,7 @@ import useTodayStore from '@/modules/todayStore';
 import TodoBox from './TodoBox';
 
 interface TodoItem {
+  id?: number;
   memberId?: number;
   categoryId?: number;
   title?: string;
@@ -25,7 +26,7 @@ interface TodoItem {
 export default function WorkBox(): JSX.Element {
   const { todoList, addTodo } = useTodayStore();
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-  const { data, refetch } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ['todoList'],
     queryFn: () => {
       try {
@@ -47,7 +48,11 @@ export default function WorkBox(): JSX.Element {
 
   const deleteTodo = async (id: number | undefined) => {
     try {
-      await axios.delete(`${apiKey}/todos/${id}`);
+      await axios.delete(`${apiKey}/todos/${id}`, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
       refetch();
     } catch (e) {
       console.log(e);
@@ -68,11 +73,11 @@ export default function WorkBox(): JSX.Element {
                 <div className="flex items-center w-full bg-white">
                   <div className="flex flex-row w-full h-16 text-sm text-white border-t">
                     <div className="flex-1"></div>
-                    <button className="w-1/6 bg-orange-400">미루기</button>
+                    <button className="w-1/6 bg-orange-400">수정</button>
                     <button
                       className="w-1/6 bg-red-500"
                       onClick={() => {
-                        deleteTodo(item.categoryId);
+                        deleteTodo(item.id);
                       }}
                     >
                       삭제

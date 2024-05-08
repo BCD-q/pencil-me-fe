@@ -46,7 +46,11 @@ export const fetchInspiration = async () => {
 // 그룹 불러올때 api
 export const fetchCategory = async () => {
   try {
-    return await axios.get(`${apiKey}/categories`);
+    return await axios.get(`${apiKey}/categories`, {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    });
   } catch (error) {
     console.error(error);
   }
