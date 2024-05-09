@@ -23,14 +23,14 @@ interface TodoItem {
   isFinished?: boolean;
 }
 
-export default function WorkBox(): JSX.Element {
+export default function WorkBox({ id }: { id: string | null }): JSX.Element {
   const { todoList, addTodo } = useTodayStore();
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['todoList'],
     queryFn: () => {
       try {
-        return axios.get(`${apiKey}/todos`, {
+        return axios.get(`${apiKey}/todos/${id == null ? '' : id}`, {
           headers: {
             Authorization: localStorage.getItem('token'),
           },

@@ -77,7 +77,7 @@ export default function Interest() {
 
           const buttonClassName = `
           flex mx-auto w-[30vw] h-[30vw] m-2 gap-2 h-1/2 justify-center items-center  text-md bg-white rounded-full
-          ${clicked ? 'bg-blue-300' : ''}`; // 클릭된 상태에 따라 배경색 변경
+          ${clicked ? 'bg-blue-200' : ''}`; // 클릭된 상태에 따라 배경색 변경
 
           return (
             <button

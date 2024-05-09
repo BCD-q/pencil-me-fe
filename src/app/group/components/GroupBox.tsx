@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
@@ -83,7 +84,11 @@ export default function GroupDataBox() {
         return (
           <Swiper key={index} modules={[EffectFade]} effect="fade">
             <SwiperSlide key={item.categoryId}>
-              <button className={buttonClassName}>{item.categoryName}</button>
+              <Link
+                href={`/main?id=${item.categoryId}&category=${item.categoryName}`}
+              >
+                <button className={buttonClassName}>{item.categoryName}</button>
+              </Link>
             </SwiperSlide>
             <SwiperSlide>
               <div className={buttonClassName}>

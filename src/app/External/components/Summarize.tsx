@@ -27,7 +27,7 @@ export default function Summarize({ url }: { url: string }) {
     );
 
   return (
-    <div className="flex flex-col w-full absolute bottom-[4rem] h-[30vh] bg-accent rounded-t-xl">
+    <div className="flex flex-col w-full absolute bottom-[4rem] h-[30vh] shadow-2xl bg-accent rounded-t-xl">
       <div className="mx-auto my-8 w-3/4 text-white h-1/6 border-b-2">
         {data?.data?.result.data.title}
       </div>

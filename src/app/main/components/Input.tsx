@@ -84,7 +84,7 @@ export default function Input() {
           // onKeyUp={handleKeyUpInput}
         />
         <button
-          className="bg-[#78be5e] flex justify-center my-auto items-center whitespace-nowrap text-white text-lg btn min-h-4 h-10"
+          className="bg-[#78be5e] rounded-3xl flex justify-center my-auto items-center whitespace-nowrap text-white text-lg btn min-h-4 h-10"
           onClick={() => mutate(inputText)}
         >
           <IoPaperPlaneOutline className="w-6 h-6" />
