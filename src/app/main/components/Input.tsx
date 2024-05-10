@@ -53,7 +53,7 @@ export default function Input() {
       const newTodo: TodoItem = {
         title: data.data.title,
         contents: data.data.contents,
-        categoryId: 1,
+        categoryId: data.data.categoryId,
         deadline: data.data.deadline,
         isFinished: false,
       };

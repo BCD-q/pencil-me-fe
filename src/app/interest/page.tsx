@@ -63,7 +63,7 @@ export default function Interest() {
 
   return (
     <div className="flex flex-col bg-accent h-full w-full">
-      <header className="w-full h-14 text-black text-2xl bg-white flex items-center justify-center">
+      <header className="w-full h-14 text-black text-2xl bg-white flex items-center justify-center text-md">
         취향 설정
       </header>
       <div className="ml-4 m-4 bg-accent text-white text-xl w-full">

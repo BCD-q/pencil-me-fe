@@ -19,8 +19,8 @@ export default function Summarize({ url }: { url: string }) {
 
   if (isLoading)
     return (
-      <div className="flex flex-col absolute bottom-[4rem] h-[30vh] w-full bg-accent rounded-t-xl">
-        <div className="w-1/2 mx-auto h-1/3 my-auto text-white">
+      <div className="flex skeleton rounded-b-none flex-col absolute bottom-[4rem] h-[30vh] w-full bg-accent rounded-t-xl shadow-2xl">
+        <div className="flex w-full justify-center my-auto text-white text-xl sm:text-2xl md:text-3xl">
           요약중입니다. 잠시만 기다려주세요
         </div>
       </div>

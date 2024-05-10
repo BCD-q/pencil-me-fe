@@ -22,7 +22,7 @@ const TodayPage = () => {
   return (
     <div className="flex flex-col w-[100vw]">
       <Cartegory>{category}</Cartegory>
-      <WorkBar>메인 작업들</WorkBar>
+      <WorkBar>{category} 할 일들</WorkBar>
       <WorkBox id={id} />
     </div>
   );

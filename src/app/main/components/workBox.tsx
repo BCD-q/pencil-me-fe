@@ -9,6 +9,7 @@ import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import BlankText from '@/component/common/BlankText';
+import useGroupStore from '@/modules/groupStore';
 import useTodayStore from '@/modules/todayStore';
 
 import TodoBox from './TodoBox';
@@ -25,6 +26,7 @@ interface TodoItem {
 
 export default function WorkBox({ id }: { id: string | null }): JSX.Element {
   const { todoList, addTodo } = useTodayStore();
+  const { groupModalOpen, setGroupModalClose } = useGroupStore();
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['todoList'],
@@ -42,9 +44,11 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
   });
 
   useEffect(() => {
-    console.log(todoList);
     refetch();
-  }, [todoList]);
+  }, [groupModalOpen]);
+
+  if (isLoading)
+    return <div className="flex loading loading-spinner w-2/5 mx-auto"></div>;
 
   const deleteTodo = async (id: number | undefined) => {
     try {
