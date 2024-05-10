@@ -92,12 +92,12 @@ export default function Interest() {
           );
         })}
       </ul>
-      <div className="flex mt-auto w-full h-16 items-center justify-center ml-auto bg-white">
+      <div className="flex mt-auto w-full h-16 items-center justify-center ml-auto bg-white ">
         <button
-          className="ml-auto mr-4 bg-accent text-white w-1/4 h-1/2 rounded-lg"
+          className="ml-auto mr-4 bg-accent text-white w-1/4 h-1/2 rounded-3xl"
           onClick={addInterest}
         >
-          Done
+          완료
         </button>
       </div>
     </div>
