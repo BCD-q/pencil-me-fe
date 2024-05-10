@@ -134,10 +134,11 @@ export default function BottonCarousel() {
 function BottomComponent({ data }: { data: any }) {
   const NoImage = 'https://www.svgrepo.com/show/340721/no-image.svg';
   const url = data.link;
+  const title = data.title;
 
   return (
     <li className="rounded-xl shadow-xl flex-col hover:opacity-50 hover:translate-y-2 hover:delay-100 hover:ease-in bg-white">
-      <Link href={`../External?url=${url}`}>
+      <Link href={`../External?url=${url}&title=${title}`}>
         <img
           src={data.thumbnail_url !== '' ? data.thumbnail_url : NoImage}
           alt=""
