@@ -1,19 +1,30 @@
 import Image from 'next/image';
+import { useEffect } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-import * as D from '../../../../resources/data';
+import useProfileStore from '@/modules/profileStore';
+
 import Odegaard from '../../../../resources/images/common/Odegaard.jpg';
 
 export default function Avatar() {
-  const ApiKey = process.env.REACT_APP_API_KEY;
-  const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['avatar'],
+  const { profileModalOpen, setProfileModalOpen } = useProfileStore();
+  const ApiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const { data, refetch } = useQuery({
+    queryKey: ['member'],
     queryFn: () => {
-      return axios.get(`${ApiKey}/avatar`);
+      return axios.get(`${ApiKey}/members`, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
     },
   });
+
+  useEffect(() => {
+    refetch();
+  }, [profileModalOpen]);
 
   return (
     <>
@@ -28,7 +39,9 @@ export default function Avatar() {
           />
         </div>
       </div>
-      <div className="mx-auto my-2 text-xl text-black">홍정우</div>
+      <div className="mx-auto my-2 text-xl text-black">
+        {data?.data.data.nickname}
+      </div>
     </>
   );
 }

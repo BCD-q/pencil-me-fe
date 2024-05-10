@@ -42,7 +42,7 @@ const Footer = () => {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col sticky bottom-0">
+    <div className="flex flex-col sticky bottom-0 bg-gray-200">
       {pathname === '/main' && <Input />}
       <div className="flex px-4 py-1 bg-slate-50">
         {links.map((link) => {

@@ -63,10 +63,10 @@ export default function Interest() {
 
   return (
     <div className="flex flex-col bg-accent h-full w-full">
-      <header className="w-full h-28 text-black text-2xl bg-white flex items-center justify-center">
+      <header className="w-full h-14 text-black text-2xl bg-white flex items-center justify-center">
         취향 설정
       </header>
-      <div className="ml-4 mt-4 bg-accent text-white text-xl w-full">
+      <div className="ml-4 m-4 bg-accent text-white text-xl w-full">
         좋아하는 주제를 탭하세요
       </div>
       <ul className="m-2 inline-grid grid-cols-3 gap-2 overflow-y-auto">
@@ -76,8 +76,8 @@ export default function Interest() {
           const clicked = clickedItems.includes(item.id); // 클릭 여부 확인
 
           const buttonClassName = `
-          flex mx-auto w-[30vw] h-[30vw] m-2 gap-2 h-1/2 justify-center items-center  text-md bg-white rounded-full
-          ${clicked ? 'bg-blue-200' : ''}`; // 클릭된 상태에 따라 배경색 변경
+          flex mx-auto w-[25vw] h-[25vw] m-2 gap-2 h-1/2 justify-center items-center  text-md bg-white rounded-full transition-color ease-in-out delay-75
+          ${clicked ? 'bg-gray-300 text-white' : ''}`; // 클릭된 상태에 따라 배경색 변경
 
           return (
             <button

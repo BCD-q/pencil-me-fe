@@ -135,7 +135,7 @@ function BottomComponent({ data }: { data: any }) {
   const url = data.link;
 
   return (
-    <li className="rounded-xl shadow-xl flex-col hover:opacity-50 hover:translate-y-2 hover:delay-100 hover:ease-in">
+    <li className="rounded-xl shadow-xl flex-col hover:opacity-50 hover:translate-y-2 hover:delay-100 hover:ease-in bg-white">
       <Link href={`../External?url=${url}`}>
         <img
           src={data.thumbnail_url}

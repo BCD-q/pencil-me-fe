@@ -74,7 +74,7 @@ export default function Input() {
 
   return (
     <>
-      <div className="flex sticky z-10 px-2 py-3 bg-white rounded-t-2xl">
+      <div className="flex sticky z-10 px-2 py-3 bg-white rounded-t-3xl">
         <input
           type="text"
           placeholder="이렇게 입력해보세요"

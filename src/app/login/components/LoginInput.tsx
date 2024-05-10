@@ -19,6 +19,7 @@ export default function LoginInput() {
     },
     onSuccess: ({ data }) => {
       console.log(data);
+      localStorage.setItem('password', password);
       localStorage.setItem('token', data.data.token);
       axios.defaults.headers.common['Authorization'] = data.data.token;
 
