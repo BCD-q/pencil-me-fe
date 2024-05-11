@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { GiClick } from 'react-icons/gi';
+import { FaCheck } from 'react-icons/fa';
 
 // useState 추가
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -76,8 +76,8 @@ export default function Interest() {
           const clicked = clickedItems.includes(item.id); // 클릭 여부 확인
 
           const buttonClassName = `
-          flex mx-auto w-[25vw] h-[25vw] m-2 gap-2 h-1/2 justify-center items-center  text-md bg-white rounded-full transition-color ease-in-out delay-75
-          ${clicked ? 'bg-gray-300 text-white' : ''}`; // 클릭된 상태에 따라 배경색 변경
+          relative flex mx-auto w-[25vw] h-[25vw] m-2 gap-2 h-1/2 justify-center items-center  text-md bg-white rounded-full transition-color ease-in-out delay-75
+          ${clicked ? 'opacity-50 text-black' : ''}`; // 클릭된 상태에 따라 배경색 변경
 
           return (
             <button
@@ -87,6 +87,9 @@ export default function Interest() {
                 toggleClicked(item.id, item.keyword); // 클릭 토글 함수 호출
               }}
             >
+              {clicked && (
+                <FaCheck className="absolute top-1/4 left-1/4 w-1/2 h-1/2 opacity-80" />
+              )}
               {item.keyword}
             </button>
           );
