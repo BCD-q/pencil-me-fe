@@ -58,6 +58,7 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
         },
       });
       refetch();
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }

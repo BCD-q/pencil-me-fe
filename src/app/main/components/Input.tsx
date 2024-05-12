@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
+import { RiMessage2Line } from 'react-icons/ri';
 
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
@@ -84,7 +85,7 @@ export default function Input() {
       <div className="flex sticky items-center z-10 h-20 px-2 py-3 bg-white rounded-t-3xl">
         <input
           type="text"
-          placeholder="이렇게 입력해보세요"
+          placeholder="✉️ 이렇게 입력해보세요"
           className="flex w-full min-w-24 pl-2 h-2/3 rounded-md border-gray-300 focus:outline-none focus:ring-2 bg-[#efeef1] mx-3 text-sm"
           value={inputText}
           onChange={handleChangeInput}

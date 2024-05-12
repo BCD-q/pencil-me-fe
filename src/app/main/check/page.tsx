@@ -13,7 +13,7 @@ export default function CheckPage(): JSX.Element {
           href=""
           className="flex justify-around w-11/12 h-12 mt-2 text-lg bg-white rounded-t-lg border-b-[1px]  border-gray-200"
         >
-          <button className="w-1/4">오늘</button>
+          <button className="w-1/4 text-sm sm:text-md">오늘</button>
           <progress
             className="progress progress-accent bg-gray-200 rounded-lg w-2/3 my-auto h-1/2"
             value="40"
@@ -24,7 +24,7 @@ export default function CheckPage(): JSX.Element {
           href=""
           className="flex justify-around w-11/12 h-12 text-lg bg-white rounded-b-lg"
         >
-          <button className="w-1/4">주요 목표</button>
+          <button className="w-1/4 text-sm sm:text-md">주요 목표</button>
           <progress
             className="progress progress-accent bg-gray-200 rounded-lg w-2/3 my-auto h-1/2"
             value="60"
