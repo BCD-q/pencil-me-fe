@@ -12,7 +12,8 @@ export default function Cartegory({
         children !== '프로필' &&
         children !== '그룹' &&
         children !== '회원가입' &&
-        children !== '로그인' && (
+        children !== '로그인' &&
+        children !== '수정' && (
           <Link href="../group" className="absolute left-0">
             <button className="mr-auto mt-1 border-none shadow-none btn btn-sm bg-inherit text-lime-500 text-lg">
               <IoIosArrowBack className="w-6 h-6 mr-[-12px]" />
@@ -29,6 +30,14 @@ export default function Cartegory({
         </button>
       ) : (
         ''
+      )}
+      {children === '수정' && (
+        <button
+          onClick={() => history.back()}
+          className="absolute left-0 m-2 text-accent"
+        >
+          back
+        </button>
       )}
       <div className="text-lg sm:text-xl">
         {children == null ? '메인' : children}

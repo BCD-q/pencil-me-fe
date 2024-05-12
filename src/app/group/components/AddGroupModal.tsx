@@ -40,7 +40,7 @@ export default function AddGroupModal(): JSX.Element {
       <input
         type="text"
         placeholder="그룹명을 입력해주세요"
-        className="flex w-10/12 mx-auto mb-8 text-center rounded-lg just-center input input-bordered"
+        className="flex w-10/12 mx-auto mb-8 text-center rounded-lg just-center input input-bordered border-gray-300"
         onChange={(e) => setGroupName({ categoryName: e.target.value })}
       />
       <div className="flex justify-evenly flex-1 bg-accent items-center rounded-b-lg">
