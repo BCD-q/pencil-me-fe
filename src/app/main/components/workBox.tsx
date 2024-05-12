@@ -45,7 +45,7 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
 
   useEffect(() => {
     refetch();
-  }, [groupModalOpen]);
+  }, [groupModalOpen, todoList]);
 
   if (isLoading)
     return <div className="flex loading loading-spinner w-2/5 mx-auto"></div>;

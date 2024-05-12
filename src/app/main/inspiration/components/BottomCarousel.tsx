@@ -11,62 +11,63 @@ import { fetchInspiration } from '@/libs';
 export default function BottonCarousel() {
   const InterestArray = [
     {
-      title: 'What backend are you using and why? : r/FlutterDev',
-      link: 'https://www.reddit.com/r/FlutterDev/comments/obubqi/what_backend_are_you_using_and_why/',
+      title:
+        'react-query에 typescript 적용하기 - 리액트 쿼리, 타입스크립트 ...',
+      link: 'https://gusrb3164.github.io/web/2022/01/23/react-query-typescript/',
+      thumbnail_url:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIYc6SGcmKDZ4fvqI2CQAWpo_sB4J6ug7g6DsW1RKEq2b9SMtOlmvO3u_A&s',
+    },
+    {
+      title: 'TypeScript | TanStack Query React Docs',
+      link: 'https://tanstack.com/query/latest/docs/framework/react/typescript',
       thumbnail_url: '',
     },
     {
-      title: 'Swagger Editor shows "Failed to fetch" error - Stack Overflow',
-      link: 'https://stackoverflow.com/questions/43375605/swagger-editor-shows-failed-to-fetch-error',
+      title: 'React Query(TypeScript + React v18)',
+      link: 'https://velog.io/@gkj8963/React-Query',
+      thumbnail_url:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaAec3uSmQjDJcCFgjc6_K3iceAg0U2p5We0562RQfC653VFRjI5bPE6Y&s',
+    },
+    {
+      title:
+        'TypeScript로 React Query 시작하기. Getting Started with React ...',
+      link: 'https://medium.com/@daori/typescript%EB%A1%9C-react-query-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-c7622d2c3258',
+      thumbnail_url:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReSeZ7LRsUKDRyIt_VDvCT7TXJsv2JuJT-0A5g0qIcN_BEdje1fZ3TllM&s',
+    },
+    {
+      title: 'React Query and TypeScript - DEV Community',
+      link: 'https://dev.to/tkdodo/react-query-and-typescript-34ai?comments_sort=top',
+      thumbnail_url:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn5Av4KuEWYYQ0ndUqoPh0R9QJObENZnB1GwH0SrZGwiBDhJYvHriKXbI&s',
+    },
+    {
+      title: 'Usage With TypeScript | Redux Toolkit',
+      link: 'https://redux-toolkit.js.org/rtk-query/usage-with-typescript',
+      thumbnail_url:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk4_4_RxeABTOGhOlzXrpjznR4c_NVLajoXa376OqGmbbEdjtmXJgcj4E&s',
+    },
+    {
+      title: 'TanStack Query v5 정식 버전 살펴보기 (리액트 쿼리) | moonkorea',
+      link: 'https://www.moonkorea.dev/React-TanStack-Query-v5-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0-(%EB%A6%AC%EC%95%A1%ED%8A%B8%EC%BF%BC%EB%A6%AC)',
+      thumbnail_url:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgbdTD0xRGSSF4ANGkwoCBCz3eW9JOJ0ebnGD4v3eZe21bGr7K-IJwfWw&s',
+    },
+    {
+      title: 'TypeScript React-Query (GraphQL-Codegen)',
+      link: 'https://the-guild.dev/graphql/codegen/plugins/typescript/typescript-react-query',
+      thumbnail_url: '',
+    },
+    {
+      title:
+        'reactjs - react-query useQuery typescript No overload matches this ...',
+      link: 'https://stackoverflow.com/questions/73122294/react-query-usequery-typescript-no-overload-matches-this-call',
       thumbnail_url:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYl7zuT3cw_BBRAyhdQEbQuBgqdNHXKHIYKL8S8ly8x9L_XA9sdwSmiHs&s',
     },
     {
-      title:
-        'Best backend language & framework to use with Flutter in 2023 ...',
-      link: 'https://www.reddit.com/r/FlutterDev/comments/15ciou4/best_backend_language_framework_to_use_with/',
-      thumbnail_url: '',
-    },
-    {
-      title: 'Python and FastAPI tutorial in Visual Studio Code',
-      link: 'https://code.visualstudio.com/docs/python/tutorial-fastapi',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPu43UJ1pdY--GRSH9Bw2HRARIO7DA1v83gSv9heodD6q5J1h1E2CKOu8&s',
-    },
-    {
-      title: 'GitLab CI/CD examples | GitLab',
-      link: 'https://docs.gitlab.com/ee/ci/examples/',
-      thumbnail_url: '',
-    },
-    {
-      title:
-        'Could not send request Error: Request timed out - Help - Postman ...',
-      link: 'https://community.postman.com/t/could-not-send-request-error-request-timed-out/33656',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMkL9qs9wwqD2GGfxifh0JH7KLPuSv7wFDua2FXjqNMjq_CHvdMPKLIUa&s',
-    },
-    {
-      title: 'Joseph Orji - RCP | LinkedIn',
-      link: 'https://ca.linkedin.com/in/joseph-orji',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC6sLIc6RAhFxfkjRujY8EdqkL2HHyLgl2M7r51S-4B8Ub5cXCKa3nP9g&s',
-    },
-    {
-      title:
-        'markdown-badges | Badges for your personal developer branding ...',
-      link: 'https://ileriayo.github.io/markdown-badges/',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHVb2AO6og15fcy-wpbqu2i9_uaLLWDssDuHfVadeP90_rJID_sQQl-I8&s',
-    },
-    {
-      title: 'Stack Overflow Developer Survey 2023',
-      link: 'https://survey.stackoverflow.co/2023',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZHvh3BF03rIN3N_6GMGyjzJBXtxykLhN1-eCoo503TKfdWbeQEziTxGqW&s',
-    },
-    {
-      title: 'Ask HN: Who wants to be hired? (September 2023) | Hacker News',
-      link: 'https://news.ycombinator.com/item?id=37351665',
+      title: 'TypeScript React Apollo (GraphQL-Codegen)',
+      link: 'https://the-guild.dev/graphql/codegen/plugins/typescript/typescript-react-apollo',
       thumbnail_url: '',
     },
   ];
@@ -139,11 +140,21 @@ function BottomComponent({ data }: { data: any }) {
   return (
     <li className="rounded-xl shadow-xl flex-col hover:opacity-50 hover:translate-y-2 hover:delay-100 hover:ease-in bg-white">
       <Link href={`../External?url=${url}&title=${title}`}>
-        <img
-          src={data.thumbnail_url !== '' ? data.thumbnail_url : NoImage}
-          alt=""
-          className="rounded-t-lg w-full h-[50vw] sm:h-[33vw] lg:h-[20vw] flex-2 object-cover"
-        />
+        {data.thumbnail_url !== '' ? (
+          <img
+            src={data.thumbnail_url}
+            alt="thumbnail"
+            className="w-full h-40 object-cover rounded-t-xl"
+          />
+        ) : (
+          <div className="flex w-full h-40">
+            <img
+              src={NoImage}
+              alt="thumbnail"
+              className="flex mx-auto my-auto w-1/2 h-1/2 object-cover rounded-t-xl"
+            />
+          </div>
+        )}
       </Link>
       <div className="flex justify-between items-center p-2 border-t-2 border-gray-200">
         <div className="flex-1 overflow-hidden whitespace-nowrap my-auto">

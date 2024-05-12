@@ -36,14 +36,14 @@ export default function LoginInput() {
       <input
         type="text"
         placeholder="계정명"
-        className="w-11/12 mx-auto mt-4 rounded-lg input input-bordered"
+        className="w-11/12 mx-auto mt-4 rounded-lg input input-bordered border-gray-300"
         value={uid}
         onChange={(e) => setUid(e.target.value)}
       />
       <input
         type="password"
         placeholder="비밀번호"
-        className="w-11/12 mx-auto mt-2 rounded-lg input input-bordered"
+        className="w-11/12 mx-auto mt-2 rounded-lg input input-bordered border-gray-300"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />

@@ -12,17 +12,17 @@ export default function ExternalHeader({ title }: { title: string | null }) {
   }, [title]);
 
   return (
-    <div className="flex flex-col sticky top-0 bg-gray-100 h-12">
+    <div className="flex flex-col justify-center items-center sticky top-0 bg-gray-100 h-16">
       <button
-        className="absolute top-4 left-0 text-white"
+        className="flex absolute top-4 left-0 text-white"
         onClick={() => router.back()}
       >
-        <button className="mr-auto border-none shadow-none btn btn-sm bg-inherit text-lime-500 text-lg">
+        <button className="flex mr-auto my-auto items-center border-none shadow-none btn btn-sm bg-inherit text-lime-500 text-lg">
           <IoIosArrowBack className="w-5 h-5 mr-[-12px]" />
           영감
         </button>
       </button>
-      <div className="flex mx-auto w-2/3 items-center justify-center h-full text-black text-md">
+      <div className="flex mx-auto justify-center w-3/5  items-center h-full text-black text-center text-sm">
         {title}
       </div>
     </div>

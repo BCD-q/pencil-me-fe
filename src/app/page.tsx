@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import Cartegory from '@/component/common/Cartegory';
+
 import PencilMe from '../resources/images/common/pencilMeThumbNail.png';
 
 export default function Home() {

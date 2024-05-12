@@ -22,7 +22,7 @@ export default function ExternalPage() {
         src={externalUrl}
         frameBorder="0"
         width="100%"
-        height="90%"
+        height="100%"
       ></iframe>
       <AddInspiFooter url={externalUrl} />
     </div>

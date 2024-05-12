@@ -13,7 +13,7 @@ export default function GroupFooter() {
   };
 
   return (
-    <div className="flex sticky bottom-0 shadow-xl border-t-8 border-gray-100 bg-gray-100 rounded-t-xl">
+    <div className="flex sticky bottom-0 h-16 shadow-xl border-t-8 border-gray-100 bg-gray-100 rounded-t-xl">
       <button
         className=" border-none top-2 left-4 btn btn-outline rounded-2xl text-[#78be5e] text-lg"
         onClick={toggleModal}
