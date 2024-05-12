@@ -64,7 +64,7 @@ export default function RegisterInput(): JSX.Element {
           className="w-8/12 mr-[-13px] mx-auto mt-1 rounded-lg input input-bordered border-gray-300"
           onChange={(e) => setUid(e.target.value)}
         />
-        <button className="btn w-[22%] mx-auto px-0 my-auto bg-[#78be5e] text-white text-lg rounded-2xl">
+        <button className="btn w-[22%] mx-auto px-0 my-auto bg-[#78be5e] text-white text-md rounded-2xl">
           중복 확인
         </button>
       </div>

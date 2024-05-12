@@ -3,7 +3,11 @@ import type { Config } from 'tailwindcss';
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        '3xl': '0px 0px 0px 0px rgba(0, 0, 0, 0.3)',
+      },
+    },
     screens: {
       xs: '480px',
       sm: '600px',

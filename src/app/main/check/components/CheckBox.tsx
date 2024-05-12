@@ -52,7 +52,9 @@ export default function CheckBox() {
             } ${index === categories.length - 1 && categories.length !== 1 ? 'rounded-b-lg mb-8' : ''}`}
             key={index}
           >
-            <button className=" w-1/4">{item.categoryName}</button>
+            <button className=" w-1/4 text-sm sm:text-md">
+              {item.categoryName}
+            </button>
             <progress
               className="progress progress-accent relative bg-gray-200 rounded-lg w-2/3 my-auto h-1/2 hover:animate-pulse"
               value={item.score}
