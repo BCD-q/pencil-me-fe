@@ -63,20 +63,20 @@ export default function Interest() {
 
   return (
     <div className="flex flex-col bg-accent h-full w-full">
-      <header className="w-full h-14 text-black text-2xl bg-white flex items-center justify-center text-md">
+      <header className="w-full h-16 text-black bg-white flex items-center justify-center text-md">
         취향 설정
       </header>
-      <div className="ml-4 m-4 bg-accent text-white text-xl w-full">
-        좋아하는 주제를 탭하세요
+      <div className="m-4 flex bg-accent text-white text-xl w-full">
+        관심있는 주제를 탭하세요
       </div>
-      <ul className="m-2 inline-grid grid-cols-3 gap-2 overflow-y-auto">
+      <ul className=" inline-grid grid-cols-3 gap-2 overflow-y-scroll">
         {data?.data?.data.map((item: InterestItem, index: number) => {
           const isFirst = index === 0;
           const isLast = index === data.data.data.length - 1;
           const clicked = clickedItems.includes(item.id); // 클릭 여부 확인
 
           const buttonClassName = `
-          relative flex mx-auto w-[25vw] h-[25vw] m-2 gap-2 h-1/2 justify-center items-center  text-md bg-white rounded-full transition-color ease-in-out delay-75
+          relative flex mx-auto w-[25vw] h-[25vw] m-2 gap-2 h-1/2 justify-center items-center  text-sm sm:text-md bg-white rounded-full transition-color ease-in-out delay-75
           ${clicked ? 'opacity-50 text-black' : ''}`; // 클릭된 상태에 따라 배경색 변경
 
           return (
@@ -88,16 +88,16 @@ export default function Interest() {
               }}
             >
               {clicked && (
-                <FaCheck className="absolute top-1/4 left-1/4 w-1/2 h-1/2 opacity-80" />
+                <FaCheck className="absolute top-1/3 left-1/3 w-1/3 h-1/3 opacity-80" />
               )}
               {item.keyword}
             </button>
           );
         })}
       </ul>
-      <div className="flex mt-auto w-full h-16 items-center justify-center ml-auto bg-white ">
+      <div className="flex mt-auto w-full h-16 sticky items-center justify-center ml-auto bg-white">
         <button
-          className="ml-auto mr-4 bg-accent text-white w-1/4 h-1/2 rounded-3xl"
+          className="ml-auto mr-4 bg-accent text-white w-1/4 h-2/3 rounded-3xl"
           onClick={addInterest}
         >
           완료

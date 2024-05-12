@@ -9,10 +9,10 @@ export default function AddInspiFooter({ url }: { url: string }) {
   const [clicked, setClicked] = useState<boolean>(false);
 
   return (
-    <div className="flex bg-white flex-row sticky bottom-0 h-16 rounded-t-3xl">
+    <div className="flex bg-white flex-row sticky bottom-0 h-16 z-40">
       {summarize && <Summarize url={url} />}
       <button
-        className={`btn relative text-accent w-1/4 border-none my-auto text-sm sm:text-md
+        className={`btn relative text-accent w-1/4 border-none my-auto text-sm sm:text-md z-50
         ${clicked ? '' : 'animate-pulse'}`}
         onClick={() => {
           setClicked(!clicked);

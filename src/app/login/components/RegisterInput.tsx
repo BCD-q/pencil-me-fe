@@ -61,10 +61,10 @@ export default function RegisterInput(): JSX.Element {
           type="text"
           placeholder="아이디"
           value={uid}
-          className="w-7/12 mx-auto mt-1 rounded-lg input input-bordered"
+          className="w-8/12 mr-[-13px] mx-auto mt-1 rounded-lg input input-bordered border-gray-300"
           onChange={(e) => setUid(e.target.value)}
         />
-        <button className="btn w-3/12 px-0 my-auto mx-auto bg-[#78be5e] text-white text-lg rounded-2xl">
+        <button className="btn w-[22%] mx-auto px-0 my-auto bg-[#78be5e] text-white text-lg rounded-2xl">
           중복 확인
         </button>
       </div>
@@ -72,28 +72,28 @@ export default function RegisterInput(): JSX.Element {
         type="text"
         placeholder="이메일"
         value={email}
-        className="w-11/12 mx-auto mt-2 rounded-lg input input-bordered"
+        className="w-11/12 mx-auto mt-2 rounded-lg input input-bordered border-gray-300"
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="text"
         placeholder="닉네임"
         value={nickname}
-        className="w-11/12 mx-auto mt-2 rounded-lg input input-bordered"
+        className="w-11/12 mx-auto mt-2 rounded-lg input input-bordered border-gray-300"
         onChange={(e) => setNickname(e.target.value)}
       />
       <input
         type="password"
         placeholder="비밀번호"
         value={password}
-        className="w-11/12 mx-auto mt-2 rounded-lg input input-bordered"
+        className="w-11/12 mx-auto mt-2 rounded-lg input input-bordered border-gray-300"
         onChange={(e) => setPassword(e.target.value)}
       />
       <input
         type="password"
         placeholder="비밀번호 재입력"
         value={confirmPassword}
-        className="w-11/12 mx-auto mt-2 rounded-lg input input-bordered"
+        className="w-11/12 mx-auto mt-2 rounded-lg input input-bordered border-gray-300"
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
       {IsPassword()}

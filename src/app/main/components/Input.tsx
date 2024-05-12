@@ -23,6 +23,7 @@ interface LanguageData {
 
 export default function Input() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const [text, setText] = useState('');
   const { todoList, addTodo } = useTodayStore();
   const [inputText, setInputText] = useState('');
 
@@ -38,17 +39,23 @@ export default function Input() {
 
   const { isPending, mutate } = useMutation({
     mutationFn: (inputText: string) => {
-      const data: LanguageData = {
-        memberDialog: inputText,
-      };
-      return axios.post(`${apiKey}/language`, data, {
-        headers: {
-          Authorization: localStorage.getItem('token'),
-        },
-      });
+      if (inputText === '') {
+        alert('내용을 입력해주세요!');
+        return Promise.reject();
+      } else {
+        const data: LanguageData = {
+          memberDialog: inputText,
+        };
+        setText(inputText);
+        setInputText('');
+        return axios.post(`${apiKey}/language`, data, {
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
+        });
+      }
     },
     onSuccess: ({ data }) => {
-      setInputText('');
       console.log(data);
       const newTodo: TodoItem = {
         title: data.data.title,
@@ -74,26 +81,26 @@ export default function Input() {
 
   return (
     <>
-      <div className="flex sticky z-10 px-2 py-3 bg-white rounded-t-3xl">
+      <div className="flex sticky items-center z-10 h-20 px-2 py-3 bg-white rounded-t-3xl">
         <input
           type="text"
           placeholder="이렇게 입력해보세요"
-          className="w-full min-w-24 pl-2 h-12 rounded-md border border-gray-300 focus:outline-none focus:ring-2 bg-[#efeef1] mx-3 text-sm"
+          className="flex w-full min-w-24 pl-2 h-2/3 rounded-md border-gray-300 focus:outline-none focus:ring-2 bg-[#efeef1] mx-3 text-sm"
           value={inputText}
           onChange={handleChangeInput}
           // onKeyUp={handleKeyUpInput}
         />
         <button
-          className="bg-[#78be5e] rounded-3xl flex justify-center my-auto items-center whitespace-nowrap text-white text-lg btn min-h-4 h-10"
+          className="bg-[#78be5e] rounded-3xl flex justify-center my-auto items-center whitespace-nowrap text-white text-md h-8 w-1/4"
           onClick={() => mutate(inputText)}
         >
-          <IoPaperPlaneOutline className="w-6 h-6" />
+          <IoPaperPlaneOutline className="w-6" />
           전송
         </button>
         {isPending && (
-          <div className="absolute flex bottom-20 w-full z-10">
+          <div className="absolute flex bottom-24 w-full z-10">
             <div className="mr-4 pl-4 w-full flex items-center skeleton bg-accent rounded-lg text-white h-12 text-sm">
-              {inputText}
+              {text}
             </div>
           </div>
         )}
