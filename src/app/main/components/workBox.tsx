@@ -25,7 +25,7 @@ interface TodoItem {
 }
 
 export default function WorkBox({ id }: { id: string | null }): JSX.Element {
-  const { todoList, addTodo } = useTodayStore();
+  const { todoList, ModifyTodo, addTodo, setModifyTodo } = useTodayStore();
   const { groupModalOpen, setGroupModalClose } = useGroupStore();
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const { data, isLoading, refetch } = useQuery({
@@ -45,7 +45,8 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
 
   useEffect(() => {
     refetch();
-  }, [groupModalOpen, todoList]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [groupModalOpen, ModifyTodo, todoList]);
 
   if (isLoading)
     return <div className="flex loading loading-spinner w-2/5 mx-auto"></div>;
@@ -78,7 +79,15 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
                 <div className="flex items-center w-full bg-white">
                   <div className="flex flex-row w-full h-16 text-sm text-white border-t">
                     <div className="flex-1"></div>
-                    <button className="w-1/6 bg-orange-400">수정</button>
+                    <button
+                      className="w-1/6 bg-orange-400"
+                      onClick={() => {
+                        setModifyTodo();
+                        console.log(ModifyTodo);
+                      }}
+                    >
+                      수정
+                    </button>
                     <button
                       className="w-1/6 bg-red-500"
                       onClick={() => {

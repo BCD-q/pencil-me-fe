@@ -14,11 +14,6 @@ const TodayPage = () => {
   const category = searchParams.get('category');
   const id = searchParams.get('id');
 
-  useEffect(() => {
-    console.log(id);
-    console.log(category);
-  }, [id, category]);
-
   return (
     <div className="flex flex-col w-[100vw]">
       <Cartegory>{category}</Cartegory>

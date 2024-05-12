@@ -53,6 +53,7 @@ export default function GroupDataBox() {
 
   useEffect(() => {
     refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupModalOpen, modModalOpen]);
 
   if (isLoading)

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
@@ -137,7 +138,7 @@ export default function BottonCarousel() {
   return (
     <ul className="relative inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-4 gap-3">
       {InterestArray.map((item: any) => {
-        return <BottomComponent data={item} />;
+        return <BottomComponent key={item.id} data={item} />;
       })}
     </ul>
   );
@@ -152,14 +153,14 @@ function BottomComponent({ data }: { data: any }) {
     <li className="rounded-xl shadow-xl flex-col hover:opacity-50 hover:translate-y-2 hover:delay-100 hover:ease-in bg-white">
       <Link href={`../External?url=${url}&title=${title}`}>
         {data.thumbnail_url !== '' ? (
-          <img
+          <Image
             src={data.thumbnail_url}
             alt="thumbnail"
             className="w-full h-40 object-cover rounded-t-xl"
           />
         ) : (
           <div className="flex w-full h-40">
-            <img
+            <Image
               src={NoImage}
               alt="thumbnail"
               className="flex mx-auto my-auto w-1/2 h-1/2 object-cover rounded-t-xl"

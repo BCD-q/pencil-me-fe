@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-
+import useTodayStore from '@/modules/todayStore';
 // Reg는 빈별
 import { TodoItem } from '@/modules/todayStore';
 
 export default function TodoBox({ item }: { item: TodoItem }) {
+  const { ModifyTodo, setModifyTodo } = useTodayStore();
+
   const formatDeadline = (deadline?: string | undefined) => {
     return deadline?.replace('T', ' ');
   };

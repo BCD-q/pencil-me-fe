@@ -12,11 +12,18 @@ export interface TodoItem {
 
 interface TodayStore {
   todoList: TodoItem[];
+  ModifyTodo: boolean;
+  setModifyTodo: () => void;
   addTodo: (newTodo: TodoItem) => void;
 }
 
 const useTodayStore = create<TodayStore>((set) => ({
   todoList: [],
+  ModifyTodo: false,
+  setModifyTodo: () =>
+    set((prevState) => ({
+      ModifyTodo: !prevState.ModifyTodo,
+    })),
   addTodo: (newTodo: TodoItem) =>
     set((prevState) => ({
       todoList: [...prevState.todoList, newTodo],

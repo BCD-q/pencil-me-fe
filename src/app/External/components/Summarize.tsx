@@ -15,6 +15,7 @@ export default function Summarize({ url }: { url: string }) {
 
   useEffect(() => {
     refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading)
@@ -35,11 +36,11 @@ export default function Summarize({ url }: { url: string }) {
 
   return (
     <div className="flex flex-col w-full absolute bottom-[4rem] h-[30vh] bg-white rounded-t-xl shadow-3xl">
-      <div className="mx-auto my-2 w-3/4 text-gray-400 h-1/6 text-md">
+      <div className="mx-auto w-3/5 text-gray-400 h-1/5 text-md m-2">
         {data?.data?.result.data.title}
       </div>
       <hr className="w-4/5 m-2 mx-auto" />
-      <div className="text-gray-400 text-md sm:text-xl w-5/6 mx-auto">
+      <div className="text-gray-400 text-md my-auto sm:text-xl w-5/6 mx-auto">
         {data?.data?.result.data.contents}
       </div>
     </div>

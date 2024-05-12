@@ -72,13 +72,13 @@ export default function ChangeProfileModal(): JSX.Element {
           type="text"
           placeholder={data?.data.data.email}
           onChange={(e) => setEmail(e.target.value)}
-          className="flex w-10/12 mx-auto mt-2 text-center rounded-lg just-center input input-bordered"
+          className="flex w-10/12 mx-auto mt-2 text-center rounded-lg just-center input input-bordered border-gray-300"
         />
         <div className="flex justify-center w-full mt-4 h-6">닉네임</div>
         <input
           type="text"
           placeholder={data?.data.data.nickname}
-          className="flex w-10/12 mx-auto mt-2 mb-2 text-center rounded-lg just-center input input-bordered"
+          className="flex w-10/12 mx-auto mt-2 mb-2 text-center rounded-lg just-center input input-bordered border-gray-300"
           onChange={(e) => setNickname(e.target.value)}
         />
       </div>

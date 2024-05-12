@@ -53,7 +53,7 @@ export default function ModifyGroupModal({ id }: { id?: number }): JSX.Element {
       <input
         type="text"
         placeholder="그룹명을 입력해주세요"
-        className="flex w-10/12 mx-auto mb-8 text-center rounded-lg just-center input input-bordered"
+        className="flex w-10/12 mx-auto mb-8 text-center rounded-lg just-center input input-bordered border-gray-300"
         onChange={(e) => setGroupName({ categoryName: e.target.value })}
         onKeyUp={handleKeyUpInput}
       />
