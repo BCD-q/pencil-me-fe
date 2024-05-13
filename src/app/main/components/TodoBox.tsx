@@ -4,8 +4,6 @@ import useTodayStore from '@/modules/todayStore';
 // Reg는 빈별
 import { TodoItem } from '@/modules/todayStore';
 
-import ModifyTodoBox from './ModifyTodoBox';
-
 export default function TodoBox({ item }: { item: TodoItem }) {
   const { ModifyTodo, setModifyTodo } = useTodayStore();
 

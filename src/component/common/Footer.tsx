@@ -43,7 +43,7 @@ const Footer = () => {
 
   return (
     <div className="flex flex-col sticky bottom-0 bg-gray-200">
-      {pathname === '/main' && <Input />}
+      {pathname === '/main' || pathname === '/main/modify' ? <Input /> : ''}
       <div className="flex px-4 pb-6 pt-3 bg-slate-50">
         {links.map((link) => {
           const { id, path, text, icon } = link;

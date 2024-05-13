@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
 
 import { useMutation } from '@tanstack/react-query';
@@ -26,6 +26,21 @@ export default function Input() {
   const [text, setText] = useState('');
   const { todoList, addTodo } = useTodayStore();
   const [inputText, setInputText] = useState('');
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
+  const placeholders = [
+    '✉️ 이렇게 입력해보세요',
+    '다른 문장을 입력해보세요',
+    '더 많은 예시를 입력해보세요',
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prevIndex) => (prevIndex + 1) % placeholders.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
@@ -84,7 +99,7 @@ export default function Input() {
       <div className="flex sticky items-center z-10 h-20 px-2 py-3 bg-white rounded-t-3xl">
         <input
           type="text"
-          placeholder="✉️ 이렇게 입력해보세요"
+          placeholder={placeholders[placeholderIndex]}
           className="flex w-full min-w-24 pl-2 h-2/3 rounded-md border-gray-300 focus:outline-none focus:ring-2 bg-[#efeef1] mx-3 text-sm"
           value={inputText}
           onChange={handleChangeInput}
