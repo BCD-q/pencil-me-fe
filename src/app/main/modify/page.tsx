@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 import Cartegory from '@/component/common/Cartegory';
@@ -18,11 +18,11 @@ export default function ModifyPage() {
   const [deadline, setDeadline] = useState<string>();
   const [endTime, setEndTime] = useState<string>();
 
-  useEffect(() => {
-    console.log(item);
-    console.log(group);
-    console.log(loca1, loca2);
-  }, [group]);
+  // useEffect(() => {
+  //   console.log(item);
+  //   console.log(group);
+  //   console.log(loca1, loca2);
+  // }, [group]);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['groupName'],
@@ -35,6 +35,31 @@ export default function ModifyPage() {
     },
   });
 
+  const { mutate } = useMutation({
+    mutationFn: () => {
+      return axios.put(
+        `${apiKey}/todos/${item.todoId}`,
+        {
+          categoryId: group,
+          title: title,
+          contents: item.contents,
+          deadline: deadline + endTime,
+          isFinished: false,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem('token'),
+          },
+        },
+      );
+    },
+    onSuccess: () => {
+      alert('수정이 완료되었습니다!');
+      history.back();
+    },
+  });
+
   return (
     <>
       <Cartegory>수정</Cartegory>
@@ -42,8 +67,8 @@ export default function ModifyPage() {
       <div className="flex flex-col h-full">
         <div className="text-xs text-sgray-500 m-2">세부사항</div>
         <div className="flex gap-2 min-h-48 flex-col w-5/6 rounded-2xl bg-white mx-auto">
-          <div className="flex flex-row">
-            <div className="m-3 mt-5 text-xs">그룹</div>
+          <div className="flex flex-row mt-2 ml-4 ">
+            <div className="text-xs my-auto">그룹</div>
             <select
               className="ml-auto pt-1 select w-1/3 mr-1 text-xs"
               onChange={(e) => setGroup(e.target.value)}
@@ -59,21 +84,21 @@ export default function ModifyPage() {
             </select>
           </div>
           <hr />
-          <div className="flex flex-row">
-            <div className="m-2 mt-3  text-xs">종료일</div>
+          <div className="flex flex-row m-2 my-4 ml-4">
+            <div className="text-xs my-auto">종료일</div>
             <input
               type="text"
-              className="flex w-1/3 justify-center ml-auto text-sm"
+              className="flex w-1/3 justify-center ml-auto text-xs sm:text-sm"
               placeholder={loca1}
               onChange={(e) => setDeadline(e.target.value)}
             />
           </div>
           <hr />
-          <div className="flex flex-row">
-            <div className="m-2 mt-2 pb-3 text-xs">종료시간</div>
+          <div className="flex flex-row mt-2 ml-4 pb-3 ">
+            <div className="text-xs my-auto">종료시간</div>
             <input
               type="text"
-              className="flex w-1/3 h-8 justify-center ml-auto text-sm rounded-br-2xl"
+              className="flex w-1/3 h-8 justify-center ml-auto text-xs sm:text-sm"
               placeholder={loca2}
               onChange={(e) => setEndTime(e.target.value)}
             />
@@ -85,7 +110,7 @@ export default function ModifyPage() {
           placeholder="내용을 입력해주세요"
           onChange={(e) => setTitle(e.target.value)}
         ></textarea>
-        <button className="btn bg-accent text-white border-none w-[30%] ml-auto my-4 mr-4">
+        <button className="btn bg-accent text-white border-none w-[26%] ml-auto my-4 mr-4">
           수정 완료
         </button>
       </div>

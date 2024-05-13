@@ -60,7 +60,6 @@ export default function GroupDataBox() {
           Authorization: localStorage.getItem('token'),
         },
       });
-      window.location.reload();
       refetch();
     } catch (e) {
       console.log(e);
