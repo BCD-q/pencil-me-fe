@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
@@ -10,7 +10,7 @@ export type categoryProps = {
 };
 
 export default function ModifyGroupModal({ id }: { id?: number }): JSX.Element {
-  const { modModalOpen, setModModalClose } = useGroupStore();
+  const { setModModalClose } = useGroupStore();
 
   const [groupName, setGroupName] = useState<categoryProps | undefined>();
   const modalBackground = useRef<HTMLDivElement>(null);

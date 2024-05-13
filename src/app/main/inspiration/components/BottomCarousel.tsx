@@ -1,11 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect } from 'react';
 
-import { useMutation, useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { useMutation } from '@tanstack/react-query';
 
 import { fetchInspiration } from '@/libs';
 
@@ -153,14 +150,14 @@ function BottomComponent({ data }: { data: any }) {
     <li className="rounded-xl shadow-xl flex-col hover:opacity-50 hover:translate-y-2 hover:delay-100 hover:ease-in bg-white">
       <Link href={`../External?url=${url}&title=${title}`}>
         {data.thumbnail_url !== '' ? (
-          <Image
+          <img
             src={data.thumbnail_url}
             alt="thumbnail"
             className="w-full h-40 object-cover rounded-t-xl"
           />
         ) : (
           <div className="flex w-full h-40">
-            <Image
+            <img
               src={NoImage}
               alt="thumbnail"
               className="flex mx-auto my-auto w-1/2 h-1/2 object-cover rounded-t-xl"

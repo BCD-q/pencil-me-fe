@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
-import { RiMessage2Line } from 'react-icons/ri';
 
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
@@ -92,7 +91,7 @@ export default function Input() {
           // onKeyUp={handleKeyUpInput}
         />
         <button
-          className="bg-[#78be5e] rounded-3xl flex justify-center my-auto items-center whitespace-nowrap text-white text-md h-8 w-1/4"
+          className="bg-[#78be5e] rounded-3xl flex justify-center my-auto items-center whitespace-nowrap text-white text-md h-8 w-[30%]"
           onClick={() => mutate(inputText)}
         >
           <IoPaperPlaneOutline className="w-6" />

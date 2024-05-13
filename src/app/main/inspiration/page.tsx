@@ -2,7 +2,6 @@ import Cartegory from '@/component/common/Cartegory';
 import WorkBar from '@/component/common/Workbar';
 
 import BottomCarousel from './components/BottomCarousel';
-import TopCarousel from './components/TopCarousel';
 
 export default function InspirationPage(): JSX.Element {
   return (

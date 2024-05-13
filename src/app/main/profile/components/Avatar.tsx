@@ -30,12 +30,12 @@ export default function Avatar() {
   return (
     <>
       <div className="flex mt-8 justify-center avatar">
-        <div className="flex flex-col w-40 mt-4 rounded-full">
+        <div className="flex flex-col w-32 mt-4 rounded-full">
           <Image
             src={Odegaard}
             alt="avatar"
-            width={160}
-            height={160}
+            width={120}
+            height={120}
             className="rounded-full"
           />
         </div>

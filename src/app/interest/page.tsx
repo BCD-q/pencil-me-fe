@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
 // useState 추가
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 interface InterestItem {

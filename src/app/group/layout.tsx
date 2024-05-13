@@ -1,5 +1,4 @@
 import GroupFooter from '@/app/group/components/GroupFooter';
-import Header from '@/component/common/Header';
 
 export default function RootLayout({
   children,

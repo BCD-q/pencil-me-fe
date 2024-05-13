@@ -38,13 +38,7 @@ export default function GroupDataBox() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
   const [key, setKey] = useState<number>();
-  const {
-    groupModalOpen,
-    setGroupModalClose,
-    modModalOpen,
-    setModModalOpen,
-    setModModalClose,
-  } = useGroupStore();
+  const { groupModalOpen, modModalOpen, setModModalOpen } = useGroupStore();
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['category'],

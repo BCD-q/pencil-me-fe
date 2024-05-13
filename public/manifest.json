@@ -4,8 +4,8 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "Pencilme",
-  "short_name": "Pencilme",
+  "name": "Pencil me",
+  "short_name": "Pencil me",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",

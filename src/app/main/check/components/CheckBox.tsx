@@ -1,7 +1,4 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-
-import useGroupStore from '@/modules/groupStore';
 
 interface category {
   categoryId: number;

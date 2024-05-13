@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
-import { MdSummarize } from 'react-icons/md';
 
 import Summarize from './Summarize';
 
@@ -22,8 +21,8 @@ export default function AddInspiFooter({ url }: { url: string }) {
       >
         요약하기
       </button>
-      <button className="flex btn ml-auto text-white mr-4 items-center my-auto w-1/4 bg-accent text-sm sm:text-md rounded-3xl">
-        <FaPlus className="w-1/6 text-white" />
+      <button className="flex ml-auto justify-center text-white mr-4 items-center my-auto w-1/5 bg-accent text-sm sm:text-md h-1/2 rounded-3xl">
+        <FaPlus className="w-1/4 text-white" />
         추가
       </button>
     </div>

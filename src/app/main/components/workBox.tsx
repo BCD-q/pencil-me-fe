@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -12,9 +12,10 @@ import BlankText from '@/component/common/BlankText';
 import useGroupStore from '@/modules/groupStore';
 import useTodayStore from '@/modules/todayStore';
 
+import ModifyTodoBox from './ModifyTodoBox';
 import TodoBox from './TodoBox';
 
-interface TodoItem {
+export interface TodoItem {
   id?: number;
   memberId?: number;
   categoryId?: number;
@@ -82,8 +83,7 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
                     <button
                       className="w-1/6 bg-orange-400"
                       onClick={() => {
-                        setModifyTodo();
-                        console.log(ModifyTodo);
+                        localStorage.console.log(ModifyTodo);
                       }}
                     >
                       수정
