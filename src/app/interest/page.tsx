@@ -95,7 +95,7 @@ export default function Interest() {
           );
         })}
       </ul>
-      <div className="flex mt-auto w-full h-16 sticky items-center justify-center ml-auto bg-white">
+      <div className="flex mt-auto w-full h-16 sticky bottom-0 items-center justify-center ml-auto bg-white">
         <button
           className="ml-auto mr-4 bg-accent text-white w-1/4 h-2/3 rounded-3xl"
           onClick={addInterest}
