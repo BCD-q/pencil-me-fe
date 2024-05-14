@@ -24,7 +24,7 @@ export default function LoginInput() {
       axios.defaults.headers.common['Authorization'] = data.data.token;
 
       alert('로그인이 완료되었습니다!');
-      router.push('/interest');
+      router.push('/group');
     },
     onError: () => {
       alert('로그인에 실패했습니다!');

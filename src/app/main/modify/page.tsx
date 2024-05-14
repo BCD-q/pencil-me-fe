@@ -37,26 +37,28 @@ export default function ModifyPage() {
 
   const { mutate } = useMutation({
     mutationFn: () => {
-      return axios.put(
-        `${apiKey}/todos/${item.todoId}`,
-        {
-          categoryId: group,
-          title: title,
-          contents: item.contents,
-          deadline: deadline + endTime,
-          isFinished: false,
+      const modInfo = {
+        categoryId: group,
+        title: title,
+        contents: item.contents,
+        deadline: deadline + 'T' + endTime,
+        isFinished: false,
+        isImportant: false,
+      };
+      return axios.put(`${apiKey}/todos/${item.id}`, modInfo, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem('token'),
         },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem('token'),
-          },
-        },
-      );
+      });
     },
     onSuccess: () => {
       alert('수정이 완료되었습니다!');
       history.back();
+    },
+    onError: () => {
+      alert('수정에 실패했습니다.');
+      console.log(group, title, item.contents, deadline + endTime);
     },
   });
 
@@ -73,7 +75,9 @@ export default function ModifyPage() {
               className="ml-auto pt-1 select w-1/2 mr-1 text-end text-xs"
               onChange={(e) => setGroup(e.target.value)}
             >
-              <option disabled>그룹</option>
+              <option disabled selected>
+                그룹
+              </option>
               {data?.data.data.map((item: any, index: number) => (
                 <option key={index} value={item.categoryId}>
                   {item.categoryName}
@@ -108,7 +112,12 @@ export default function ModifyPage() {
           placeholder="내용을 입력해주세요"
           onChange={(e) => setTitle(e.target.value)}
         ></textarea>
-        <button className="btn bg-accent text-white border-none w-[26%] ml-auto my-4 mr-4">
+        <button
+          className="btn bg-accent text-white border-none w-[26%] ml-auto my-4 mr-4"
+          onClick={() => {
+            mutate();
+          }}
+        >
           수정 완료
         </button>
       </div>

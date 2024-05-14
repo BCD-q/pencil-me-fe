@@ -16,7 +16,7 @@ export default function AvatarBox(): JSX.Element {
 
   const { mutate } = useMutation({
     mutationFn: (id: number) => {
-      return axios.delete(`${apiKey}/interestIds-mapping?interestIds=999`, {
+      return axios.delete(`${apiKey}/interests-mapping/999`, {
         headers: {
           Authorization: localStorage.getItem('token'),
         },

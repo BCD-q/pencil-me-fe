@@ -15,7 +15,11 @@ export default function TodoBox({ item }: { item: TodoItem }) {
         key={item.categoryId}
         className="flex items-center h-16 gap-2 p-2 bg-white border-t border-gray-200"
       >
-        <button className="w-4 h-4 border-2 border-gray-400 rounded-full" />
+        {item.isFinished ? (
+          <button className="w-4 h-4 border-2 border-gray-400 bg-gray-400 rounded-full" />
+        ) : (
+          <button className="w-4 h-4 border-2 border-gray-400 rounded-full" />
+        )}
         <div className="flex flex-col">
           <div className="text-black">{item.title}</div>
           <div className="text-xs text-gray-400">

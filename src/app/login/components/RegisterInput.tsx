@@ -23,14 +23,29 @@ export default function RegisterInput(): JSX.Element {
     mutationFn: (Info: Info) => {
       return axios.post(`${apiKey}/members/sign-up`, Info);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       alert('회원가입이 완료되었습니다!');
-      router.push('/login');
+      localStorage.setItem('memberId', data.data.id);
+      router.push('/interest');
     },
     onError: () => {
       alert('회원가입에 실패했습니다!');
     },
   });
+
+  // 로그인 처리
+
+  // const login = useMutation({
+  //   mutationFn: (Info: Info) => {
+  //     return axios.post(`${apiKey}/members/sign-in`, {
+  //       uid: Info.uid,
+  //       password: Info.password,
+  //     });
+  //   },
+  //   onSuccess: ({ data }) => {
+  //     localStorage.setItem('token', data.data.token);
+  //   }
+  // })
 
   // 비밀번호 중복 확인
   const IsPassword = () => {

@@ -61,7 +61,7 @@ export default function GroupDataBox() {
           Authorization: localStorage.getItem('token'),
         },
       });
-      refetch();
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }
@@ -109,7 +109,6 @@ export default function GroupDataBox() {
                     className={`w-1/6 bg-red-500  ${isFirst && data?.data?.data.length !== 1 ? 'rounded-t-lg rounded-tl-none' : ''} ${isLast && data?.data?.data.length !== 1 ? 'rounded-b-lg rounded-bl-none' : ''}`}
                     onClick={() => {
                       deleteCategory(item.categoryId);
-                      swiper.slideReset;
                     }}
                   >
                     삭제

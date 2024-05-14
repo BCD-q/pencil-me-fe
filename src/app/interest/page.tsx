@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
 // useState 추가
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 interface InterestItem {
@@ -16,15 +16,12 @@ interface InterestItem {
 export default function Interest() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const router = useRouter();
+  const memId = localStorage.getItem('memberId');
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['interests'],
     queryFn: () => {
-      return axios.get(`${apiKey}/interests`, {
-        headers: {
-          Authorization: localStorage.getItem('token'),
-        },
-      });
+      return axios.get(`${apiKey}/interests`);
     },
   });
 
@@ -49,16 +46,23 @@ export default function Interest() {
   }, [clickedItems]);
 
   const addInterest = async () => {
-    const keywordsString = clickedItems.join(','); // 클릭된 키워드를 쉼표로 구분된 문자열로 변환
-    console.log(keywordsString);
-    await axios.get(`${apiKey}/interestIds-mapping/${keywordsString}`, {
-      headers: {
-        Authorization: localStorage.getItem('token'),
+    const queryString = convertToQueryString(clickedItems); // 클릭된 아이템의 ID 목록을 쿼리 스트링으로 변환
+    console.log(queryString);
+    await axios.post(
+      `${apiKey}/interests-mapping?memberId=${memId}&${queryString}`,
+      {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
       },
-    }); // 쿼리스트링으로 요청 전송
+    ); // 쿼리스트링으로 요청 전송
     alert('관심사 등록이 완료되었습니다!');
     localStorage.setItem('interests', JSON.stringify(interests)); // 로컬스토리지에 관심사 저장
-    router.push('/group');
+    router.push('/login');
+  };
+
+  const convertToQueryString = (clickedItems: number[]) => {
+    return clickedItems.map((itemId) => `interestIds=${itemId}`).join('&');
   };
 
   return (

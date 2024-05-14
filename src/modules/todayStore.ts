@@ -8,6 +8,7 @@ export interface TodoItem {
   contents?: string;
   deadline?: string;
   isImportant?: boolean;
+  isFinished?: boolean;
 }
 
 interface TodayStore {

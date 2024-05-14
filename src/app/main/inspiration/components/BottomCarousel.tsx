@@ -1,93 +1,30 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 import { useMutation } from '@tanstack/react-query';
 
 import { fetchInspiration } from '@/libs';
+import useInterestsStore from '@/modules/interestsStore';
+
+interface InterestItem {
+  thumbnail_url?: string;
+  title?: string;
+  link?: string;
+}
 
 export default function BottonCarousel() {
-  const InterestArray = [
-    {
-      title:
-        'react-query에 typescript 적용하기 - 리액트 쿼리, 타입스크립트 ...',
-      subtitle: 'React-query',
-      link: 'https://gusrb3164.github.io/web/2022/01/23/react-query-typescript/',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIYc6SGcmKDZ4fvqI2CQAWpo_sB4J6ug7g6DsW1RKEq2b9SMtOlmvO3u_A&s',
-    },
-    {
-      title: 'TypeScript | TanStack Query React Docs',
-      subtitle: 'TypeScript',
-      link: 'https://tanstack.com/query/latest/docs/framework/react/typescript',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgbdTD0xRGSSF4ANGkwoCBCz3eW9JOJ0ebnGD4v3eZe21bGr7K-IJwfWw&s',
-    },
-    {
-      title: 'React Query(TypeScript + React v18)',
-      subtitle: 'React-query',
-      link: 'https://velog.io/@gkj8963/React-Query',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaAec3uSmQjDJcCFgjc6_K3iceAg0U2p5We0562RQfC653VFRjI5bPE6Y&s',
-    },
-    {
-      title:
-        'TypeScript로 React Query 시작하기. Getting Started with React ...',
-      subtitle: 'TypeScript',
-      link: 'https://medium.com/@daori/typescript%EB%A1%9C-react-query-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-c7622d2c3258',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReSeZ7LRsUKDRyIt_VDvCT7TXJsv2JuJT-0A5g0qIcN_BEdje1fZ3TllM&s',
-    },
-    {
-      title: 'React Query and TypeScript - DEV Community',
-      subtitle: 'React-query',
-      link: 'https://dev.to/tkdodo/react-query-and-typescript-34ai?comments_sort=top',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn5Av4KuEWYYQ0ndUqoPh0R9QJObENZnB1GwH0SrZGwiBDhJYvHriKXbI&s',
-    },
-    {
-      title: 'Usage With TypeScript | Redux Toolkit',
-      subtitle: 'Redux Toolkit',
-      link: 'https://redux-toolkit.js.org/rtk-query/usage-with-typescript',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk4_4_RxeABTOGhOlzXrpjznR4c_NVLajoXa376OqGmbbEdjtmXJgcj4E&s',
-    },
-    {
-      title: 'TanStack Query v5 정식 버전 살펴보기 (리액트 쿼리) | moonkorea',
-      subtitle: 'TansTack Query',
-      link: 'https://www.moonkorea.dev/React-TanStack-Query-v5-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0-(%EB%A6%AC%EC%95%A1%ED%8A%B8%EC%BF%BC%EB%A6%AC)',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgbdTD0xRGSSF4ANGkwoCBCz3eW9JOJ0ebnGD4v3eZe21bGr7K-IJwfWw&s',
-    },
-    {
-      title: 'TypeScript React-Query (GraphQL-Codegen)',
-      subtitle: 'TansTack Query',
-      link: 'https://the-guild.dev/graphql/codegen/plugins/typescript/typescript-react-query',
-      thumbnail_url: '',
-    },
-    {
-      title:
-        'reactjs - react-query useQuery typescript No overload matches this ...',
-      subtitle: 'TansTack Query',
-      link: 'https://stackoverflow.com/questions/73122294/react-query-usequery-typescript-no-overload-matches-this-call',
-      thumbnail_url:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYl7zuT3cw_BBRAyhdQEbQuBgqdNHXKHIYKL8S8ly8x9L_XA9sdwSmiHs&s',
-    },
-    {
-      title: 'TypeScript React Apollo (GraphQL-Codegen)',
-      subtitle: 'TansTack Query',
-      link: 'https://the-guild.dev/graphql/codegen/plugins/typescript/typescript-react-apollo',
-      thumbnail_url: '',
-    },
-  ];
+  const { InterestsArray, setInterests } = useInterestsStore();
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-  const { data, isPending, error, mutate } = useMutation({
+  const { data, isPending, mutate } = useMutation({
     mutationFn: fetchInspiration,
 
     onSuccess: (data) => {
       console.log(data);
+      setInterests(data?.data.result.data);
       console.log(localStorage.getItem('interests'));
     },
     onError: (error) => {
@@ -96,12 +33,19 @@ export default function BottonCarousel() {
     },
   });
 
+  useEffect(() => {
+    if (!InterestsArray) {
+      mutate();
+    }
+    console.log('interests', InterestsArray);
+  }, []);
+
   if (isPending)
     return (
       <ul className="inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-2 gap-2 w-full mx-auto">
         {Array.from({ length: 25 }).map((_, index) => (
           <>
-            <div className="skeleton w-11/12 h-[40vh] sm:h-[40vw] lg:h-[23vw] bg-gray-200 mt-4 mx-auto"></div>
+            <div className="skeleton w-11/12 h-[20vh] sm:h-[33vw] lg:h-[23vw] bg-gray-200 mt-4 mx-auto"></div>
           </>
         ))}
       </ul>
@@ -134,7 +78,7 @@ export default function BottonCarousel() {
 
   return (
     <ul className="relative inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-4 gap-3">
-      {InterestArray.map((item: any) => {
+      {InterestsArray?.map((item: any) => {
         return <BottomComponent key={item.id} data={item} />;
       })}
     </ul>
