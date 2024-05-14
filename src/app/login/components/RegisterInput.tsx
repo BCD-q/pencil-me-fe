@@ -26,7 +26,7 @@ export default function RegisterInput(): JSX.Element {
     onSuccess: ({ data }) => {
       alert('회원가입이 완료되었습니다!');
       localStorage.setItem('memberId', data.data.id);
-      router.push('/interest');
+      router.push(`/interest/${data.data.id}`);
     },
     onError: () => {
       alert('회원가입에 실패했습니다!');

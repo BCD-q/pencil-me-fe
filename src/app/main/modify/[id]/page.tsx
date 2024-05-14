@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import Cartegory from '@/component/common/Cartegory';
 
-import TodoBox from '../components/TodoBox';
+import TodoBox from '../../components/TodoBox';
 
 export default function ModifyPage() {
   const item: any = JSON.parse(localStorage.getItem('modifyTodo') || '{}');
@@ -24,7 +24,7 @@ export default function ModifyPage() {
   //   console.log(loca1, loca2);
   // }, [group]);
 
-  const { data, isLoading, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ['groupName'],
     queryFn: () => {
       return axios.get(`${apiKey}/categories`, {

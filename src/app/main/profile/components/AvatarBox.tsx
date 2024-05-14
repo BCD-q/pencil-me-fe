@@ -23,7 +23,7 @@ export default function AvatarBox(): JSX.Element {
       });
     },
     onSuccess: () => {
-      router.push('/interest');
+      router.push('/interest/999');
     },
   });
 

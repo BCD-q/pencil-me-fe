@@ -17,8 +17,6 @@ interface InterestItem {
 export default function BottonCarousel() {
   const { InterestsArray, setInterests } = useInterestsStore();
 
-  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-
   const { data, isPending, mutate } = useMutation({
     mutationFn: fetchInspiration,
 
@@ -34,10 +32,11 @@ export default function BottonCarousel() {
   });
 
   useEffect(() => {
-    if (!InterestsArray) {
+    if (InterestsArray.length === 0) {
       mutate();
     }
     console.log('interests', InterestsArray);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isPending)

@@ -5,8 +5,10 @@ import { useEffect, useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
 // useState 추가
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+
+import useInterestsStore from '@/modules/interestsStore';
 
 interface InterestItem {
   id: number;
@@ -18,6 +20,8 @@ export default function Interest() {
   const router = useRouter();
   const memId = localStorage.getItem('memberId');
 
+  const { setInterests } = useInterestsStore();
+
   const { data, isLoading, error } = useQuery({
     queryKey: ['interests'],
     queryFn: () => {
@@ -27,17 +31,17 @@ export default function Interest() {
 
   // 클릭된 관심사 아이템을 추적하기 위한 상태
   const [clickedItems, setClickedItems] = useState<number[]>([]);
-  const [interests, setInterests] = useState<string[]>([]);
+  const [interests, setMyInterests] = useState<string[]>([]);
 
   const toggleClicked = (id: number, keyword: string) => {
     if (clickedItems.includes(id)) {
       // 이미 클릭된 경우 클릭 해제
       setClickedItems(clickedItems.filter((item) => item !== id));
-      setInterests(interests.filter((item) => item !== keyword));
+      setMyInterests(interests.filter((item) => item !== keyword));
     } else {
       // 클릭되지 않은 경우 클릭
       setClickedItems([...clickedItems, id]);
-      setInterests([...interests, keyword]);
+      setMyInterests([...interests, keyword]);
     }
   };
 
@@ -47,7 +51,6 @@ export default function Interest() {
 
   const addInterest = async () => {
     const queryString = convertToQueryString(clickedItems); // 클릭된 아이템의 ID 목록을 쿼리 스트링으로 변환
-    console.log(queryString);
     await axios.post(
       `${apiKey}/interests-mapping?memberId=${memId}&${queryString}`,
       {
@@ -55,9 +58,10 @@ export default function Interest() {
           Authorization: localStorage.getItem('token'),
         },
       },
-    ); // 쿼리스트링으로 요청 전송
+    );
     alert('관심사 등록이 완료되었습니다!');
     localStorage.setItem('interests', JSON.stringify(interests)); // 로컬스토리지에 관심사 저장
+    setInterests([]);
     router.push('/login');
   };
 

@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 export default function Summarize({ url }: { url: string }) {
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const { data, isLoading, isFetching, refetch } = useQuery({
     queryKey: ['summarize'],
     queryFn: () => {

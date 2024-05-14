@@ -49,7 +49,6 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
 
   const setModifyTodo = (item: TodoItem): void => {
     localStorage.setItem('modifyTodo', JSON.stringify(item));
-    router.push('/main/modify');
   };
 
   useEffect(() => {
@@ -91,6 +90,7 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
                       className="w-1/6 bg-orange-400"
                       onClick={() => {
                         setModifyTodo(item);
+                        router.push('/main/modify/999');
                       }}
                     >
                       수정
