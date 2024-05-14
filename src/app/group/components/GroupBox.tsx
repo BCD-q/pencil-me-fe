@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
-import { EffectFade } from 'swiper/modules';
+import { EffectFade, Navigation, Pagination } from 'swiper/modules';
+import { useSwiper } from 'swiper/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { fetchCategory } from '@/libs';
@@ -36,7 +37,7 @@ const testData = [
 
 export default function GroupDataBox() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-
+  const swiper = useSwiper();
   const [key, setKey] = useState<number>();
   const { groupModalOpen, modModalOpen, setModModalOpen } = useGroupStore();
 
@@ -76,7 +77,13 @@ export default function GroupDataBox() {
           ${isFirst && data?.data?.data.length !== 1 ? 'rounded-t-lg' : ''} ${isFirst && data?.data?.data.length == 1 ? 'rounded-lg' : ''} ${isLast && data?.data?.data.length !== 1 ? 'rounded-b-lg' : ''}
         `;
         return (
-          <Swiper key={index} modules={[EffectFade]} effect="fade">
+          <Swiper
+            key={index}
+            modules={[Navigation, Pagination, EffectFade]}
+            effect="fade"
+            loop={true}
+            onSwiper={(swiper) => console.log(swiper)}
+          >
             <SwiperSlide key={item.categoryId}>
               <Link
                 href={`/main?id=${item.categoryId}&category=${item.categoryName}`}
@@ -102,6 +109,7 @@ export default function GroupDataBox() {
                     className={`w-1/6 bg-red-500  ${isFirst && data?.data?.data.length !== 1 ? 'rounded-t-lg rounded-tl-none' : ''} ${isLast && data?.data?.data.length !== 1 ? 'rounded-b-lg rounded-bl-none' : ''}`}
                     onClick={() => {
                       deleteCategory(item.categoryId);
+                      swiper.slideReset;
                     }}
                   >
                     삭제

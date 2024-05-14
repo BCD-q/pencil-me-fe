@@ -6,7 +6,7 @@ import BottomCarousel from './components/BottomCarousel';
 export default function InspirationPage(): JSX.Element {
   return (
     <div className="h-full flex flex-col">
-      <Cartegory>영감</Cartegory>
+      <Cartegory>동기 부여</Cartegory>
       <WorkBar>오늘의 제안</WorkBar>
 
       <div className="flex-1">

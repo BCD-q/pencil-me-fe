@@ -7,7 +7,7 @@ export default function Cartegory({
 }: PropsWithChildren): React.ReactElement {
   return (
     <div className="flex flex-row h-12 py-4 justify-center items-center sticky top-0 bg-gray-100 border-b-4 border-gray-100 z-50">
-      {children !== '영감' &&
+      {children !== '동기 부여' &&
         children !== '목표 점검' &&
         children !== '프로필' &&
         children !== '그룹' &&

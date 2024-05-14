@@ -5,8 +5,6 @@ import useTodayStore from '@/modules/todayStore';
 import { TodoItem } from '@/modules/todayStore';
 
 export default function TodoBox({ item }: { item: TodoItem }) {
-  const { ModifyTodo, setModifyTodo } = useTodayStore();
-
   const formatDeadline = (deadline?: string | undefined) => {
     return deadline?.replace('T', ' ');
   };
