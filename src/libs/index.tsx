@@ -2,19 +2,23 @@ import axios from 'axios';
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
+const fastKey = apiKey?.substr(0, 16);
+
 export const fetchTodo = async () => {
   await axios.patch(`${apiKey}/language`);
 };
 
 // 영감 불러올때 api
 export const fetchInspiration = async () => {
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
   const Interests = localStorage.getItem('interests');
   const data = {
     keyword: Interests,
   };
   try {
     return await axios.post(
-      'http://na2ru2.me:6380/inspiration/me?start=1',
+      `${fastKey}:6380/inspiration/me?start=1`,
       {
         keyword: [Interests],
       },
@@ -27,6 +31,7 @@ export const fetchInspiration = async () => {
   } catch (error) {
     console.log(Interests);
     console.error(error);
+    console.log(apiKey);
   }
 };
 

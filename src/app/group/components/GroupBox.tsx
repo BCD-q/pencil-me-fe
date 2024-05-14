@@ -37,6 +37,7 @@ const testData = [
 
 export default function GroupDataBox() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
   const swiper = useSwiper();
   const [key, setKey] = useState<number>();
   const { groupModalOpen, modModalOpen, setModModalOpen } = useGroupStore();
