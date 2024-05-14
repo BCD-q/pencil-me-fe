@@ -9,18 +9,12 @@ const nextConfig = {
   images: {
     domains: ['encrypted-tbn0.gstatic.com'],
   },
-  rewrites: async () => {
-    const { NEXT_PUBLIC_API_URL } = process.env;
-    return [
-      {
-        source: '/api/v1/todos/:path*',
-        destination: NEXT_PUBLIC_API_URL
-          ? NEXT_PUBLIC_API_URL.replace('http://', 'https://') +
-            '/api/v1/todos/:path*'
-          : '/api/v1/todos/:path*',
-      },
-    ];
-  },
+  rewrites: async () => [
+    {
+      source: '/api/:path*',
+      destination: 'https://na2ru2.me:6378/api/:path*',
+    },
+  ],
 };
 
 module.exports = withPWA(nextConfig);

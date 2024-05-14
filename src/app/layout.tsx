@@ -22,7 +22,6 @@ export const metadata: Metadata = {
   description:
     '사용자의 일상과 관심사를 중심으로 인공지능을 통해 개인의 생산성을 극대화하는 다양한 기능을 포함한 애플리케이션',
   manifest: '/manifest.json',
-  viewport: viewport,
   icons: {
     other: [
       {
