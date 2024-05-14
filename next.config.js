@@ -9,6 +9,12 @@ const nextConfig = {
   images: {
     domains: ['encrypted-tbn0.gstatic.com'],
   },
+  rewrites: () => [
+    {
+      source: '/api/v1/:path*',
+      destination: 'https://na2ru2.me:6378/api/v1/:path*', // HTTPS로 변경
+    },
+  ],
 };
 
 module.exports = withPWA(nextConfig);
