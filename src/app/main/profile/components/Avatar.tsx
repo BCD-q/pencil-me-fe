@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import useProfileStore from '@/modules/profileStore';
 
-import Odegaard from '../../../../resources/images/common/Odegaard.jpg';
+import ProfileImage from '../../../../resources/images/common/pencilMeThumbNail.png';
 
 export default function Avatar() {
   const { profileModalOpen, setProfileModalOpen } = useProfileStore();
@@ -32,7 +32,7 @@ export default function Avatar() {
       <div className="flex mt-8 justify-center avatar">
         <div className="flex flex-col w-32 mt-4 rounded-full">
           <Image
-            src={Odegaard}
+            src={ProfileImage}
             alt="avatar"
             width={120}
             height={120}
