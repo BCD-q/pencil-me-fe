@@ -13,7 +13,7 @@ const nextConfig = {
         destination: 'https://na2ru2.me:6378/api/v1/members/sign-in',
       },
       {
-        source: `${apiKey}/members/sign-in`,
+        source: `apiKey/members/sign-in`,
         destination: 'https://na2ru2.me:6378/api/v1/members/sign-in',
       },
     ];
