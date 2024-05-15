@@ -6,13 +6,10 @@ const withPWA = require('next-pwa')({
 
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    domains: ['encrypted-tbn0.gstatic.com'],
-  },
-  rewrites: async () => [
+  rewrites: () => [
     {
       source: '/api/:path*',
-      destination: 'https://na2ru2.me:6378/api/:path*',
+      destination: 'https://na2ru2.me:6378/api/:path*', // HTTPS로 변경
     },
   ],
 };
