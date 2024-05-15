@@ -6,12 +6,14 @@ const withPWA = require('next-pwa')({
 
 const nextConfig = {
   reactStrictMode: true,
-  rewrites: () => [
-    {
-      source: '/api/:path*',
-      destination: 'https://na2ru2.me:6378/api/:path*', // HTTPS로 변경
-    },
-  ],
+  async rewrites() {
+    return [
+      {
+        source: '/sign-in',
+        destination: 'https://na2ru2.me:6378/api/v1/members/sign-in',
+      },
+    ];
+  },
 };
 
 module.exports = withPWA(nextConfig);
