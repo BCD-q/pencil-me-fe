@@ -10,7 +10,7 @@ const nextConfig = {
     return [
       {
         source: '/sign-in',
-        destination: 'https://na2ru2.me:6378/api/v1/members/sign-in',
+        destination: 'https://na2ru2:6378/:path*',
       },
     ];
   },
