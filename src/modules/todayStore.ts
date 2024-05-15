@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export interface TodoItem {
-  memberId?: number;
+  id?: number;
   categoryId?: number;
   categoryName?: string;
   title?: string;
@@ -13,14 +13,21 @@ export interface TodoItem {
 
 interface TodayStore {
   todoList: TodoItem[];
+  isChanged: boolean;
   ModifyTodo: boolean;
   setModifyTodo: () => void;
+  setIsChanged: () => void;
   addTodo: (newTodo: TodoItem) => void;
 }
 
 const useTodayStore = create<TodayStore>((set) => ({
   todoList: [],
   ModifyTodo: false,
+  isChanged: false,
+  setIsChanged: () =>
+    set((prevState) => ({
+      isChanged: !prevState.isChanged,
+    })),
   setModifyTodo: () =>
     set((prevState) => ({
       ModifyTodo: !prevState.ModifyTodo,

@@ -26,7 +26,7 @@ export interface TodoItem {
 }
 
 export default function WorkBox({ id }: { id: string | null }): JSX.Element {
-  const { todoList, addTodo } = useTodayStore();
+  const { todoList, isChanged, addTodo } = useTodayStore();
   const { groupModalOpen, setGroupModalClose } = useGroupStore();
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -54,7 +54,7 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
   useEffect(() => {
     refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [groupModalOpen, todoList]);
+  }, [groupModalOpen, todoList, isChanged]);
 
   if (isLoading)
     return <div className="flex loading loading-spinner w-2/5 mx-auto"></div>;
@@ -67,6 +67,7 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
         },
       });
       refetch();
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }
