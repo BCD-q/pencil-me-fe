@@ -68,6 +68,25 @@ export default function GroupDataBox() {
     }
   };
 
+  const getInterests = async () => {
+    const Interests = await axios.get(
+      `${apiKey}/interests-mapping?memberId=${localStorage.getItem('memberId')}`,
+      {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      },
+    );
+    const InterArr: string[] = [];
+    Interests.data.data.map((item: any) => {
+      InterArr.push(item.keyword);
+    });
+
+    localStorage.setItem('interests', JSON.stringify(InterArr));
+  };
+
+  getInterests();
+
   return (
     <ul className="w-full mx-auto overflow-hidden">
       {data?.data?.data.map((item: category, index: number) => {

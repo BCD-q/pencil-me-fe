@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -11,9 +11,9 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 export default function LoginInput() {
   const [uid, setUid] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState('');
-  const [memId, setMemId] = useState('');
   const router = useRouter();
+
+  const [memId, setMemId] = useState();
 
   const { mutate } = useMutation({
     mutationFn: (Info: LoginInfoRequest) => {
@@ -24,24 +24,19 @@ export default function LoginInput() {
 
       localStorage.setItem('password', password);
       localStorage.setItem('token', data.data.token);
-      setToken(data.data.token);
 
-      axios.defaults.headers.common['Authorization'] = data.data.token;
-
-      getData.refetch().then(() => {
-        localStorage.setItem('memberId', getData.data?.data.data.id);
-        setMemId(getData.data?.data.data.id);
-      });
-
-      getInterests.refetch().then(() => {
-        let Interests: any = [];
-
-        getInterests.data?.data.data.forEach((item: any) => {
-          Interests.push(item.keyword);
+      const getData = async () => {
+        const MemId = await axios.get(`${apiKey}/members`, {
+          headers: {
+            Authorization: data.data.token,
+          },
         });
+        localStorage.setItem('memberId', MemId.data.data.id);
+        setMemId(MemId.data.data.id);
+      };
 
-        localStorage.setItem('interests', JSON.stringify(Interests));
-      });
+      getData();
+      axios.defaults.headers.common['Authorization'] = data.data.token;
 
       alert('로그인이 완료되었습니다!');
       router.push('/group');
@@ -49,31 +44,6 @@ export default function LoginInput() {
     onError: (Error) => {
       alert('로그인에 실패했습니다!');
       console.log(Error);
-    },
-  });
-
-  const getData = useQuery({
-    queryKey: ['getData'],
-    queryFn: () => {
-      return axios.get(`${apiKey}/members`, {
-        headers: {
-          Authorization: localStorage.getItem('token'),
-        },
-      });
-    },
-  });
-
-  const getInterests = useQuery({
-    queryKey: ['getInterests'],
-    queryFn: () => {
-      return axios.get(
-        `${apiKey}/interests-mapping?memberId=${localStorage.getItem('memberId')}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        },
-      );
     },
   });
 
