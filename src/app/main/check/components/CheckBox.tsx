@@ -53,10 +53,15 @@ export default function CheckBox() {
               {item.categoryName}
             </button>
             <progress
-              className="progress progress-accent relative bg-gray-200 rounded-lg w-2/3 my-auto h-1/2 hover:animate-pulse"
+              className="progress progress-accent relative bg-gray-200 rounded-lg w-2/3 my-auto h-1/2 mx-2 hover:animate-pulse"
               value={item.score}
               max="100"
             ></progress>
+            <div className="flex">
+              <button className="w-1/4 text-center flex my-auto text-xs sm:text-md mx-2">
+                {item.score}%
+              </button>
+            </div>
           </Link>
         ))}
     </div>

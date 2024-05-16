@@ -15,21 +15,31 @@ export default function CheckPage(): JSX.Element {
         >
           <button className="w-1/4 text-sm sm:text-md">오늘</button>
           <progress
-            className="progress progress-accent bg-gray-200 rounded-lg w-2/3 my-auto h-1/2"
+            className="progress progress-accent bg-gray-200 rounded-lg w-2/3 my-auto h-1/2 mx-2"
             value="40"
             max="100"
           ></progress>
+          <div className="flex">
+            <button className="w-1/4 text-center flex my-auto text-xs sm:text-sm mx-2">
+              50%
+            </button>
+          </div>
         </Link>
         <Link
           href=""
-          className="flex justify-around w-11/12 h-12 text-lg bg-white rounded-b-lg"
+          className="flex flex-row justify-around w-11/12 h-12 text-lg bg-white rounded-b-lg"
         >
           <button className="w-1/4 text-sm sm:text-md">주요 목표</button>
           <progress
-            className="progress progress-accent bg-gray-200 rounded-lg w-2/3 my-auto h-1/2"
-            value="60"
+            className=" progress progress-accent bg-gray-200 rounded-lg w-2/3 my-auto h-1/2 mx-2"
+            value="50"
             max="100"
           ></progress>
+          <div className="flex">
+            <button className="w-1/4 text-center flex my-auto text-xs sm:text-sm mx-2">
+              50%
+            </button>
+          </div>
         </Link>
       </div>
       <CheckBox />

@@ -31,13 +31,9 @@ export default function Avatar() {
     <>
       <div className="flex mt-8 justify-center avatar">
         <div className="flex flex-col w-32 mt-4 rounded-full">
-          <Image
-            src={ProfileImage}
-            alt="avatar"
-            width={120}
-            height={120}
-            className="rounded-full"
-          />
+          <div className="w-full h-full rounded-full text-accent bg-accent">
+            하이
+          </div>
         </div>
       </div>
       <div className="mx-auto my-2 text-xl text-black">
