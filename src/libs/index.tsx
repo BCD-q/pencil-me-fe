@@ -28,7 +28,7 @@ export const fetchInspiration = async () => {
     );
 
     getInterests.data.data.map((item: any) => {
-      InterestArr.push(item.keyword);
+      InterestArr.push(item?.keyword);
     });
 
     console.log(InterestArr);
