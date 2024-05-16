@@ -1,10 +1,10 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
 import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 
 import { fetchInspiration } from '@/libs';
 import useInterestsStore from '@/modules/interestsStore';
@@ -19,15 +19,53 @@ export default function BottonCarousel() {
   const { InterestsArray, setInterests } = useInterestsStore();
 
   const { data, isPending, mutate } = useMutation({
-    mutationFn: fetchInspiration,
+    mutationFn: () => {
+      const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+      const fastKey = apiKey?.substr(0, 16);
+      const memId = localStorage.getItem('memberId');
+      const InterestArr: any[] = [];
 
+      const getInterests = async () => {
+        const getInterests = await axios.get(
+          `${apiKey}/interests-mapping?memberId=${memId}`,
+          {
+            headers: {
+              Authorization: localStorage.getItem('token'),
+            },
+          },
+        );
+
+        getInterests.data.data.map((item: any) => {
+          InterestArr.push(item?.keyword);
+        });
+
+        console.log(InterestArr);
+      };
+
+      getInterests();
+
+      // const Interests = localStorage.getItem('interests');
+      const sendInterest = {
+        keyword: InterestArr,
+      };
+
+      console.log(data);
+      return axios.post(
+        `${fastKey}:6380/inspiration/me?start=1`,
+        sendInterest,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+    },
     onSuccess: (data) => {
       console.log(data);
       setInterests(data?.data.result.data);
-      console.log(localStorage.getItem('interests'));
     },
     onError: (error) => {
-      alert('관심사가 없습니다. ');
+      alert(error);
     },
   });
 
@@ -44,7 +82,10 @@ export default function BottonCarousel() {
       <ul className="inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-2 gap-2 w-full mx-auto">
         {Array.from({ length: 25 }).map((_, index) => (
           <>
-            <div className="skeleton w-11/12 h-[20vh] sm:h-[33vw] lg:h-[23vw] bg-gray-200 mt-4 mx-auto"></div>
+            <li
+              key={index}
+              className="skeleton w-11/12 h-[20vh] sm:h-[33vw] lg:h-[23vw] bg-gray-200 mt-4 mx-auto"
+            ></li>
           </>
         ))}
       </ul>
