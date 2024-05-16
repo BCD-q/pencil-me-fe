@@ -66,11 +66,14 @@ export default function LoginInput() {
   const getInterests = useQuery({
     queryKey: ['getInterests'],
     queryFn: () => {
-      return axios.get(`${apiKey}/interests-mapping?memberId=${memId}`, {
-        headers: {
-          Authorization: token,
+      return axios.get(
+        `${apiKey}/interests-mapping?memberId=${localStorage.getItem('memberId')}`,
+        {
+          headers: {
+            Authorization: token,
+          },
         },
-      });
+      );
     },
   });
 
