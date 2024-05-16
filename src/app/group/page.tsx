@@ -21,9 +21,12 @@ export default function Group(): JSX.Element {
         >
           <button>메인</button>
         </Link>
-        <button className="flex justify-start w-11/12 mb-4 h-12 pt-2 pl-4 text-lg bg-white rounded-b-lg hover:bg-gray-300">
-          주요 목표
-        </button>
+        <Link
+          href="../main/important"
+          className="flex justify-start w-11/12 mb-4 h-12 pl-4 text-lg bg-white rounded-b-lg hover:bg-gray-300"
+        >
+          <button>주요 목표</button>
+        </Link>
       </div>
       <GroupBox />
       {groupModalOpen && <AddGroupModal />}
