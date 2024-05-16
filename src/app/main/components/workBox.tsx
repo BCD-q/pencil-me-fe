@@ -23,6 +23,7 @@ export interface TodoItem {
   contents?: string;
   deadline?: string;
   isFinished?: boolean;
+  isImportant?: boolean;
 }
 
 export default function WorkBox({ id }: { id: string | null }): JSX.Element {
@@ -53,6 +54,7 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
 
   useEffect(() => {
     refetch();
+    console.log(data?.data.data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupModalOpen, todoList, isChanged]);
 
