@@ -28,19 +28,20 @@ export default function LoginInput() {
 
       axios.defaults.headers.common['Authorization'] = data.data.token;
 
-      getData.refetch();
-
-      localStorage.setItem('memberId', getData.data?.data.data.id);
-      setMemId(getData.data?.data.data.id);
-
-      getInterests.refetch();
-      let Interests: string[] = [];
-
-      getInterests.data?.data.data.forEach((item: any) => {
-        Interests.push(item.keyword);
+      getData.refetch().then(() => {
+        localStorage.setItem('memberId', getData.data?.data.data.id);
+        setMemId(getData.data?.data.data.id);
       });
 
-      localStorage.setItem('Interests', JSON.stringify(Interests));
+      getInterests.refetch().then(() => {
+        let Interests: any = [];
+
+        getInterests.data?.data.data.forEach((item: any) => {
+          Interests.push(item.keyword);
+        });
+
+        localStorage.setItem('Interests', JSON.stringify(Interests));
+      });
 
       alert('로그인이 완료되었습니다!');
       router.push('/group');
@@ -56,7 +57,7 @@ export default function LoginInput() {
     queryFn: () => {
       return axios.get(`${apiKey}/members`, {
         headers: {
-          Authorization: token,
+          Authorization: localStorage.getItem('token'),
         },
       });
     },
