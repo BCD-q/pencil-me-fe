@@ -26,17 +26,17 @@ export default function Cartegory({
           onClick={() => history.back()}
           className="absolute left-0 m-2 text-accent"
         >
-          back
+          뒤로
         </button>
       ) : (
         ''
       )}
       {children === '수정' && (
         <button
+          className="absolute left-0 mr-auto mt-1 border-none shadow-none btn btn-sm bg-inherit text-lime-500 text-lg"
           onClick={() => history.back()}
-          className="absolute left-0 m-2 text-accent"
         >
-          back
+          <IoIosArrowBack className="w-6 h-6 mr-[-12px]" />할 일
         </button>
       )}
       <div className="text-lg sm:text-xl">
