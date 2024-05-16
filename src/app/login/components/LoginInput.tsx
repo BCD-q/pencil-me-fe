@@ -11,6 +11,8 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 export default function LoginInput() {
   const [uid, setUid] = useState('');
   const [password, setPassword] = useState('');
+  const [token, setToken] = useState('');
+  const [memId, setMemId] = useState('');
   const router = useRouter();
 
   const { mutate } = useMutation({
@@ -22,19 +24,23 @@ export default function LoginInput() {
 
       localStorage.setItem('password', password);
       localStorage.setItem('token', data.data.token);
+      setToken(data.data.token);
 
       axios.defaults.headers.common['Authorization'] = data.data.token;
 
       getData.refetch();
 
       localStorage.setItem('memberId', getData.data?.data.data.id);
+      setMemId(getData.data?.data.data.id);
 
       getInterests.refetch();
-      let Interests = '';
+      let Interests: string[] = [];
 
       getInterests.data?.data.data.forEach((item: any) => {
-        Interests += item.keyword;
+        Interests.push(item.keyword);
       });
+
+      localStorage.setItem('Interests', JSON.stringify(Interests));
 
       alert('로그인이 완료되었습니다!');
       router.push('/group');
@@ -50,7 +56,7 @@ export default function LoginInput() {
     queryFn: () => {
       return axios.get(`${apiKey}/members`, {
         headers: {
-          Authorization: localStorage.getItem('token'),
+          Authorization: token,
         },
       });
     },
@@ -59,14 +65,11 @@ export default function LoginInput() {
   const getInterests = useQuery({
     queryKey: ['getInterests'],
     queryFn: () => {
-      return axios.get(
-        `${apiKey}/interests-mapping?memberId=${localStorage.getItem('memberId')}`,
-        {
-          headers: {
-            Authorization: localStorage.getItem('token'),
-          },
+      return axios.get(`${apiKey}/interests-mapping?memberId=${memId}`, {
+        headers: {
+          Authorization: token,
         },
-      );
+      });
     },
   });
 
