@@ -26,8 +26,7 @@ export default function BottonCarousel() {
       console.log(localStorage.getItem('interests'));
     },
     onError: (error) => {
-      console.log(error);
-      console.log('data', localStorage.getItem('interests'));
+      alert('관심사가 없습니다. ');
     },
   });
 

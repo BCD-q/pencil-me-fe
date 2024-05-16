@@ -29,8 +29,15 @@ export default function LoginInput() {
 
       localStorage.setItem('memberId', getData.data?.data.data.id);
 
-      alert('로그인이 완료되었습니다!');
-      router.push('/group');
+      getInterests.refetch();
+      let Interests = '';
+
+      getInterests.data?.data.data.forEach((item: any) => {
+        Interests += item.keyword;
+      });
+
+      // alert('로그인이 완료되었습니다!');
+      // router.push('/group');
     },
     onError: (Error) => {
       alert('로그인에 실패했습니다!');
@@ -46,6 +53,20 @@ export default function LoginInput() {
           Authorization: localStorage.getItem('token'),
         },
       });
+    },
+  });
+
+  const getInterests = useQuery({
+    queryKey: ['getInterests'],
+    queryFn: () => {
+      return axios.get(
+        `${apiKey}/interests-mapping?memberId=${localStorage.getItem('memberId')}`,
+        {
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
+        },
+      );
     },
   });
 
