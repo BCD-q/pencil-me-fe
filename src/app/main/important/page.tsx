@@ -47,7 +47,9 @@ export default function ImportantPage() {
               .filter(
                 (item: TodoItem, index: number) => item.isImportant === true,
               )
-              .map((item: TodoItem, index: number) => <TodoBox item={item} />)}
+              .map((item: TodoItem, index: number) => (
+                <TodoBox key={index} item={item} />
+              ))}
         </ul>
       </div>
     </>
