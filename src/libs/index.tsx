@@ -37,22 +37,17 @@ export const fetchInspiration = async () => {
   getInterests();
 
   // const Interests = localStorage.getItem('interests');
-  // const data = {
-  //   keyword: Interests,
-  // };
+  const data = {
+    keyword: InterestArr,
+  };
 
   try {
-    return await axios.post(
-      `${fastKey}:6380/inspiration/me?start=1`,
-      {
-        keyword: InterestArr,
+    console.log(data);
+    return await axios.post(`${fastKey}:6380/inspiration/me?start=1`, data, {
+      headers: {
+        'Content-Type': 'application/json',
       },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
-    );
+    });
   } catch (error) {
     console.error(error);
     console.log(apiKey);

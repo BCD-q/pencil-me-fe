@@ -12,7 +12,7 @@ export default function InspirationPage(): JSX.Element {
       <WorkBar>오늘의 제안</WorkBar>
 
       <div className="flex-1">
-        <Suspense>
+        <Suspense fallback={<p>loading Interests...</p>}>
           <BottomCarousel />
         </Suspense>
       </div>

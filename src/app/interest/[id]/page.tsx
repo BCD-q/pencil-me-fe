@@ -22,7 +22,7 @@ export default function Interest() {
 
   const { setInterests } = useInterestsStore();
 
-  const { data, isLoading, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ['interests'],
     queryFn: () => {
       return axios.get(`${apiKey}/interests`);
