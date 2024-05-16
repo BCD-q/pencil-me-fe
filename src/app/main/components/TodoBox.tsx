@@ -80,13 +80,15 @@ export default function TodoBox({ item }: { item: TodoItem }) {
             }}
           />
         )}
-        <div className="flex flex-col">
-          <div className="text-black">{item.title}</div>
+        <div className="flex flex-col w-3/5">
+          <div className="text-black truncate">{item.title}</div>
           <div className="text-xs text-gray-400">
             {formatDeadline(item.deadline)}
           </div>
         </div>
-        <div className="ml-auto text-xs text-gray-500">{item.categoryName}</div>
+        <div className="ml-auto text-xs truncate text-gray-500">
+          {item.categoryName}
+        </div>
         <button className="w-4 h-4 m-2 text-gray-500">
           {item.isImportant ? (
             <FaStar

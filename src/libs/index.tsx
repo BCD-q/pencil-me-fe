@@ -24,10 +24,13 @@ export const fetchInspiration = async () => {
         },
       },
     );
+
     getInterests.data.data.map((item: any) => {
       InterestArr.push(item.keyword);
     });
   };
+
+  getInterests();
 
   // const Interests = localStorage.getItem('interests');
   // const data = {
