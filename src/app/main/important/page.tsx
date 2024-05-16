@@ -31,6 +31,7 @@ export default function ImportantPage() {
 
   useEffect(() => {
     refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChanged]);
 
   return (
@@ -43,7 +44,9 @@ export default function ImportantPage() {
 
           {data &&
             data.data.data
-              .filter((item: TodoItem) => item.isImportant === true)
+              .filter(
+                (item: TodoItem, index: number) => item.isImportant === true,
+              )
               .map((item: TodoItem, index: number) => <TodoBox item={item} />)}
         </ul>
       </div>
