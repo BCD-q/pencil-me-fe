@@ -40,7 +40,7 @@ export default function LoginInput() {
           Interests.push(item.keyword);
         });
 
-        localStorage.setItem('Interests', JSON.stringify(Interests));
+        localStorage.setItem('interests', JSON.stringify(Interests));
       });
 
       alert('로그인이 완료되었습니다!');
