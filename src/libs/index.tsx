@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -11,16 +12,33 @@ export const fetchTodo = async () => {
 // 영감 불러올때 api
 export const fetchInspiration = async () => {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const memId = localStorage.getItem('memberId');
+  const InterestArr: any[] = [];
 
-  const Interests = localStorage.getItem('interests');
-  const data = {
-    keyword: Interests,
+  const getInterests = async () => {
+    const getInterests = await axios.get(
+      `${apiKey}/interests-mapping?memberId=${memId}`,
+      {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      },
+    );
+    getInterests.data.data.map((item: any) => {
+      InterestArr.push(item.keyword);
+    });
   };
+
+  // const Interests = localStorage.getItem('interests');
+  // const data = {
+  //   keyword: Interests,
+  // };
+
   try {
     return await axios.post(
       `${fastKey}:6380/inspiration/me?start=1`,
       {
-        keyword: [Interests],
+        keyword: InterestArr,
       },
       {
         headers: {
@@ -29,7 +47,6 @@ export const fetchInspiration = async () => {
       },
     );
   } catch (error) {
-    console.log(Interests);
     console.error(error);
     console.log(apiKey);
   }
