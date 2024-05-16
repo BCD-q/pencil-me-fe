@@ -1,3 +1,5 @@
+'use client';
+
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
@@ -28,6 +30,8 @@ export const fetchInspiration = async () => {
     getInterests.data.data.map((item: any) => {
       InterestArr.push(item.keyword);
     });
+
+    console.log(InterestArr);
   };
 
   getInterests();
