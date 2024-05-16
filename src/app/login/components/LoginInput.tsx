@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -19,15 +19,33 @@ export default function LoginInput() {
     },
     onSuccess: ({ data }) => {
       console.log(data);
+
       localStorage.setItem('password', password);
       localStorage.setItem('token', data.data.token);
+
       axios.defaults.headers.common['Authorization'] = data.data.token;
+
+      getData.refetch();
+
+      localStorage.setItem('memberId', getData.data?.data.data.id);
 
       alert('로그인이 완료되었습니다!');
       router.push('/group');
     },
-    onError: () => {
+    onError: (Error) => {
       alert('로그인에 실패했습니다!');
+      console.log(Error);
+    },
+  });
+
+  const getData = useQuery({
+    queryKey: ['getData'],
+    queryFn: () => {
+      return axios.get(`${apiKey}/members`, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
     },
   });
 
