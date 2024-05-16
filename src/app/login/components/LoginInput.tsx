@@ -36,8 +36,8 @@ export default function LoginInput() {
         Interests += item.keyword;
       });
 
-      // alert('로그인이 완료되었습니다!');
-      // router.push('/group');
+      alert('로그인이 완료되었습니다!');
+      router.push('/group');
     },
     onError: (Error) => {
       alert('로그인에 실패했습니다!');
