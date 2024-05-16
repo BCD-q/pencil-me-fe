@@ -1,9 +1,14 @@
-import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 
 import Cartegory from '@/component/common/Cartegory';
 import WorkBar from '@/component/common/Workbar';
 
-import BottomCarousel from './components/BottomCarousel';
+const BottomCarousel = dynamic(
+  () => import('../inspiration/components/BottomCarousel'),
+  {
+    loading: () => <p>loading Interests...</p>,
+  },
+);
 
 export default function InspirationPage(): JSX.Element {
   return (
@@ -12,9 +17,7 @@ export default function InspirationPage(): JSX.Element {
       <WorkBar>오늘의 제안</WorkBar>
 
       <div className="flex-1">
-        <Suspense fallback={<p>loading Interests...</p>}>
-          <BottomCarousel />
-        </Suspense>
+        <BottomCarousel />
       </div>
     </div>
   );
