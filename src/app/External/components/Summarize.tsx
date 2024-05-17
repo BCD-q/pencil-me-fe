@@ -14,8 +14,7 @@ export default function Summarize({ url }: { url: string }) {
     queryFn: () => {
       return axios.get(`${apiKey}/communicator/summary?url=${url}`, {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          Accept: 'application/json',
+          Authorization: localStorage.getItem('token'),
         },
       });
     },
