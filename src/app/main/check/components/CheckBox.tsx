@@ -58,7 +58,7 @@ export default function CheckBox() {
               max="100"
             ></progress>
             <div className="flex">
-              <button className="w-1/4 text-center flex my-auto text-xs sm:text-md mx-2">
+              <button className="w-1/4 text-center flex my-auto text-xs sm:text-md mx-3">
                 {item.score}%
               </button>
             </div>

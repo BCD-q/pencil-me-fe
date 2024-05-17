@@ -7,10 +7,16 @@ export default function Summarize({ url }: { url: string }) {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const fastKey = apiKey?.substr(0, 16);
 
-  const { data, isLoading, isFetching, refetch } = useQuery({
+  const { data, isLoading, isError, isFetching, refetch } = useQuery({
     queryKey: ['summarize'],
     queryFn: () => {
-      return axios.get(`${fastKey}:6380/inspiration/page-crawler?url=${url}`);
+      // ${fastKey}:6380/inspiration/page-crawler?url=${url}
+      return axios.get(`${apiKey}/summary?url=${url}`, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Accept: 'application/json',
+        },
+      });
     },
   });
 
@@ -18,6 +24,8 @@ export default function Summarize({ url }: { url: string }) {
     refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (isError) alert('요약에 실패했습니다. 다시 시도해주세요!');
 
   if (isLoading)
     return (
@@ -36,13 +44,13 @@ export default function Summarize({ url }: { url: string }) {
     );
 
   return (
-    <div className="flex flex-col w-full absolute bottom-[4rem] h-[35vh] bg-white rounded-t-xl border-t-2 shadow-sm">
+    <div className="flex flex-col w-full absolute bottom-[4rem] h-[35vh] bg-white rounded-t-xl border-x-1 border-t-2 shadow-sm">
       <div className="flex mx-auto items-center w-3/5 text-gray-400 h-1/5 text-md my-4">
-        {data?.data?.result.data.title}
+        {data?.data?.data.title}
       </div>
       <hr className="w-4/5 m-2 mx-auto" />
       <div className="text-gray-400 text-sm my-auto sm:text-lg w-5/6 mx-auto">
-        {data?.data?.result.data.contents}
+        {data?.data?.data.contents}
       </div>
     </div>
   );

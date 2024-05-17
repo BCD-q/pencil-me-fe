@@ -6,7 +6,7 @@ import WorkBar from '@/component/common/Workbar';
 const BottomCarousel = dynamic(
   () => import('../inspiration/components/BottomCarousel'),
   {
-    loading: () => <p>loading Interests...</p>,
+    loading: () => <p></p>,
   },
 );
 
