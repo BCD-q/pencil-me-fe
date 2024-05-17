@@ -47,12 +47,6 @@ export default function Input() {
     setInputText(e.target.value);
   };
 
-  // const handleKeyUpInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
-  //   if (e.key === 'Enter') {
-  //     mutate(inputText);
-  //   }
-  // };
-
   const { isPending, mutate } = useMutation({
     mutationFn: (inputText: string) => {
       if (inputText === '') {

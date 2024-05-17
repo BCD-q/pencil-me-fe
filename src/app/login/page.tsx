@@ -11,7 +11,7 @@ import BubbleImage from '../../resources/images/common/BubbleImage.png';
 export default function LoginPage() {
   const router = useRouter();
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-[90vh]">
       <Cartegory>로그인</Cartegory>
       <div className="flex flex-col my-auto">
         <Image src={BubbleImage} alt="" className="w-3/5 mx-auto" />
