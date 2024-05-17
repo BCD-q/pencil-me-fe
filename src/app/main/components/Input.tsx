@@ -64,7 +64,7 @@ export default function Input() {
         };
         setText(inputText);
         setInputText('');
-        return axios.post(`${apiKey}/language`, data, {
+        return axios.post(`${apiKey}/communicator/language`, data, {
           headers: {
             Authorization: localStorage.getItem('token'),
           },

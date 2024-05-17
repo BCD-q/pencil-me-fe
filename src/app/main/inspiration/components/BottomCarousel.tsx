@@ -51,7 +51,7 @@ export default function BottonCarousel() {
 
       console.log(data);
       return axios.post(
-        `${fastKey}:6380/inspiration/me?start=1`,
+        `${apiKey}/communicator/inspiration?start=1`,
         sendInterest,
         {
           headers: {

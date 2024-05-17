@@ -1,17 +1,18 @@
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 export default function Summarize({ url }: { url: string }) {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-  const fastKey = apiKey?.substr(0, 16);
+
+  const router = useRouter();
 
   const { data, isLoading, isError, isFetching, refetch } = useQuery({
     queryKey: ['summarize'],
     queryFn: () => {
-      // ${fastKey}:6380/inspiration/page-crawler?url=${url}
-      return axios.get(`${apiKey}/summary?url=${url}`, {
+      return axios.get(`${apiKey}/communicator/summary?url=${url}`, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           Accept: 'application/json',
