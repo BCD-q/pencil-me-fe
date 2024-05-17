@@ -27,8 +27,8 @@ export interface TodoItem {
 }
 
 export default function WorkBox({ id }: { id: string | null }): JSX.Element {
-  const { todoList, isChanged, addTodo } = useTodayStore();
-  const { groupModalOpen, setGroupModalClose } = useGroupStore();
+  const { todoList, isChanged } = useTodayStore();
+  const { groupModalOpen } = useGroupStore();
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
   const router = useRouter();
@@ -76,7 +76,7 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
   };
 
   return (
-    <div className="flex flex-col flex-1 h-screen z-0 overflow-y-hidden">
+    <div className="flex flex-col flex-1 h-[80vh] z-0 overflow-y-hidden">
       <ul className="h-full">
         {data?.data.data.length === 0 && <BlankText />}
         {data &&

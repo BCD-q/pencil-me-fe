@@ -13,7 +13,7 @@ export type profileProps = {
 };
 
 export default function ChangeProfileModal(): JSX.Element {
-  const { profileModalOpen, setProfileModalClose } = useProfileStore();
+  const { setProfileModalClose } = useProfileStore();
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
 

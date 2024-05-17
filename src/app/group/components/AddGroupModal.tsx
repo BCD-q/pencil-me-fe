@@ -7,7 +7,7 @@ export type categoryProps = {
 };
 
 export default function AddGroupModal(): JSX.Element {
-  const { groupModalOpen, setGroupModalClose } = useGroupStore();
+  const { setGroupModalClose } = useGroupStore();
 
   const [groupName, setGroupName] = useState<categoryProps | undefined>();
   const modalBackground = useRef<HTMLDivElement>(null);

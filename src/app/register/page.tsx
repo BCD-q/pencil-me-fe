@@ -9,7 +9,6 @@ import Cartegory from '@/component/common/Cartegory';
 import BubbleImage from '../../resources/images/common/BubbleImage.png';
 
 export default function Register() {
-  const router = useRouter();
   return (
     <div className="flex flex-col h-[90vh]">
       <Cartegory>회원가입</Cartegory>

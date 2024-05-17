@@ -6,10 +6,10 @@ import { useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
-import { fetchInspiration } from '@/libs';
 import useInterestsStore from '@/modules/interestsStore';
 
 interface InterestItem {
+  id?: number;
   thumbnail_url?: string;
   title?: string;
   link?: string;
@@ -118,7 +118,7 @@ export default function BottonCarousel() {
 
   return (
     <ul className="relative inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-4 gap-3">
-      {InterestsArray?.map((item: any) => {
+      {InterestsArray?.map((item: InterestItem) => {
         return <BottomComponent key={item.id} data={item} />;
       })}
     </ul>

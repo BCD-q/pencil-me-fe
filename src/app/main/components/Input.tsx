@@ -24,7 +24,7 @@ interface LanguageData {
 export default function Input() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [text, setText] = useState('');
-  const { todoList, addTodo } = useTodayStore();
+  const { addTodo } = useTodayStore();
   const [inputText, setInputText] = useState('');
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
 

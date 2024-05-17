@@ -1,12 +1,9 @@
-import Image from 'next/image';
 import { useEffect } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 import useProfileStore from '@/modules/profileStore';
-
-import ProfileImage from '../../../../resources/images/common/pencilMeThumbNail.png';
 
 export default function Avatar() {
   const { profileModalOpen, setProfileModalOpen } = useProfileStore();

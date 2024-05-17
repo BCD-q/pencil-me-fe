@@ -5,8 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
-import { EffectFade, Navigation, Pagination } from 'swiper/modules';
-import { useSwiper } from 'swiper/react';
+import { EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { fetchCategory } from '@/libs';
@@ -38,11 +37,10 @@ const testData = [
 export default function GroupDataBox() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-  const swiper = useSwiper();
   const [key, setKey] = useState<number>();
   const { groupModalOpen, modModalOpen, setModModalOpen } = useGroupStore();
 
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ['category'],
     queryFn: fetchCategory,
   });
@@ -99,7 +97,7 @@ export default function GroupDataBox() {
         return (
           <Swiper
             key={index}
-            modules={[Navigation, Pagination, EffectFade]}
+            modules={[EffectFade]}
             effect="fade"
             loop={true}
             onSwiper={(swiper) => console.log(swiper)}

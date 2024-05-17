@@ -33,20 +33,6 @@ export default function RegisterInput(): JSX.Element {
     },
   });
 
-  // 로그인 처리
-
-  // const login = useMutation({
-  //   mutationFn: (Info: Info) => {
-  //     return axios.post(`${apiKey}/members/sign-in`, {
-  //       uid: Info.uid,
-  //       password: Info.password,
-  //     });
-  //   },
-  //   onSuccess: ({ data }) => {
-  //     localStorage.setItem('token', data.data.token);
-  //   }
-  // })
-
   // 비밀번호 중복 확인
   const IsPassword = () => {
     if (confirmPassword == '') return;

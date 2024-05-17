@@ -1,7 +1,6 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
 import React from 'react';
 
 import WorkBox from '@/app/main/components/workBox';

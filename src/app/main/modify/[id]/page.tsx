@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -17,12 +17,6 @@ export default function ModifyPage() {
   const [title, setTitle] = useState<string>('');
   const [deadline, setDeadline] = useState<string>('');
   const [endTime, setEndTime] = useState<string>('');
-
-  // useEffect(() => {
-  //   console.log(item);
-  //   console.log(group);
-  //   console.log(loca1, loca2);
-  // }, [group]);
 
   const { data } = useQuery({
     queryKey: ['groupName'],

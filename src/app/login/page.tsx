@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 import LoginInput from '@/app/login/components/LoginInput';
 import Cartegory from '@/component/common/Cartegory';
@@ -9,7 +8,6 @@ import Cartegory from '@/component/common/Cartegory';
 import BubbleImage from '../../resources/images/common/BubbleImage.png';
 
 export default function LoginPage() {
-  const router = useRouter();
   return (
     <div className="flex flex-col h-[90vh]">
       <Cartegory>로그인</Cartegory>

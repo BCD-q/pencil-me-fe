@@ -1,13 +1,10 @@
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 export default function Summarize({ url }: { url: string }) {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-
-  const router = useRouter();
 
   const { data, isLoading, isError, isFetching, refetch } = useQuery({
     queryKey: ['summarize'],
