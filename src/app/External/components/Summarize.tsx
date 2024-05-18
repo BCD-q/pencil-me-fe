@@ -26,7 +26,7 @@ export default function Summarize({ url }: { url: string }) {
 
   if (isLoading)
     return (
-      <div className="flex skeleton rounded-b-none flex-col text-gray-400 absolute bottom-[4rem] h-[35vh] w-full bg-white rounded-t-xl">
+      <div className="flex skeleton rounded-b-none flex-col text-gray-400 absolute bottom-[4rem] h-[35vh] w-full bg-white border-t-2  rounded-t-xl">
         <div className=" mx-auto my-8">요약중입니다. 잠시만 기다려주세요!</div>
         <div className="flex w-1/6 mx-auto loading loading-spinner justify-center my-auto text-gray-400 text-md sm:text-2xl md:text-3xl"></div>
       </div>
@@ -34,7 +34,7 @@ export default function Summarize({ url }: { url: string }) {
 
   if (isFetching)
     return (
-      <div className="flex skeleton rounded-b-none flex-col text-gray-400 absolute bottom-[4rem] h-[35vh] w-full bg-white rounded-t-xl">
+      <div className="flex skeleton rounded-b-none flex-col text-gray-400 absolute bottom-[4rem] h-[35vh] w-full bg-white border-t-2  rounded-t-xl">
         <div className=" mx-auto my-8">요약중입니다. 잠시만 기다려주세요!</div>
         <div className="flex w-1/6 mx-auto loading loading-spinner justify-center my-auto text-gray-400 text-md sm:text-2xl md:text-3xl border-t-2"></div>
       </div>

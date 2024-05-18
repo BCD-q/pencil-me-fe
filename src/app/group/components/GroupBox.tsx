@@ -91,7 +91,7 @@ export default function GroupDataBox() {
         const isFirst = index === 0;
         const isLast = index === data?.data?.data.length - 1;
         const buttonClassName = `
-          flex mx-auto w-11/12 h-12 items-center pl-4 text-lg border-b-[1px] bg-white hover:bg-gray-300
+          flex mx-auto w-11/12 h-12 items-center pl-4 text-lg border-b-[1px] bg-white truncate hover:bg-gray-300
           ${isFirst && data?.data?.data.length !== 1 ? 'rounded-t-lg' : ''} ${isFirst && data?.data?.data.length == 1 ? 'rounded-lg' : ''} ${isLast && data?.data?.data.length !== 1 ? 'rounded-b-lg' : ''}
         `;
         return (
@@ -106,7 +106,11 @@ export default function GroupDataBox() {
               <Link
                 href={`/main?id=${item.categoryId}&category=${item.categoryName}`}
               >
-                <button className={buttonClassName}>{item.categoryName}</button>
+                <button className={buttonClassName}>
+                  <p className="flex text-left truncate w-11/12">
+                    {item.categoryName}
+                  </p>
+                </button>
               </Link>
             </SwiperSlide>
             <SwiperSlide>
