@@ -59,6 +59,7 @@ export default function BottonCarousel() {
     },
     onSuccess: (data) => {
       console.log(data);
+      setInterests(data?.data.data);
       console.log(data?.data.data);
     },
     onError: (error) => {
@@ -115,7 +116,7 @@ export default function BottonCarousel() {
 
   return (
     <ul className="relative inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-4 gap-3">
-      {data?.data.data.map((item: InterestItem, index: number) => {
+      {InterestsArray.map((item: InterestItem, index: number) => {
         return <BottomComponent key={index} data={item} />;
       })}
     </ul>
