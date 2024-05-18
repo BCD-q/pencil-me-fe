@@ -9,7 +9,6 @@ import axios from 'axios';
 import useInterestsStore from '@/modules/interestsStore';
 
 interface InterestItem {
-  id?: number;
   thumbnail_url?: string;
   title?: string;
   link?: string;
@@ -45,14 +44,12 @@ export default function BottonCarousel() {
       getInterests();
 
       // const Interests = localStorage.getItem('interests');
-      const sendInterest = {
-        keyword: InterestArr,
-      };
 
-      console.log(data);
       return axios.post(
         `${apiKey}/communicator/inspiration?start=1`,
-        sendInterest,
+        {
+          keyword: InterestArr,
+        },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -62,7 +59,7 @@ export default function BottonCarousel() {
     },
     onSuccess: (data) => {
       console.log(data);
-      setInterests(data?.data.result.data);
+      console.log(data?.data.data);
     },
     onError: (error) => {
       alert(error);
@@ -118,8 +115,8 @@ export default function BottonCarousel() {
 
   return (
     <ul className="relative inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-4 gap-3">
-      {InterestsArray?.map((item: InterestItem) => {
-        return <BottomComponent key={item.id} data={item} />;
+      {data?.data.data.map((item: InterestItem, index: number) => {
+        return <BottomComponent key={index} data={item} />;
       })}
     </ul>
   );

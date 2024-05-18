@@ -76,11 +76,11 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
   };
 
   return (
-    <div className="flex flex-col flex-1 h-[80vh] z-0 overflow-y-hidden">
+    <div className="flex flex-col flex-1 h-[100vh] z-0 overflow-y-auto">
       <ul className="h-full">
         {data?.data.data.length === 0 && <BlankText />}
         {data &&
-          data.data.data.map((item: TodoItem, index: number) => (
+          data?.data.data.map((item: TodoItem, index: number) => (
             <Swiper key={index}>
               <SwiperSlide key={index}>
                 <TodoBox item={item} />

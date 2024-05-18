@@ -91,7 +91,7 @@ export default function Input() {
 
   return (
     <>
-      <div className="flex sticky items-center z-10 h-20 px-2 py-3 bg-white rounded-t-3xl">
+      <div className="flex sticky items-center z-10 h-20 px-2 py-3 bg-white rounded-t-3xl border-t-[1px]">
         <input
           type="text"
           placeholder={placeholders[placeholderIndex]}
