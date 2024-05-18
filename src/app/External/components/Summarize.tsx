@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function Summarize({ url }: { url: string }) {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-  const { data, isLoading, isError, isFetching, refetch } = useQuery({
+  const { data, isError, isFetching, refetch } = useQuery({
     queryKey: ['summarize'],
     queryFn: () => {
       return axios.get(`${apiKey}/communicator/summary?url=${url}`, {
@@ -23,14 +23,6 @@ export default function Summarize({ url }: { url: string }) {
   }, []);
 
   if (isError) alert('요약에 실패했습니다. 다시 시도해주세요!');
-
-  if (isLoading)
-    return (
-      <div className="flex skeleton rounded-b-none flex-col text-gray-400 absolute bottom-[4rem] h-[35vh] w-full bg-white border-t-2  rounded-t-xl">
-        <div className=" mx-auto my-8">요약중입니다. 잠시만 기다려주세요!</div>
-        <div className="flex w-1/6 mx-auto loading loading-spinner justify-center my-auto text-gray-400 text-md sm:text-2xl md:text-3xl"></div>
-      </div>
-    );
 
   if (isFetching)
     return (

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -18,21 +18,6 @@ interface category {
   memberId?: number;
   categoryName?: string;
 }
-
-const testData = [
-  {
-    categoryId: 1,
-    categoryName: 'category1',
-  },
-  {
-    categoryId: 2,
-    categoryName: 'category2',
-  },
-  {
-    categoryId: 3,
-    categoryName: 'category3',
-  },
-];
 
 export default function GroupDataBox() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -86,7 +71,7 @@ export default function GroupDataBox() {
   getInterests();
 
   return (
-    <ul className="w-full mx-auto overflow-hidden">
+    <ul className="w-full mx-auto bg-gray-200 overflow-auto">
       {data?.data?.data.map((item: category, index: number) => {
         const isFirst = index === 0;
         const isLast = index === data?.data?.data.length - 1;
@@ -95,13 +80,7 @@ export default function GroupDataBox() {
           ${isFirst && data?.data?.data.length !== 1 ? 'rounded-t-lg' : ''} ${isFirst && data?.data?.data.length == 1 ? 'rounded-lg' : ''} ${isLast && data?.data?.data.length !== 1 ? 'rounded-b-lg' : ''}
         `;
         return (
-          <Swiper
-            key={index}
-            modules={[EffectFade]}
-            effect="fade"
-            loop={true}
-            onSwiper={(swiper) => console.log(swiper)}
-          >
+          <Swiper key={index} modules={[EffectFade]} effect="fade" loop={true}>
             <SwiperSlide key={item.categoryId}>
               <Link
                 href={`/main?id=${item.categoryId}&category=${item.categoryName}`}

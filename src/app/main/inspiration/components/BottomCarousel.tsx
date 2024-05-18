@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 import { useMutation } from '@tanstack/react-query';
@@ -14,13 +15,19 @@ interface InterestItem {
   link?: string;
 }
 
+interface Summary {
+  title: string;
+  contents: string;
+  deadline: string;
+  categoryId: number;
+}
+
 export default function BottonCarousel() {
   const { InterestsArray, setInterests } = useInterestsStore();
 
   const { data, isPending, mutate } = useMutation({
     mutationFn: () => {
       const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-      const fastKey = apiKey?.substr(0, 16);
       const memId = localStorage.getItem('memberId');
       const InterestArr: any[] = [];
 
@@ -53,6 +60,7 @@ export default function BottonCarousel() {
         {
           headers: {
             'Content-Type': 'application/json',
+            Authorization: localStorage.getItem('token'),
           },
         },
       );
@@ -63,7 +71,7 @@ export default function BottonCarousel() {
       console.log(data?.data.data);
     },
     onError: (error) => {
-      alert(error);
+      console.log(error);
     },
   });
 
@@ -71,7 +79,6 @@ export default function BottonCarousel() {
     if (InterestsArray.length === 0) {
       mutate();
     }
-    console.log('interests', InterestsArray);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -89,31 +96,6 @@ export default function BottonCarousel() {
       </ul>
     );
 
-  // const { mutate } = useMutation({
-  //   mutationFn: (item) => {
-  //     return axios.post(
-  //       `${apiKey}/todos`,
-  //       {
-  //         title: 'title',
-  //         contents: 'contents',
-  //         categoryId: 1,
-  //         deadline: '2022-12-31',
-  //         isFinished: false,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: localStorage.getItem('token'),
-  //         },
-  //       },
-  //     );
-  //   },
-  //   onSuccess: (data) => {
-  //     console.log(data);
-  //   },
-  // });
-
-  // data?.data.result.data.
-
   return (
     <ul className="relative inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-4 gap-3">
       {InterestsArray.map((item: InterestItem, index: number) => {
@@ -127,6 +109,56 @@ function BottomComponent({ data }: { data: any }) {
   const NoImage = 'https://www.svgrepo.com/show/340721/no-image.svg';
   const url = data?.link;
   const title = data?.title;
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const router = useRouter();
+
+  const InspiTodo = useMutation({
+    mutationFn: (url) => {
+      return axios.post(`${apiKey}/communicator/summary?url=${url}`, null, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
+    },
+    onSuccess: ({ data }) => {
+      console.log(data);
+      SummaryTodo.mutate(data?.data);
+    },
+  });
+
+  const SummaryTodo = useMutation({
+    mutationFn: (data: Summary) => {
+      return axios.post(
+        `${apiKey}/todos`,
+        {
+          title: data?.title,
+          contents: data?.contents,
+          deadline: data?.deadline,
+          categoryId: data?.categoryId,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
+        },
+      );
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      alert('할일 추가가 완료되었습니다!');
+      router.push('/main');
+    },
+  });
+
+  if (InspiTodo.isPending) {
+    return (
+      <div className="flex flex-col rounded-xl skeleton bg-accent shadow-xl hover:opacity-50 hover:translate-y-2 hover:delay-100 hover:ease-in text-white">
+        <div className="mx-auto flex h-1/6 my-auto text-center">
+          할일 추가중 ...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <li className="rounded-xl shadow-xl flex-col hover:opacity-50 hover:translate-y-2 hover:delay-100 hover:ease-in bg-white">
@@ -156,7 +188,12 @@ function BottomComponent({ data }: { data: any }) {
             {data?.subtitle}
           </div>
         </div>
-        <button className=" bg-[#78be5e] w-8 h-8 rounded-full shadow-xl text-white text-xl">
+        <button
+          className=" bg-[#78be5e] w-8 h-8 rounded-full shadow-xl text-white text-xl"
+          onClick={() => {
+            InspiTodo.mutate(data?.link);
+          }}
+        >
           +
         </button>
       </div>

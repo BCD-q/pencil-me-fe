@@ -86,7 +86,7 @@ export default function TodoBox({ item }: { item: TodoItem }) {
             {formatDeadline(item.deadline)}
           </div>
         </div>
-        <div className="ml-auto text-xs truncate text-gray-500">
+        <div className="ml-auto text-xs w-1/5 text-right truncate text-gray-500">
           {item.categoryName}
         </div>
         <button className="w-4 h-4 m-2 text-gray-500">

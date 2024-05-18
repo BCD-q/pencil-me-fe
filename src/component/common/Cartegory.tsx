@@ -39,7 +39,7 @@ export default function Cartegory({
           <IoIosArrowBack className="w-6 h-6 mr-[-12px]" />할 일
         </button>
       )}
-      <div className="text-lg sm:text-xl">
+      <div className="flex text-lg sm:text-xl truncate w-3/5 justify-center">
         {children == null ? '메인' : children}
       </div>
     </div>

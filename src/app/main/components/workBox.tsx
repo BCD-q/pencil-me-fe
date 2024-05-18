@@ -54,7 +54,6 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
 
   useEffect(() => {
     refetch();
-    console.log(data?.data.data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupModalOpen, todoList, isChanged]);
 
@@ -112,19 +111,6 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
             </Swiper>
           ))}
       </ul>
-      {/* <div className="text-xs ml-2 text-gray-400">처리 중인 작업들</div>
-      <div className="flex flex-col w-5/6 mb-1 mx-auto rounded-sm text-white">
-        <ul>
-          {todoList.map((item, index) => (
-            <li
-              key={index}
-              className="bg-[#78be5e] skeleton p-3 mt-2 mb-2 rounded-md"
-            >
-              {item.title}
-            </li>
-          ))}
-        </ul>
-      </div> */}
     </div>
   );
 }

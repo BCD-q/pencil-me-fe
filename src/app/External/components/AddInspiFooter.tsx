@@ -9,26 +9,69 @@ import axios from 'axios';
 
 import Summarize from './Summarize';
 
+interface Summary {
+  title: string;
+  contents: string;
+  deadline: string;
+  categoryId: number;
+}
+
 export default function AddInspiFooter({ url }: { url: string }) {
   const [summarize, setSummarize] = useState<boolean>(false);
   const [clicked, setClicked] = useState<boolean>(false);
 
+  const token = localStorage.getItem('token');
   const router = useRouter();
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
   const InspiTodo = useMutation({
     mutationFn: () => {
-      return axios.post(`${apiKey}/communicator/summary?url=${url}`, {
+      return axios.post(`${apiKey}/communicator/summary?url=${url}`, null, {
         headers: {
-          Authorization: localStorage.getItem('token'),
+          'Content-Type': 'application/json',
+          Authorization: token,
         },
       });
     },
     onSuccess: ({ data }) => {
       console.log(data);
-      router.back();
+      SummaryTodo.mutate(data?.data);
     },
   });
+
+  const SummaryTodo = useMutation({
+    mutationFn: (data: Summary) => {
+      return axios.post(
+        `${apiKey}/todos`,
+        {
+          title: data?.title,
+          contents: data?.contents,
+          deadline: data?.deadline,
+          categoryId: data?.categoryId,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+        },
+      );
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      alert('할일 추가가 완료되었습니다!');
+      router.push('/main');
+    },
+  });
+
+  if (InspiTodo.isPending) {
+    return (
+      <div className="absolute bg-white skeleton border-4 z-50 left-[8%] top-1/3 w-5/6 h-1/3">
+        <div className="mx-auto text-center my-16">할일 추가중 ... </div>
+        <div className="flex w-1/4 mx-auto loading loading-spinner justify-center my-auto text-gray-400 text-md sm:text-2xl md:text-3xl border-t-2"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex bg-white flex-row sticky bottom-0 h-16 z-40">
@@ -46,7 +89,8 @@ export default function AddInspiFooter({ url }: { url: string }) {
       </button>
       <button
         className="flex ml-auto justify-center text-white mr-4 items-center my-auto w-1/5 bg-accent text-sm sm:text-md h-1/2 rounded-3xl"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           InspiTodo.mutate();
         }}
       >
