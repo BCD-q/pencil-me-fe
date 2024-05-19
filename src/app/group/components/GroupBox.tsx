@@ -71,7 +71,7 @@ export default function GroupDataBox() {
   getInterests();
 
   return (
-    <ul className="w-full mx-auto bg-gray-200 overflow-auto">
+    <ul className="w-full mx-auto bg-gray-200 overflow-auto pb-4">
       {data?.data?.data.map((item: category, index: number) => {
         const isFirst = index === 0;
         const isLast = index === data?.data?.data.length - 1;

@@ -66,8 +66,10 @@ export default function AddInspiFooter({ url }: { url: string }) {
 
   if (InspiTodo.isPending) {
     return (
-      <div className="absolute bg-white skeleton border-4 z-50 left-[8%] top-1/3 w-5/6 h-1/3">
-        <div className="mx-auto text-center my-16">할일 추가중 ... </div>
+      <div className="absolute bg-white skeleton z-50 shadow-2xl left-[8%] top-1/3 w-5/6 h-1/3">
+        <div className="mx-auto text-center text-gray-400 my-16">
+          할일 추가중 ...{' '}
+        </div>
         <div className="flex w-1/4 mx-auto loading loading-spinner justify-center my-auto text-gray-400 text-md sm:text-2xl md:text-3xl border-t-2"></div>
       </div>
     );
