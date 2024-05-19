@@ -6,6 +6,9 @@ const withPWA = require('next-pwa')({
 
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ['encrypted-tbn0.gstatic.com'],
+  },
 };
 
 module.exports = withPWA(nextConfig);

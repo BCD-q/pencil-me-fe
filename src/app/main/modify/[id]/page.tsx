@@ -61,19 +61,19 @@ export default function ModifyPage() {
       <Cartegory>수정</Cartegory>
       <TodoBox item={item} />
       <div className="flex flex-col h-full">
-        <div className="text-xs text-s gray-500 m-2">세부사항</div>
+        <div className="text-xs text-s text-gray-500 m-2 my-4">세부사항</div>
         <div className="flex gap-2 h-44 min-h-fit flex-col w-5/6 rounded-2xl bg-white mx-auto">
-          <div className="flex flex-row mt-1 mb-1 ml-4 h-1/4">
+          <div className="flex flex-row mt-1 ml-4 h-1/4">
             <div className="text-xs mt-[18px]">그룹</div>
             <select
-              className="ml-auto pt-1 select w-1/2 mr-1 text-right text-xs"
+              className="ml-auto pt-1 select w-1/4 mr-1 text-xs"
               onChange={(e) => setGroup(e.target.value)}
             >
-              <option disabled selected>
+              <option disabled selected className="">
                 그룹
               </option>
               {data?.data.data.map((item: any, index: number) => (
-                <option key={index} value={item.categoryId}>
+                <option key={index} value={item.categoryId} className="">
                   {item.categoryName}
                 </option>
               ))}
@@ -90,7 +90,7 @@ export default function ModifyPage() {
             />
           </div>
           <hr />
-          <div className="flex flex-row ml-4 pb-1 mt-1 mb-1 h-1/4">
+          <div className="flex flex-row ml-4 pb-2 mt-1 mb-1 h-1/4">
             <div className="text-xs my-auto">종료시간</div>
             <input
               type="text"
@@ -100,10 +100,10 @@ export default function ModifyPage() {
             />
           </div>
         </div>
-        <div className="text-xs text-gray-500 m-2">세부사항</div>
+        <div className="text-xs text-gray-500 m-2 my-4">세부사항</div>
         <textarea
           className="textarea w-5/6 h-1/4 mx-auto resize-none"
-          placeholder="내용을 입력해주세요"
+          placeholder={item.title}
           onChange={(e) => setTitle(e.target.value)}
         ></textarea>
         <button

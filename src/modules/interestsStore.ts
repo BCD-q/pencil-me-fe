@@ -8,8 +8,6 @@ interface InterestItem {
 interface InterestStore {
   InterestsArray: InterestItem[];
   setInterests: (item: any) => void;
-  Interests: boolean;
-  addInterest: () => void;
 }
 
 const useInterestsStore = create<InterestStore>((set) => ({
@@ -17,11 +15,6 @@ const useInterestsStore = create<InterestStore>((set) => ({
   setInterests: (item: InterestItem[]) => {
     set({ InterestsArray: item });
   },
-  Interests: false,
-  addInterest: () =>
-    set((Interests) => ({
-      Interests: !Interests,
-    })),
 }));
 
 export default useInterestsStore;
