@@ -36,14 +36,18 @@ export default function Input() {
 
   const placeholders = [
     '✉️ 이렇게 입력해보세요',
-    '다른 문장을 입력해보세요',
-    '더 많은 예시를 입력해보세요',
+    '오늘 저녁 9시에 친구와 저녁먹기',
+    '내일 오전 7시에 조깅하기',
+    '다음 주 월요일 오후 2시에 회의 참석하기',
+    '금요일 저녁 6시에 영화 보기',
+    '수요일 오후 3시에 치과 예약',
+    '다음 달 15일에 가족 여행 가기',
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setPlaceholderIndex((prevIndex) => (prevIndex + 1) % placeholders.length);
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -131,7 +135,6 @@ export default function Input() {
           className="flex w-full min-w-24 pl-2 h-2/3 rounded-md border-gray-300 focus:outline-none focus:ring-2 bg-[#efeef1] mx-3 text-sm"
           value={inputText}
           onChange={handleChangeInput}
-          // onKeyUp={handleKeyUpInput}
         />
         <button
           className="bg-[#78be5e] rounded-3xl flex justify-center my-auto items-center whitespace-nowrap text-white text-md h-8 w-[30%]"
