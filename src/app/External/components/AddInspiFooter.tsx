@@ -37,6 +37,9 @@ export default function AddInspiFooter({ url }: { url: string }) {
       console.log(data);
       SummaryTodo.mutate(data?.data);
     },
+    onError: () => {
+      alert('요약에 실패했습니다. 다시 시도해주세요!');
+    },
   });
 
   const SummaryTodo = useMutation({
