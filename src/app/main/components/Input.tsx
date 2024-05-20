@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
 
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { format } from 'date-fns';
 
@@ -53,6 +53,18 @@ export default function Input() {
     setInputText(e.target.value);
   };
 
+  const getGroup = useQuery({
+    queryKey: ['groupName'],
+    queryFn: () => {
+      return axios.get(`${apiKey}/categories`, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
+    },
+    enabled: false, // 처음에는 비활성화 상태로 설정
+  });
+
   const { isPending, mutate } = useMutation({
     mutationFn: (inputText: string) => {
       if (inputText === '') {
@@ -88,12 +100,14 @@ export default function Input() {
         addTodo(newTodo);
       });
     },
-    onError: () => {
+    onError: async () => {
       console.log('자연어 처리 실패');
+      await getGroup.refetch();
+
       const newTodo: TodoItem = {
         title: text,
         contents: text,
-        categoryId: 1,
+        categoryId: getGroup.data?.data.data[0]?.categoryId || 1,
         deadline: formatting,
       };
       console.log(newTodo);
