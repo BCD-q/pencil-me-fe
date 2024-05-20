@@ -13,7 +13,9 @@ interface InterestStore {
 const useInterestsStore = create<InterestStore>((set) => ({
   InterestsArray: [],
   setInterests: (item: InterestItem[]) => {
-    set({ InterestsArray: item });
+    set((state) => ({
+      InterestsArray: [...state.InterestsArray, ...item],
+    }));
   },
 }));
 

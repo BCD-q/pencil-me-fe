@@ -31,7 +31,7 @@ export default function CheckPage(): JSX.Element {
           href=""
           className="flex justify-around w-11/12 h-12 mt-2 text-lg bg-white rounded-t-lg border-b-[1px]  border-gray-200"
         >
-          <button className="w-1/4 text-sm sm:text-md">오늘</button>
+          <button className="w-1/4 text-sm sm:text-md">메인</button>
           <progress
             className="progress progress-accent bg-gray-200 rounded-xl w-2/3 my-auto h-1/2 mx-2"
             value={getCheck.data?.data?.data[0].percentage}

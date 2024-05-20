@@ -14,9 +14,9 @@ export default function ModifyPage() {
   const [loca1, loca2] = item.deadline.split('T');
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [group, setGroup] = useState<string>();
-  const [title, setTitle] = useState<string>('');
-  const [deadline, setDeadline] = useState<string>('');
-  const [endTime, setEndTime] = useState<string>('');
+  const [title, setTitle] = useState<string>(item.title);
+  const [deadline, setDeadline] = useState<string>(loca1);
+  const [endTime, setEndTime] = useState<string>(loca2);
 
   const { data } = useQuery({
     queryKey: ['groupName'],
@@ -85,7 +85,7 @@ export default function ModifyPage() {
             <input
               type="text"
               className="flex w-1/3 justify-center ml-auto text-end mr-4 text-xs sm:text-sm"
-              placeholder={loca1}
+              value={deadline}
               onChange={(e) => setDeadline(e.target.value)}
             />
           </div>
@@ -95,7 +95,7 @@ export default function ModifyPage() {
             <input
               type="text"
               className="flex w-1/3 h-8 justify-center ml-auto text-end mr-4 text-xs sm:text-sm"
-              placeholder={loca2}
+              value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
             />
           </div>
@@ -103,7 +103,7 @@ export default function ModifyPage() {
         <div className="text-xs text-gray-500 m-2 my-4">세부사항</div>
         <textarea
           className="textarea w-5/6 h-1/4 mx-auto resize-none"
-          placeholder={item.title}
+          value={title}
           onChange={(e) => setTitle(e.target.value)}
         ></textarea>
         <button

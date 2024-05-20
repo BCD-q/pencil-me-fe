@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
@@ -26,7 +26,7 @@ interface Summary {
 
 export default function BottonCarousel() {
   const { InterestsArray, setInterests } = useInterestsStore();
-
+  const [array, setArray] = useState<InterestItem[]>([]);
   const { data, isPending, mutate } = useMutation({
     mutationFn: () => {
       const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -38,10 +38,11 @@ export default function BottonCarousel() {
         },
       });
     },
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: async (data) => {
+      setArray((prev) => [...prev, ...data?.data.data]);
+      // await getInterests.mutateAsync(11);
+      // await getInterests.mutateAsync(21);
       setInterests(data?.data.data);
-      console.log(data?.data.data);
     },
     onError: (error) => {
       console.log(error);
@@ -54,6 +55,29 @@ export default function BottonCarousel() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const getInterests = useMutation({
+    mutationFn: (id: number) => {
+      const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
+      return axios.post(
+        `${apiKey}/communicator/inspiration?start=${id}`,
+        null,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem('token'),
+          },
+        },
+      );
+    },
+    onSuccess: (data) => {
+      setArray((prev) => [...prev, ...data?.data.data]);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   if (isPending)
     return (
@@ -139,7 +163,7 @@ function BottomComponent({ data }: { data: any }) {
   }
 
   return (
-    <li className="rounded-xl shadow-xl flex-col hover:opacity-50 hover:translate-y-2 hover:delay-100 hover:ease-in bg-white">
+    <li className="rounded-xl shadow-xl flex-col bg-white">
       {SummaryTodo.isSuccess && <Toast>할일 추가 완료!</Toast>}
       <Link href={`../External?url=${url}&title=${title}`}>
         {data.thumbnail_url !== '' ? (
