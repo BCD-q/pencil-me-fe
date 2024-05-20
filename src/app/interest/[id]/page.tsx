@@ -70,7 +70,7 @@ export default function Interest() {
 
   return (
     <div className="flex flex-col bg-accent h-full w-full">
-      <header className="w-full h-16 text-black bg-white flex items-center justify-center text-md">
+      <header className="w-full h-1/3 text-black bg-white flex items-center justify-center text-md">
         취향 설정
       </header>
       <div className="m-4 flex bg-accent text-white text-xl w-full">
@@ -102,7 +102,7 @@ export default function Interest() {
           );
         })}
       </ul>
-      <div className="flex mt-auto w-full h-16 sticky bottom-0 items-center justify-center ml-auto bg-white">
+      <div className="flex mt-auto w-full h-1/3 sticky bottom-0 items-center justify-center ml-auto bg-white">
         <button
           className="ml-auto mr-4 bg-accent text-white w-1/4 h-2/3 rounded-3xl"
           onClick={addInterest}

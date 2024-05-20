@@ -30,42 +30,13 @@ export default function BottonCarousel() {
   const { data, isPending, mutate } = useMutation({
     mutationFn: () => {
       const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-      const memId = localStorage.getItem('memberId');
-      const InterestArr: any[] = [];
 
-      const getInterests = async () => {
-        const getInterests = await axios.get(
-          `${apiKey}/interests-mapping?memberId=${memId}`,
-          {
-            headers: {
-              Authorization: localStorage.getItem('token'),
-            },
-          },
-        );
-
-        getInterests.data.data.map((item: any) => {
-          InterestArr.push(item?.keyword);
-        });
-
-        console.log(InterestArr);
-      };
-
-      getInterests();
-
-      // const Interests = localStorage.getItem('interests');
-
-      return axios.post(
-        `${apiKey}/communicator/inspiration?start=1`,
-        {
-          keyword: InterestArr,
+      return axios.post(`${apiKey}/communicator/inspiration?start=1`, null, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem('token'),
         },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem('token'),
-          },
-        },
-      );
+      });
     },
     onSuccess: (data) => {
       console.log(data);

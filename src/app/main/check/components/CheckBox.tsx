@@ -1,69 +1,60 @@
 import Link from 'next/link';
 
-interface category {
-  categoryId: number;
-  memberId?: number;
-  categoryName: string;
-  score?: number;
-}
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
-const categories: Array<category> = [
-  {
-    categoryId: 1,
-    categoryName: '리액트 쿼리',
-    score: 40,
-  },
-  {
-    categoryId: 2,
-    categoryName: 'api 연동',
-    score: 72,
-  },
-  {
-    categoryId: 3,
-    categoryName: '리팩터링',
-    score: 55,
-  },
-  {
-    categoryId: 4,
-    categoryName: '운동',
-    score: 20,
-  },
-  {
-    categoryId: 5,
-    categoryName: '발성 연습',
-    score: 40,
-  },
-];
+interface category {
+  name?: string;
+  percentage: string;
+}
 
 export default function CheckBox() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
+  const getCheck = useQuery({
+    queryKey: ['checkDetail'],
+    queryFn: () => {
+      return axios.get(`${apiKey}/anaylsis`, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
+    },
+  });
+
   return (
     <div className="flex flex-col items-center">
-      {categories &&
-        categories.map((item, index) => (
-          <Link
-            href=""
-            className={`flex justify-around w-11/12 h-12 text-lg bg-white border-b-[1px] border-gray-200 ${
-              index === 0 && categories.length !== 1 ? 'rounded-t-lg' : ''
-            } ${index === categories.length - 1 && categories.length !== 1 ? 'rounded-b-lg mb-8' : ''}`}
-            key={index}
-          >
-            <button className=" w-1/4 text-sm sm:text-md">
-              {item.categoryName}
-            </button>
-            <progress
-              className="progress progress-accent relative bg-gray-200 rounded-xl w-2/3 my-auto h-1/2 mx-2 hover:animate-pulse"
-              value={item.score}
-              max="100"
-            ></progress>
-            <div className="flex">
-              <button className="w-1/4 text-center flex my-auto text-xs sm:text-md mx-3">
-                {item.score}%
+      {getCheck.data &&
+        getCheck.data.data.data
+          .slice(2)
+          .map((item: category, index: number) => (
+            <Link
+              href=""
+              className={`flex justify-around w-11/12 h-12 text-lg bg-white border-b-[1px] border-gray-200 ${
+                index === 0 && getCheck.data.data.data.slice(2).length !== 1
+                  ? 'rounded-t-lg'
+                  : ''
+              } ${index === getCheck.data.data.data.slice(2).length - 1 && getCheck.data.data.data.slice(2).length !== 1 ? 'rounded-b-lg mb-8' : ''}`}
+              key={index}
+            >
+              <button className="ml-2 w-1/5 truncate text-sm sm:text-md">
+                {item.name}
               </button>
-            </div>
-          </Link>
-        ))}
+              <progress
+                className="progress progress-accent bg-gray-200 rounded-xl w-3/5 my-auto h-1/2 mx-2 hover:animate-pulse"
+                value={item.percentage}
+                max="100"
+              ></progress>
+              <div className="flex">
+                <button className="w-8 text-center flex my-auto text-xs sm:text-md mx-3">
+                  {isNaN(parseInt(item.percentage))
+                    ? 0
+                    : parseInt(item.percentage)}
+                  %
+                </button>
+              </div>
+            </Link>
+          ))}
     </div>
   );
 }
