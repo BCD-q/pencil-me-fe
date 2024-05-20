@@ -6,6 +6,8 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
+import Toast from '@/component/common/Toast';
+
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
 export default function LoginInput() {
@@ -15,7 +17,7 @@ export default function LoginInput() {
 
   const [memId, setMemId] = useState();
 
-  const { mutate } = useMutation({
+  const getLogin = useMutation({
     mutationFn: (Info: LoginInfoRequest) => {
       return axios.post(`${apiKey}/members/sign-in`, Info);
     },
@@ -38,8 +40,9 @@ export default function LoginInput() {
       getData();
       axios.defaults.headers.common['Authorization'] = data.data.token;
 
-      alert('로그인이 완료되었습니다!');
-      router.push('/group');
+      setTimeout(() => {
+        router.push('/group');
+      }, 2000);
     },
     onError: (Error) => {
       alert('로그인에 실패했습니다!');
@@ -49,6 +52,7 @@ export default function LoginInput() {
 
   return (
     <>
+      {getLogin.isSuccess && <Toast>로그인 성공!</Toast>}
       <input
         type="text"
         placeholder="계정명"
@@ -65,7 +69,7 @@ export default function LoginInput() {
       />
       <button
         className="btn bg-[#78be5e] mt-10 mb-6 text-white w-11/12 mx-auto text-lg"
-        onClick={() => mutate({ uid, password })}
+        onClick={() => getLogin.mutate({ uid, password })}
       >
         로그인
       </button>
