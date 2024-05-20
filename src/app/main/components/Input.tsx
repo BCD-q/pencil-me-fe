@@ -5,6 +5,7 @@ import { IoPaperPlaneOutline } from 'react-icons/io5';
 
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { format } from 'date-fns';
 
 import useTodayStore from '@/modules/todayStore';
 
@@ -27,6 +28,11 @@ export default function Input() {
   const { addTodo } = useTodayStore();
   const [inputText, setInputText] = useState('');
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
+  const datefns = new Date();
+  const datefnsAddday7 = new Date(datefns.setDate(datefns.getDate() + 7));
+
+  const formatting = format(datefnsAddday7, "yyyy-MM-dd'T'HH:mm:ss");
 
   const placeholders = [
     '✉️ 이렇게 입력해보세요',
@@ -72,7 +78,6 @@ export default function Input() {
         contents: data.data.contents,
         categoryId: data.data.categoryId,
         deadline: data.data.deadline,
-        isFinished: false,
       };
       const postTodo = axios.post(`${apiKey}/todos`, newTodo, {
         headers: {
@@ -84,8 +89,22 @@ export default function Input() {
       });
     },
     onError: () => {
-      alert('전송에 실패했습니다!');
-      setInputText('');
+      console.log('자연어 처리 실패');
+      const newTodo: TodoItem = {
+        title: text,
+        contents: text,
+        categoryId: 1,
+        deadline: formatting,
+      };
+      console.log(newTodo);
+      const postTodo = axios.post(`${apiKey}/todos`, newTodo, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
+      postTodo.then(() => {
+        addTodo(newTodo);
+      });
     },
   });
 
