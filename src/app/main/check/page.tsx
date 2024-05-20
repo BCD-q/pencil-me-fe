@@ -38,7 +38,7 @@ export default function CheckPage(): JSX.Element {
             max="100"
           ></progress>
           <div className="flex">
-            <button className="w-8 text-center flex my-auto text-xs sm:text-sm mx-3">
+            <button className="w-8 justify-end flex my-auto text-xs sm:text-sm mx-3">
               {parseInt(getCheck.data?.data?.data[0].percentage)}%
             </button>
           </div>
@@ -54,7 +54,7 @@ export default function CheckPage(): JSX.Element {
             max="100"
           ></progress>
           <div className="flex">
-            <button className="w-8 text-center flex my-auto text-xs sm:text-sm mx-3">
+            <button className="w-8 justify-end flex my-auto text-xs sm:text-sm mx-3">
               {parseInt(getCheck.data?.data?.data[1].percentage)}%
             </button>
           </div>

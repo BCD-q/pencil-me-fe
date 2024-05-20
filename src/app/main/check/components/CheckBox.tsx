@@ -46,7 +46,7 @@ export default function CheckBox() {
                 max="100"
               ></progress>
               <div className="flex">
-                <button className="w-8 text-center flex my-auto text-xs sm:text-md mx-3">
+                <button className="w-8 justify-end flex my-auto text-xs sm:text-md mx-3">
                   {isNaN(parseInt(item.percentage))
                     ? 0
                     : parseInt(item.percentage)}
