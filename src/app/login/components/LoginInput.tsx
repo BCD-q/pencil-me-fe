@@ -42,7 +42,7 @@ export default function LoginInput() {
 
       setTimeout(() => {
         router.push('/group');
-      }, 2000);
+      }, 1000);
     },
     onError: (Error) => {
       alert('로그인에 실패했습니다!');
@@ -80,12 +80,4 @@ export default function LoginInput() {
 type LoginInfoRequest = {
   uid: string;
   password: string;
-};
-
-type LoginInfoResponse = {
-  responseCode: string;
-  responseMessage: string;
-  data: {
-    token: string;
-  };
 };

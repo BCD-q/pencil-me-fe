@@ -59,7 +59,6 @@ export default function Interest() {
         },
       },
     );
-    alert('관심사 등록이 완료되었습니다!');
     localStorage.setItem('interests', JSON.stringify(interests)); // 로컬스토리지에 관심사 저장
     setInterests([]);
     router.push('/login');

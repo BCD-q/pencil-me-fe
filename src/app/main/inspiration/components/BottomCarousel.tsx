@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
+import Toast from '@/component/common/Toast';
 import useInterestsStore from '@/modules/interestsStore';
 
 interface InterestItem {
@@ -149,8 +150,10 @@ function BottomComponent({ data }: { data: any }) {
     },
     onSuccess: (data) => {
       console.log(data);
-      alert('할일 추가가 완료되었습니다!');
-      router.push('/main');
+
+      setTimeout(() => {
+        router.push('/main');
+      }, 1000);
     },
   });
 
@@ -166,6 +169,7 @@ function BottomComponent({ data }: { data: any }) {
 
   return (
     <li className="rounded-xl shadow-xl flex-col hover:opacity-50 hover:translate-y-2 hover:delay-100 hover:ease-in bg-white">
+      {SummaryTodo.isSuccess && <Toast>할일 추가 완료!</Toast>}
       <Link href={`../External?url=${url}&title=${title}`}>
         {data.thumbnail_url !== '' ? (
           <div className="relative w-full h-40">

@@ -7,6 +7,8 @@ import { FaPlus } from 'react-icons/fa';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
+import Toast from '@/component/common/Toast';
+
 import Summarize from './Summarize';
 
 interface Summary {
@@ -62,8 +64,10 @@ export default function AddInspiFooter({ url }: { url: string }) {
     },
     onSuccess: (data) => {
       console.log(data);
-      alert('할일 추가가 완료되었습니다!');
-      router.push('/main');
+
+      setTimeout(() => {
+        router.push('/main');
+      }, 1000);
     },
   });
 
@@ -80,6 +84,7 @@ export default function AddInspiFooter({ url }: { url: string }) {
 
   return (
     <div className="flex bg-white flex-row sticky bottom-0 h-16 z-40">
+      {SummaryTodo.isSuccess && <Toast>할일 추가 완료!</Toast>}
       {summarize && <Summarize url={url} />}
       <button
         className={`btn relative text-accent w-1/4 border-none my-auto text-sm sm:text-md z-50
