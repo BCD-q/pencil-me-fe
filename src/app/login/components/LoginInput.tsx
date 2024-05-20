@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
+import ErrorToast from '@/component/common/ErrorToast';
 import Toast from '@/component/common/Toast';
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -45,7 +46,6 @@ export default function LoginInput() {
       }, 1000);
     },
     onError: (Error) => {
-      alert('로그인에 실패했습니다!');
       console.log(Error);
     },
   });
@@ -53,6 +53,7 @@ export default function LoginInput() {
   return (
     <>
       {getLogin.isSuccess && <Toast>로그인 성공!</Toast>}
+      {getLogin.isError && <ErrorToast>로그인 실패!</ErrorToast>}
       <input
         type="text"
         placeholder="계정명"

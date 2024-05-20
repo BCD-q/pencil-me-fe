@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
+import Toast from '@/component/common/Toast';
 import { Info } from '@/libs/useRegister';
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -24,12 +25,13 @@ export default function RegisterInput(): JSX.Element {
       return axios.post(`${apiKey}/members/sign-up`, Info);
     },
     onSuccess: ({ data }) => {
-      alert('회원가입이 완료되었습니다!');
       localStorage.setItem('memberId', data.data.id);
-      router.push(`/interest/${data.data.id}`);
+      setTimeout(() => {
+        router.push(`/interest/${data.data.id}`);
+      }, 1000);
     },
     onError: () => {
-      alert('회원가입에 실패했습니다!');
+      alert('회원가입 실패');
     },
   });
 
@@ -57,6 +59,7 @@ export default function RegisterInput(): JSX.Element {
 
   return (
     <>
+      {mutation.isSuccess && <Toast>회원가입 성공!</Toast>}
       <div className="flex flex-row">
         <input
           type="text"
