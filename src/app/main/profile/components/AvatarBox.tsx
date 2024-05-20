@@ -28,7 +28,7 @@ export default function AvatarBox(): JSX.Element {
   });
 
   return (
-    <div className="flex flex-col w-11/12 my-4 bg-white h-2/3 rounded-box">
+    <div className="flex flex-col w-11/12 my-4 bg-white h-3/4 rounded-2xl">
       <Avatar />
       <button
         className="mx-auto border-none w-36 my-4 btn btn-primary bg-[#78be5e] text-white text-sm rounded-3xl"
@@ -37,7 +37,7 @@ export default function AvatarBox(): JSX.Element {
         프로필 변경하기
       </button>
       <button
-        className="bottom-12 flex btn ml-auto mt-auto w-full text-accent rounded-xl border-none bg-gray-100 rounded-t-none rounded-l-none"
+        className="bottom-12 flex btn ml-auto mt-auto w-full text-accent rounded-xl border-none bg-gray-100 rounded-t-none"
         onClick={() => {
           mutate(999);
         }}
