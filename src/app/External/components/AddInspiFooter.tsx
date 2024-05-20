@@ -49,7 +49,7 @@ export default function AddInspiFooter({ url }: { url: string }) {
         {
           title: data?.title,
           contents: data?.contents,
-          deadline: data?.deadline,
+          deadline: data?.deadline.substr(0, 19),
           categoryId: data?.categoryId,
         },
         {
