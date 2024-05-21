@@ -3,12 +3,8 @@ import dynamic from 'next/dynamic';
 import Cartegory from '@/component/common/Cartegory';
 import WorkBar from '@/component/common/Workbar';
 
-const BottomCarousel = dynamic(
-  () => import('../inspiration/components/BottomCarousel'),
-  {
-    loading: () => <p></p>,
-  },
-);
+import BottonCarousel from './components/BottomCarousel';
+import InfinityCarousel from './components/InfinityCarousel';
 
 export default function InspirationPage(): JSX.Element {
   return (
@@ -17,7 +13,7 @@ export default function InspirationPage(): JSX.Element {
       <WorkBar>오늘의 제안</WorkBar>
 
       <div className="flex-1">
-        <BottomCarousel />
+        <InfinityCarousel />
       </div>
     </div>
   );

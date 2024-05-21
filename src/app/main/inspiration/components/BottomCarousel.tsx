@@ -70,6 +70,7 @@ export default function BottonCarousel() {
     <>
       <ul className="relative inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-4 gap-3">
         {InterestsArray.map((item: InterestItem, index: number) => {
+          console.log(item);
           return <BottomComponent key={index} data={item} />;
         })}
       </ul>
