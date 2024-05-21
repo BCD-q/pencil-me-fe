@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
@@ -18,7 +18,8 @@ export default function RegisterInput(): JSX.Element {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
-  const [submit, setSubmit] = useState(false);
+
+  const [clicked, setClicked] = useState<boolean>(false);
 
   const mutation = useMutation({
     mutationFn: (Info: Info) => {
@@ -30,10 +31,16 @@ export default function RegisterInput(): JSX.Element {
         router.push(`/interest/${data.data.id}`);
       }, 1000);
     },
-    onError: () => {
-      alert('회원가입 실패');
-    },
   });
+
+  useEffect(() => {
+    if (clicked === true) {
+      setTimeout(() => {
+        setClicked(false);
+      }, 2000);
+    }
+    console.log(clicked);
+  }, [clicked]);
 
   // 비밀번호 중복 확인
   const IsPassword = () => {
@@ -52,13 +59,9 @@ export default function RegisterInput(): JSX.Element {
       );
   };
 
-  const IsValid = (): void => {
-    setSubmit(true);
-    console.log(submit);
-  };
-
   return (
     <>
+      {clicked && <Toast>중복되지 않았습니다.</Toast>}
       {mutation.isSuccess && <Toast>회원가입 성공!</Toast>}
       <div className="flex flex-row">
         <input
@@ -68,7 +71,12 @@ export default function RegisterInput(): JSX.Element {
           className="w-8/12 mr-[-13px] mx-auto mt-1 rounded-lg input input-bordered border-gray-300"
           onChange={(e) => setUid(e.target.value)}
         />
-        <button className="btn w-[22%] mx-auto px-0 my-auto bg-[#78be5e] text-white text-md rounded-2xl">
+        <button
+          className="btn w-[22%] mx-auto px-0 my-auto bg-[#78be5e] text-white text-md rounded-2xl"
+          onClick={() => {
+            setClicked(true);
+          }}
+        >
           중복 확인
         </button>
       </div>

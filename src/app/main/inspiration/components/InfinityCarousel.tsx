@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { useMutation } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
 import Toast from '@/component/common/Toast';
@@ -24,35 +24,36 @@ interface Summary {
   categoryId: number;
 }
 
-export default function BottonCarousel() {
-  const { InterestsArray, setInterests } = useInterestsStore();
-  const { data, isPending, mutate } = useMutation({
-    mutationFn: () => {
+export default function InfinityCarousel() {
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    status,
+  } = useInfiniteQuery({
+    queryKey: ['interests'],
+    queryFn: ({ pageParam }) => {
       const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-      return axios.post(`${apiKey}/communicator/inspiration?start=1`, null, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem('token'),
+      return axios.post(
+        `${apiKey}/communicator/inspiration?start=${pageParam}`,
+        null,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem('token'),
+          },
         },
-      });
+      );
     },
-    onSuccess: (data) => {
-      setInterests(data?.data.data);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, pages) => pages.length + 10,
+    maxPages: 100,
   });
 
-  useEffect(() => {
-    if (InterestsArray.length === 0) {
-      mutate();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (isPending)
+  if (status === 'pending')
     return (
       <ul className="inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-2 gap-2 w-full mx-auto">
         {Array.from({ length: 25 }).map((_, index) => (
@@ -66,11 +67,19 @@ export default function BottonCarousel() {
       </ul>
     );
 
+  if (status === 'error') {
+    alert('요청에 실패했습니다. 다시 시도해주세요!');
+  }
+
   return (
     <>
       <ul className="relative inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-4 gap-3">
-        {InterestsArray.map((item: InterestItem, index: number) => {
-          return <BottomComponent key={index} data={item} />;
+        {data?.pages.map((item, index: number) => {
+          <React.Fragment key={index}>
+            {item.map((item, index: number) => {
+              return <BottomComponent key={index} data={item} />;
+            })}
+          </React.Fragment>;
         })}
       </ul>
     </>

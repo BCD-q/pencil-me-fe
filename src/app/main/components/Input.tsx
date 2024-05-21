@@ -91,7 +91,10 @@ export default function Input() {
       console.log(data);
       const newTodo: TodoItem = {
         title: data.data.title,
-        contents: data.data.contents,
+        contents:
+          data.data.contents.length === 0
+            ? data.data.title
+            : data.data.contents,
         categoryId: data.data.categoryId,
         deadline: data.data.deadline,
       };

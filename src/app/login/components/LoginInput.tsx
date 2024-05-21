@@ -42,7 +42,7 @@ export default function LoginInput() {
       axios.defaults.headers.common['Authorization'] = data.data.token;
 
       setTimeout(() => {
-        router.push('/group');
+        router.push('/main');
       }, 1000);
     },
     onError: (Error) => {
