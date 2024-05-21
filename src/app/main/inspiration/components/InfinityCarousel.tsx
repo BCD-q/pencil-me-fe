@@ -11,6 +11,8 @@ import axios from 'axios';
 
 import Toast from '@/component/common/Toast';
 
+import { getInterests } from '../api';
+
 interface InterestItem {
   thumbnail_url?: string;
   title?: string;
@@ -25,33 +27,14 @@ interface Summary {
 }
 
 export default function InfinityCarousel() {
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-  } = useInfiniteQuery({
-    queryKey: ['interests'],
-    queryFn: ({ pageParam }) => {
-      const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-
-      return axios.post(
-        `${apiKey}/communicator/inspiration?start=${pageParam}`,
-        null,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem('token'),
-          },
-        },
-      );
-    },
-    initialPageParam: 1,
-    getNextPageParam: (lastPage, pages) => pages.length + 10,
-    maxPages: 100,
-  });
+  const { data, fetchNextPage, hasNextPage, isFetching, status } =
+    useInfiniteQuery({
+      queryKey: ['interests'],
+      queryFn: ({ pageParam }) => getInterests(pageParam),
+      initialPageParam: 1,
+      getNextPageParam: (lastPage, pages) => pages.length + 10,
+      maxPages: 100,
+    });
 
   const { ref, inView } = useInView({
     threshold: 0.8,
@@ -87,6 +70,7 @@ export default function InfinityCarousel() {
             className="inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-2 gap-3"
           >
             {group.data?.data.map((item: InterestItem, index: number) => {
+              console.log(item);
               return <BottomComponent key={index} data={item} />;
             })}
           </ul>
