@@ -14,7 +14,7 @@ export default function ModifyPage() {
   const [loca1, loca2] = item.deadline.split('T');
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [group, setGroup] = useState<string>();
-  const [title, setTitle] = useState<string>(item.title);
+  const [title, setTitle] = useState<string>(item.contents);
   const [deadline, setDeadline] = useState<string>(loca1);
   const [endTime, setEndTime] = useState<string>(loca2);
 
@@ -33,8 +33,8 @@ export default function ModifyPage() {
     mutationFn: () => {
       const modInfo = {
         categoryId: group,
-        title: title,
-        contents: item.contents,
+        title: item.title,
+        contents: title,
         deadline: deadline + 'T' + endTime,
         isFinished: false,
         isImportant: false,
