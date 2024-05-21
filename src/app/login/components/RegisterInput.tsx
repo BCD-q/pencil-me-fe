@@ -74,7 +74,7 @@ export default function RegisterInput(): JSX.Element {
         <button
           className="btn w-[22%] mx-auto px-0 my-auto bg-[#78be5e] text-white text-md rounded-2xl"
           onClick={() => {
-            setClicked(true);
+            if (uid.length !== 0) setClicked(true);
           }}
         >
           중복 확인
