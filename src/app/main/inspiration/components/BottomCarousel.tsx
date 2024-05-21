@@ -56,28 +56,28 @@ export default function BottonCarousel() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getInterests = useMutation({
-    mutationFn: (id: number) => {
-      const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  // const getInterests = useMutation({
+  //   mutationFn: (id: number) => {
+  //     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-      return axios.post(
-        `${apiKey}/communicator/inspiration?start=${id}`,
-        null,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem('token'),
-          },
-        },
-      );
-    },
-    onSuccess: (data) => {
-      setArray((prev) => [...prev, ...data?.data.data]);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
+  //     return axios.post(
+  //       `${apiKey}/communicator/inspiration?start=${id}`,
+  //       null,
+  //       {
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           Authorization: localStorage.getItem('token'),
+  //         },
+  //       },
+  //     );
+  //   },
+  //   onSuccess: (data) => {
+  //     setArray((prev) => [...prev, ...data?.data.data]);
+  //   },
+  //   onError: (error) => {
+  //     console.log(error);
+  //   },
+  // });
 
   if (isPending)
     return (

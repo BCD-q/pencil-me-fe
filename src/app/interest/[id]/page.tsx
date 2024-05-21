@@ -8,6 +8,7 @@ import { FaCheck } from 'react-icons/fa';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
+import ErrorToast from '@/component/common/ErrorToast';
 import useInterestsStore from '@/modules/interestsStore';
 
 interface InterestItem {
@@ -50,18 +51,22 @@ export default function Interest() {
   }, [clickedItems]);
 
   const addInterest = async () => {
-    const queryString = convertToQueryString(clickedItems); // 클릭된 아이템의 ID 목록을 쿼리 스트링으로 변환
-    await axios.post(
-      `${apiKey}/interests-mapping?memberId=${memId}&${queryString}`,
-      {
-        headers: {
-          Authorization: localStorage.getItem('token'),
+    if (clickedItems.length > 3) {
+      alert('3개 이상 선택할 수 없습니다.');
+    } else {
+      const queryString = convertToQueryString(clickedItems); // 클릭된 아이템의 ID 목록을 쿼리 스트링으로 변환
+      await axios.post(
+        `${apiKey}/interests-mapping?memberId=${memId}&${queryString}`,
+        {
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
         },
-      },
-    );
-    localStorage.setItem('interests', JSON.stringify(interests)); // 로컬스토리지에 관심사 저장
-    setInterests([]);
-    router.push('/login');
+      );
+      localStorage.setItem('interests', JSON.stringify(interests)); // 로컬스토리지에 관심사 저장
+      setInterests([]);
+      router.push('/login');
+    }
   };
 
   const convertToQueryString = (clickedItems: number[]) => {
@@ -69,47 +74,52 @@ export default function Interest() {
   };
 
   return (
-    <div className="flex flex-col bg-accent h-full w-full">
-      <header className="w-full h-1/3 text-black bg-white flex items-center justify-center text-md">
-        취향 설정
-      </header>
-      <div className="m-4 flex bg-accent text-white text-xl w-full">
-        관심있는 주제를 탭하세요
-      </div>
-      <ul className=" inline-grid grid-cols-3 gap-2 overflow-y-scroll">
-        {data?.data?.data.map((item: InterestItem, index: number) => {
-          const isFirst = index === 0;
-          const isLast = index === data.data.data.length - 1;
-          const clicked = clickedItems.includes(item.id); // 클릭 여부 확인
+    <>
+      {clickedItems.length > 3 && (
+        <ErrorToast>3개 이상 선택할 수 없습니다!</ErrorToast>
+      )}
+      <div className="flex flex-col bg-accent h-full w-full">
+        <header className="w-full h-1/3 text-black bg-white flex items-center justify-center text-md">
+          취향 설정
+        </header>
+        <div className="m-4 flex bg-accent text-white text-xl w-full">
+          관심있는 주제를 탭하세요
+        </div>
+        <ul className=" inline-grid grid-cols-3 gap-2 overflow-y-scroll">
+          {data?.data?.data.map((item: InterestItem, index: number) => {
+            const isFirst = index === 0;
+            const isLast = index === data.data.data.length - 1;
+            const clicked = clickedItems.includes(item.id); // 클릭 여부 확인
 
-          const buttonClassName = `
+            const buttonClassName = `
           relative flex mx-auto w-[25vw] h-[25vw] m-2 gap-2 h-1/2 justify-center items-center  text-sm sm:text-md bg-white rounded-full transition-color ease-in-out delay-75
           ${clicked ? 'opacity-50 text-black' : ''}`; // 클릭된 상태에 따라 배경색 변경
 
-          return (
-            <button
-              className={buttonClassName}
-              key={index}
-              onClick={() => {
-                toggleClicked(item.id, item.keyword); // 클릭 토글 함수 호출
-              }}
-            >
-              {clicked && (
-                <FaCheck className="absolute top-1/3 left-1/3 w-1/3 h-1/3 opacity-80" />
-              )}
-              {item.keyword}
-            </button>
-          );
-        })}
-      </ul>
-      <div className="flex mt-auto w-full h-1/3 sticky bottom-0 items-center justify-center ml-auto bg-white">
-        <button
-          className="ml-auto mr-4 bg-accent text-white w-1/4 h-2/3 rounded-3xl"
-          onClick={addInterest}
-        >
-          완료
-        </button>
+            return (
+              <button
+                className={buttonClassName}
+                key={index}
+                onClick={() => {
+                  toggleClicked(item.id, item.keyword); // 클릭 토글 함수 호출
+                }}
+              >
+                {clicked && (
+                  <FaCheck className="absolute top-1/3 left-1/3 w-1/3 h-1/3 opacity-80" />
+                )}
+                {item.keyword}
+              </button>
+            );
+          })}
+        </ul>
+        <div className="flex mt-auto w-full h-1/3 sticky bottom-0 items-center justify-center ml-auto bg-white">
+          <button
+            className="ml-auto mr-4 bg-accent text-white w-1/4 h-2/3 rounded-3xl"
+            onClick={addInterest}
+          >
+            완료
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

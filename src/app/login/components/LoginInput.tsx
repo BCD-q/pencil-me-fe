@@ -53,10 +53,7 @@ export default function LoginInput() {
   return (
     <>
       {getLogin.isSuccess && <Toast>로그인 성공!</Toast>}
-      {getLogin.isError &&
-        setTimeout(() => {
-          <ErrorToast>로그인 실패</ErrorToast>;
-        }, 1000)}
+      {getLogin.isError && <ErrorToast>로그인에 실패했습니다!</ErrorToast>}
       <input
         type="text"
         placeholder="계정명"
