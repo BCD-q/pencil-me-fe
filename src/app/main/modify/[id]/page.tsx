@@ -6,6 +6,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 import Cartegory from '@/component/common/Cartegory';
+import Toast from '@/component/common/Toast';
 
 import TodoBox from '../../components/TodoBox';
 
@@ -29,7 +30,7 @@ export default function ModifyPage() {
     },
   });
 
-  const { mutate } = useMutation({
+  const getModify = useMutation({
     mutationFn: () => {
       const modInfo = {
         categoryId: group,
@@ -47,8 +48,9 @@ export default function ModifyPage() {
       });
     },
     onSuccess: () => {
-      alert('수정이 완료되었습니다!');
-      history.back();
+      setTimeout(() => {
+        history.back();
+      }, 1000);
     },
     onError: () => {
       alert('수정에 실패했습니다.');
@@ -58,6 +60,7 @@ export default function ModifyPage() {
 
   return (
     <>
+      {getModify.isSuccess && <Toast>수정 완료!</Toast>}
       <Cartegory>수정</Cartegory>
       <TodoBox item={item} />
       <div className="flex flex-col h-full">
@@ -109,7 +112,7 @@ export default function ModifyPage() {
         <button
           className="btn bg-accent text-white border-none w-[26%] ml-auto my-4 mr-4"
           onClick={() => {
-            mutate();
+            getModify.mutate();
           }}
         >
           수정 완료
