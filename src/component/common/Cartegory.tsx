@@ -1,10 +1,15 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { PropsWithChildren } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 
 export default function Cartegory({
   children,
 }: PropsWithChildren): React.ReactElement {
+  const router = useRouter();
+
   return (
     <div className="flex flex-row h-12 py-4 justify-center items-center sticky top-0 bg-gray-100 border-b-4 border-gray-100 z-50">
       {children !== '동기 부여' &&
@@ -23,7 +28,7 @@ export default function Cartegory({
         )}
       {children === '로그인' || children === '회원가입' ? (
         <button
-          onClick={() => history.back()}
+          onClick={() => router.push('/')}
           className="absolute left-0 m-2 text-accent"
         >
           뒤로

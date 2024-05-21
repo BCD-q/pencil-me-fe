@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -23,6 +24,10 @@ export default function CheckPage(): JSX.Element {
     },
   });
 
+  useEffect(() => {
+    getCheck.refetch();
+  }, []);
+
   return (
     <div className="flex flex-col h-full bg-gray-200">
       <Cartegory>목표 점검</Cartegory>
@@ -39,7 +44,10 @@ export default function CheckPage(): JSX.Element {
           ></progress>
           <div className="flex">
             <button className="w-8 justify-end flex my-auto text-xs sm:text-sm mx-3">
-              {parseInt(getCheck.data?.data?.data[0].percentage)}%
+              {isNaN(parseInt(getCheck.data?.data?.data[0].percentage))
+                ? 0
+                : parseInt(getCheck.data?.data?.data[0].percentage)}
+              %
             </button>
           </div>
         </Link>
@@ -55,7 +63,10 @@ export default function CheckPage(): JSX.Element {
           ></progress>
           <div className="flex">
             <button className="w-8 justify-end flex my-auto text-xs sm:text-sm mx-3">
-              {parseInt(getCheck.data?.data?.data[1].percentage)}%
+              {isNaN(parseInt(getCheck.data?.data?.data[1].percentage))
+                ? 0
+                : parseInt(getCheck.data?.data?.data[1].percentage)}
+              %
             </button>
           </div>
         </Link>

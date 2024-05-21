@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -21,6 +22,10 @@ export default function CheckBox() {
       });
     },
   });
+
+  useEffect(() => {
+    getCheck.refetch();
+  }, []);
 
   return (
     <div className="flex flex-col items-center">
