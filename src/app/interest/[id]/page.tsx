@@ -65,7 +65,7 @@ export default function Interest() {
       );
       localStorage.setItem('interests', JSON.stringify(interests)); // 로컬스토리지에 관심사 저장
       setInterests([]);
-      router.push('/login');
+      router.push('/main');
     }
   };
 

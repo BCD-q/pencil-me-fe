@@ -27,9 +27,24 @@ export default function RegisterInput(): JSX.Element {
     },
     onSuccess: ({ data }) => {
       localStorage.setItem('memberId', data.data.id);
+      onLogin.mutate();
+
       setTimeout(() => {
         router.push(`/interest/${data.data.id}`);
-      }, 1000);
+      }, 2000);
+    },
+  });
+
+  const onLogin = useMutation({
+    mutationFn: () => {
+      return axios.post(`${apiKey}/members/sign-in`, {
+        uid: uid,
+        password: password,
+      });
+    },
+    onSuccess: ({ data }) => {
+      console.log(data);
+      localStorage.setItem('token', data.data.token);
     },
   });
 
