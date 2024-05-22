@@ -65,11 +65,11 @@ export default function ModifyPage() {
       <TodoBox item={item} />
       <div className="flex flex-col h-full">
         <div className="text-xs text-s text-gray-500 m-2 my-4">세부사항</div>
-        <div className="flex gap-2 h-44 min-h-fit flex-col w-5/6 rounded-2xl bg-white mx-auto">
-          <div className="flex flex-row mt-1 ml-4 h-1/4">
+        <div className="flex gap-2 h-32 min-h-fit flex-col w-5/6 rounded-2xl bg-white mx-auto">
+          <div className="flex flex-row ml-4 mb-1 h-1/4">
             <div className="text-xs mt-[18px]">그룹</div>
             <select
-              className="ml-auto pt-1 select w-1/4 mr-1 text-xs"
+              className="ml-auto select w-1/3 mr-1 text-right rounded-tr-full text-xs"
               onChange={(e) => setGroup(e.target.value)}
             >
               <option disabled selected className="">
@@ -83,7 +83,7 @@ export default function ModifyPage() {
             </select>
           </div>
           <hr />
-          <div className="flex flex-row ml-4 h-1/4">
+          <div className="flex flex-row ml-4 h-1/5">
             <div className="text-xs my-auto">종료일</div>
             <input
               type="text"
@@ -93,11 +93,11 @@ export default function ModifyPage() {
             />
           </div>
           <hr />
-          <div className="flex flex-row ml-4 pb-2 mt-1 mb-1 h-1/4">
+          <div className="flex flex-row ml-4 mb-1 h-1/5">
             <div className="text-xs my-auto">종료시간</div>
             <input
               type="text"
-              className="flex w-1/3 h-8 justify-center ml-auto text-end mr-4 text-xs sm:text-sm"
+              className="flex w-1/3 h-8 justify-center ml-auto text-end mr-4 pb-2 text-xs sm:text-sm"
               value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
             />
@@ -105,12 +105,12 @@ export default function ModifyPage() {
         </div>
         <div className="text-xs text-gray-500 m-2 my-4">세부사항</div>
         <textarea
-          className="textarea w-5/6 h-1/4 mx-auto resize-none"
+          className="textarea w-5/6 h-1/5 mx-auto resize-none"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         ></textarea>
         <button
-          className="btn bg-accent text-white border-none w-[26%] ml-auto my-4 mr-4"
+          className=" bg-accent rounded-full h-[5%] text-white border-none w-[26%] ml-auto my-4 mr-4"
           onClick={() => {
             getModify.mutate();
           }}
