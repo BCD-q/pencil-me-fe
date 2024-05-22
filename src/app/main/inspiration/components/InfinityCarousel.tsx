@@ -29,16 +29,19 @@ interface Summary {
 export default function InfinityCarousel() {
   const { data, fetchNextPage, hasNextPage, isFetching, status } =
     useInfiniteQuery({
-      queryKey: ['interests'],
+      queryKey: ['getInterests'],
       queryFn: ({ pageParam }) => getInterests(pageParam),
       initialPageParam: 1,
-      getNextPageParam: (lastPage, pages) => pages.length + 10,
+      getNextPageParam: (lastPage, pages) => {
+        const nextPage = pages.length == undefined ? 1 : pages.length * 10 + 1;
+        return nextPage <= 100 ? nextPage : undefined;
+      },
       maxPages: 100,
     });
 
   const { ref, inView } = useInView({
     threshold: 0.8,
-    delay: 0,
+    delay: 1,
   });
 
   useEffect(() => {
