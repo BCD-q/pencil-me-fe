@@ -69,7 +69,7 @@ export default function ModifyPage() {
           <div className="flex flex-row ml-4 mb-1 h-1/4">
             <div className="text-xs mt-[18px]">그룹</div>
             <select
-              className="ml-auto select w-[30%] mr-1 rounded-tr-full text-xs"
+              className="ml-auto select w-[27%] mr-1 rounded-tr-full text-xs"
               onChange={(e) => setGroup(e.target.value)}
             >
               <option disabled selected className="">
