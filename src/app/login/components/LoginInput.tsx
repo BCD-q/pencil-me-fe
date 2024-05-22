@@ -18,6 +18,8 @@ export default function LoginInput() {
 
   const [memId, setMemId] = useState();
 
+  const [failure, setFailure] = useState<boolean>(false);
+
   const getLogin = useMutation({
     mutationFn: (Info: LoginInfoRequest) => {
       return axios.post(`${apiKey}/members/sign-in`, Info);
@@ -47,13 +49,19 @@ export default function LoginInput() {
     },
     onError: (Error) => {
       console.log(Error);
+
+      setFailure(true);
+
+      setTimeout(() => {
+        setFailure(false);
+      }, 2000);
     },
   });
 
   return (
     <>
       {getLogin.isSuccess && <Toast>로그인 성공!</Toast>}
-      {getLogin.isError && <ErrorToast>로그인에 실패했습니다!</ErrorToast>}
+      {failure && <ErrorToast>로그인에 실패했습니다!</ErrorToast>}
       <input
         type="text"
         placeholder="계정명"

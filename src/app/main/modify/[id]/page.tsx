@@ -64,8 +64,8 @@ export default function ModifyPage() {
       <Cartegory>수정</Cartegory>
       <TodoBox item={item} />
       <div className="flex flex-col h-full">
-        <div className="text-xs text-s text-gray-500 m-2 my-4">세부사항</div>
-        <div className="flex gap-2 h-32 min-h-fit flex-col w-11/12 rounded-2xl bg-white mx-auto">
+        <div className="text-xs text-s text-gray-500 m-2 my-3">세부사항</div>
+        <div className="flex gap-2 h-36 min-h-fit flex-col w-11/12 rounded-2xl bg-white mx-auto">
           <div className="flex flex-row ml-4 mb-1 h-1/4">
             <div className="text-xs mt-[18px]">그룹</div>
             <select
@@ -93,17 +93,17 @@ export default function ModifyPage() {
             />
           </div>
           <hr />
-          <div className="flex flex-row ml-4 mb-1 h-1/5">
+          <div className="flex flex-row ml-4 mb-2 pt-1 h-1/5">
             <div className="text-xs my-auto">종료시간</div>
             <input
               type="text"
-              className="flex w-1/3 h-8 justify-center ml-auto text-end mr-4 pb-2 text-xs sm:text-sm"
+              className="flex w-1/3 h-8 justify-center ml-auto text-end mr-4 pb-1 text-xs sm:text-sm"
               value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
             />
           </div>
         </div>
-        <div className="text-xs text-gray-500 m-2 my-4">세부사항</div>
+        <div className="text-xs text-gray-500 m-2 my-3">세부사항</div>
         <textarea
           className="textarea w-11/12 h-1/5 mx-auto resize-none"
           value={title}

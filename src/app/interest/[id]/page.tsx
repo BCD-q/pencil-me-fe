@@ -87,8 +87,6 @@ export default function Interest() {
         </div>
         <ul className=" inline-grid grid-cols-3 gap-2 overflow-y-scroll">
           {data?.data?.data.map((item: InterestItem, index: number) => {
-            const isFirst = index === 0;
-            const isLast = index === data.data.data.length - 1;
             const clicked = clickedItems.includes(item.id); // 클릭 여부 확인
 
             const buttonClassName = `
