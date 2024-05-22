@@ -69,7 +69,7 @@ export default function ModifyPage() {
           <div className="flex flex-row ml-4 mb-1 h-1/4">
             <div className="text-xs mt-[18px]">그룹</div>
             <select
-              className="ml-auto select w-1/3 mr-1 text-right rounded-tr-full text-xs"
+              className="ml-auto select w-[30%] mr-1 rounded-tr-full text-xs"
               onChange={(e) => setGroup(e.target.value)}
             >
               <option disabled selected className="">
@@ -97,7 +97,7 @@ export default function ModifyPage() {
             <div className="text-xs my-auto">종료시간</div>
             <input
               type="text"
-              className="flex w-1/3 h-8 justify-center ml-auto text-end mr-4 pb-1 text-xs sm:text-sm"
+              className="flex w-1/3 h-8 justify-center ml-auto text-end mr-4 pb-2 text-xs sm:text-sm"
               value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
             />

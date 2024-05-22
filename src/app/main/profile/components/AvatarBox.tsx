@@ -28,10 +28,10 @@ export default function AvatarBox(): JSX.Element {
   });
 
   return (
-    <div className="flex flex-col w-11/12 my-4 bg-white h-3/4 rounded-2xl">
+    <div className="flex flex-col w-11/12 my-4 bg-white h-3/4 min-h-[280px] rounded-2xl">
       <Avatar />
       <button
-        className="mx-auto border-none w-36 my-4 btn btn-primary bg-[#78be5e] text-white text-sm rounded-3xl"
+        className="mx-auto border-none w-36 md:w-72 my-4 btn min-h-[6%] h-[8%] btn-primary bg-[#78be5e] text-white text-sm rounded-3xl"
         onClick={setProfileModalOpen}
       >
         프로필 변경하기
