@@ -65,7 +65,7 @@ export default function ModifyPage() {
       <TodoBox item={item} />
       <div className="flex flex-col h-full">
         <div className="text-xs text-s text-gray-500 m-2 my-4">세부사항</div>
-        <div className="flex gap-2 h-32 min-h-fit flex-col w-5/6 rounded-2xl bg-white mx-auto">
+        <div className="flex gap-2 h-32 min-h-fit flex-col w-11/12 rounded-2xl bg-white mx-auto">
           <div className="flex flex-row ml-4 mb-1 h-1/4">
             <div className="text-xs mt-[18px]">그룹</div>
             <select
@@ -105,7 +105,7 @@ export default function ModifyPage() {
         </div>
         <div className="text-xs text-gray-500 m-2 my-4">세부사항</div>
         <textarea
-          className="textarea w-5/6 h-1/5 mx-auto resize-none"
+          className="textarea w-11/12 h-1/5 mx-auto resize-none"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         ></textarea>
