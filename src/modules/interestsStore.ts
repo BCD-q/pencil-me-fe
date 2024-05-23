@@ -6,18 +6,14 @@ interface InterestItem {
   link?: string;
 }
 interface InterestStore {
-  InterestsArray: InterestItem[];
-  setInterests: (item: any) => void;
+  InterestsBoolean: boolean;
+  setInterestBoolean: () => void;
 }
 
 const useInterestsStore = create<InterestStore>((set) => ({
-  InterestsArray: [],
-  setInterests: (item: InterestItem[]) => {
-    set({ InterestsArray: item });
-    // set((state) => ({
-    //   InterestsArray: [...state.InterestsArray, ...item],
-    // }));
-  },
+  InterestsBoolean: false,
+  setInterestBoolean: () =>
+    set((state) => ({ InterestsBoolean: !state.InterestsBoolean })),
 }));
 
 export default useInterestsStore;

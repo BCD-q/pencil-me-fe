@@ -10,6 +10,7 @@ import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
 import Toast from '@/component/common/Toast';
+import useInterestsStore from '@/modules/interestsStore';
 
 import { getInterests } from '../api';
 
@@ -27,7 +28,9 @@ interface Summary {
 }
 
 export default function InfinityCarousel() {
-  const { data, fetchNextPage, hasNextPage, isFetching, status } =
+  const { InterestsBoolean } = useInterestsStore();
+
+  const { data, fetchNextPage, hasNextPage, isFetching, status, refetch } =
     useInfiniteQuery({
       queryKey: ['getInterests'],
       queryFn: ({ pageParam }) => getInterests(pageParam),
@@ -43,6 +46,10 @@ export default function InfinityCarousel() {
     threshold: 0.8,
     delay: 1,
   });
+
+  useEffect(() => {
+    refetch();
+  }, [InterestsBoolean]);
 
   useEffect(() => {
     if (inView) {

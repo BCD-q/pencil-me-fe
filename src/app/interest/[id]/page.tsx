@@ -21,6 +21,8 @@ export default function Interest() {
   const router = useRouter();
   const memId = localStorage.getItem('memberId');
 
+  const { InterestsBoolean, setInterestBoolean } = useInterestsStore();
+
   const { data } = useQuery({
     queryKey: ['interests'],
     queryFn: () => {
@@ -62,6 +64,7 @@ export default function Interest() {
         },
       );
       localStorage.setItem('interests', JSON.stringify(interests)); // 로컬스토리지에 관심사 저장
+      setInterestBoolean();
       router.push('/main');
     }
   };
@@ -81,11 +84,6 @@ export default function Interest() {
         </header>
         <div className="m-4 flex gap-2 flex-col bg-accent text-white text-xl">
           관심있는 주제를 탭하세요
-          {/* <div>
-            <p className="h-8">
-              {interests.length === 0 ? '' : interests + '  '}
-            </p>
-          </div> */}
         </div>
         <ul className=" inline-grid grid-cols-3 gap-1 overflow-y-scroll">
           {data?.data?.data.map((item: InterestItem, index: number) => {

@@ -25,7 +25,6 @@ interface Summary {
 }
 
 export default function BottonCarousel() {
-  const { InterestsArray, setInterests } = useInterestsStore();
   const { data, isPending, mutate } = useMutation({
     mutationFn: () => {
       const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -37,20 +36,11 @@ export default function BottonCarousel() {
         },
       });
     },
-    onSuccess: (data) => {
-      setInterests(data?.data.data);
-    },
+    onSuccess: (data) => {},
     onError: (error) => {
       console.log(error);
     },
   });
-
-  useEffect(() => {
-    if (InterestsArray.length === 0) {
-      mutate();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   if (isPending)
     return (
@@ -68,12 +58,7 @@ export default function BottonCarousel() {
 
   return (
     <>
-      <ul className="relative inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-4 gap-3">
-        {InterestsArray.map((item: InterestItem, index: number) => {
-          console.log(item);
-          return <BottomComponent key={index} data={item} />;
-        })}
-      </ul>
+      <ul className="relative inline-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 m-4 gap-3"></ul>
     </>
   );
 }
