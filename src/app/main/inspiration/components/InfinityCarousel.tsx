@@ -28,8 +28,6 @@ interface Summary {
 }
 
 export default function InfinityCarousel() {
-  const { InterestsBoolean } = useInterestsStore();
-
   const { data, fetchNextPage, hasNextPage, isFetching, status, refetch } =
     useInfiniteQuery({
       queryKey: ['getInterests'],
@@ -46,10 +44,6 @@ export default function InfinityCarousel() {
     threshold: 0.8,
     delay: 1,
   });
-
-  useEffect(() => {
-    refetch();
-  }, [InterestsBoolean]);
 
   useEffect(() => {
     if (inView) {

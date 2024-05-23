@@ -9,7 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 import ErrorToast from '@/component/common/ErrorToast';
-import useInterestsStore from '@/modules/interestsStore';
+import Toast from '@/component/common/Toast';
 
 interface InterestItem {
   id: number;
@@ -21,8 +21,6 @@ export default function Interest() {
   const router = useRouter();
   const memId = localStorage.getItem('memberId');
 
-  const { InterestsBoolean, setInterestBoolean } = useInterestsStore();
-
   const { data } = useQuery({
     queryKey: ['interests'],
     queryFn: () => {
@@ -31,6 +29,7 @@ export default function Interest() {
   });
 
   // 클릭된 관심사 아이템을 추적하기 위한 상태
+  const [clicked, setClicked] = useState<boolean>(false); // useState 추가
   const [clickedItems, setClickedItems] = useState<number[]>([]);
   const [interests, setMyInterests] = useState<string[]>([]);
 
@@ -64,8 +63,10 @@ export default function Interest() {
         },
       );
       localStorage.setItem('interests', JSON.stringify(interests)); // 로컬스토리지에 관심사 저장
-      setInterestBoolean();
-      router.push('/main');
+      setClicked(true);
+      setTimeout(() => {
+        router.push('/main');
+      }, 2000);
     }
   };
 
@@ -78,6 +79,7 @@ export default function Interest() {
       {clickedItems.length > 3 && (
         <ErrorToast>3개 이상 선택할 수 없습니다!</ErrorToast>
       )}
+      {clicked && <Toast>관심사가 설정되었습니다!</Toast>}
       <div className="flex flex-col bg-accent h-full w-full">
         <header className="w-full h-1/3 text-black bg-white flex items-center justify-center text-md">
           취향 설정
