@@ -148,7 +148,7 @@ function BottomComponent({ data }: { data: any }) {
 
   if (InspiTodo.isPending) {
     return (
-      <div className="flex flex-col rounded-xl skeleton bg-accent shadow-xl hover:opacity-50 hover:translate-y-2 hover:delay-100 hover:ease-in text-white">
+      <div className="flex flex-col rounded-xl skeleton bg-accent shadow-xl text-white">
         <div className="mx-auto flex h-1/6 my-auto text-center">
           할일 추가중 ...
         </div>
