@@ -35,7 +35,7 @@ export default function CheckBox() {
           .map((item: category, index: number) => (
             <Link
               href=""
-              className={`flex justify-around w-11/12 h-12 text-lg bg-white border-b-[1px] border-gray-200 ${
+              className={`flex justify-around w-11/12 h-12 text-lg bg-white border-b-[1px] border-gray-200 shadow-xl ${
                 index === 0 && getCheck.data.data.data.slice(2).length !== 1
                   ? 'rounded-t-lg'
                   : ''

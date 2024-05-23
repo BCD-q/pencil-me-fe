@@ -34,7 +34,7 @@ export default function CheckPage(): JSX.Element {
       <div className="flex flex-col items-center h-32 mt-4">
         <Link
           href=""
-          className="flex justify-around w-11/12 h-12 mt-2 text-lg bg-white rounded-t-lg border-b-[1px]  border-gray-200"
+          className="flex justify-around w-11/12 h-12 mt-2 text-lg bg-white rounded-t-lg border-b-[1px] border-gray-200"
         >
           <button className="w-1/4 text-sm sm:text-md">메인</button>
           <progress
@@ -53,7 +53,7 @@ export default function CheckPage(): JSX.Element {
         </Link>
         <Link
           href=""
-          className="flex flex-row justify-around w-11/12 h-12 text-lg bg-white rounded-b-lg"
+          className="flex flex-row justify-around w-11/12 h-12 text-lg bg-white rounded-b-lg shadow-xl"
         >
           <button className="w-1/4 text-sm sm:text-md">주요 목표</button>
           <progress
