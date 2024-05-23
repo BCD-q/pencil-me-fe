@@ -12,8 +12,7 @@
     <hr/>
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" width="180"/>
     <img src="https://i.namu.wiki/i/6BCaly_IHOsGCno5SofR4NCvQZQp7JzBSaPrRXivLldaA-Rbuceh1oDMN6LfUuZiScaR2eBK7-sGgB-xae_YWA.webp" width="160" />
-    <img src="https://www.svgrepo.com/show/333609/tailwind-css.svg" width="180" />
-    <img />
+    <img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/tailwindcss.png" width="160" />
     <img src="https://www.svgrepo.com/show/354234/pwa.svg" width="180" />
 </div>
 
