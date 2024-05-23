@@ -22,7 +22,7 @@ export default function ExternalHeader({ title }: { title: string | null }) {
           영감
         </button>
       </button>
-      <div className="flex justify-center w-2/4 items-center text-black text-sm text-center line-clamp-3">
+      <div className="flex justify-center w-[65%] items-center text-black text-sm text-center line-clamp-3">
         {title}
       </div>
     </div>

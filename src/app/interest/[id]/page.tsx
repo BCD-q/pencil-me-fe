@@ -21,8 +21,6 @@ export default function Interest() {
   const router = useRouter();
   const memId = localStorage.getItem('memberId');
 
-  const { setInterests } = useInterestsStore();
-
   const { data } = useQuery({
     queryKey: ['interests'],
     queryFn: () => {
@@ -64,7 +62,6 @@ export default function Interest() {
         },
       );
       localStorage.setItem('interests', JSON.stringify(interests)); // 로컬스토리지에 관심사 저장
-      setInterests([]);
       router.push('/main');
     }
   };
@@ -82,15 +79,20 @@ export default function Interest() {
         <header className="w-full h-1/3 text-black bg-white flex items-center justify-center text-md">
           취향 설정
         </header>
-        <div className="m-4 flex bg-accent text-white text-xl w-full">
+        <div className="m-4 flex gap-2 flex-col bg-accent text-white text-xl">
           관심있는 주제를 탭하세요
+          {/* <div>
+            <p className="h-8">
+              {interests.length === 0 ? '' : interests + '  '}
+            </p>
+          </div> */}
         </div>
-        <ul className=" inline-grid grid-cols-3 gap-2 overflow-y-scroll">
+        <ul className=" inline-grid grid-cols-3 gap-1 overflow-y-scroll">
           {data?.data?.data.map((item: InterestItem, index: number) => {
             const clicked = clickedItems.includes(item.id); // 클릭 여부 확인
 
             const buttonClassName = `
-          relative flex mx-auto w-[25vw] h-[25vw] m-2 gap-2 h-1/2 justify-center items-center  text-sm sm:text-md bg-white rounded-full transition-color ease-in-out delay-75
+          relative flex mx-auto w-[28vw] h-[28vw] m-2 gap-2 h-1/2 justify-center items-center  text-sm sm:text-md bg-white rounded-full shadow-xl
           ${clicked ? 'opacity-50 text-black' : ''}`; // 클릭된 상태에 따라 배경색 변경
 
             return (
@@ -111,7 +113,7 @@ export default function Interest() {
         </ul>
         <div className="flex mt-auto w-full h-1/3 sticky bottom-0 items-center justify-center ml-auto bg-white">
           <button
-            className="ml-auto mr-4 bg-accent text-white w-1/4 h-2/3 rounded-3xl"
+            className="ml-auto mr-4 bg-accent text-white w-1/4 h-2/3 rounded-3xl shadow-xl"
             onClick={addInterest}
           >
             완료
