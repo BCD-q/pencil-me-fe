@@ -34,11 +34,11 @@ export default function Summarize({ url }: { url: string }) {
 
   return (
     <div className="flex flex-col w-full absolute bottom-[4rem] h-[35vh] bg-white rounded-t-xl border-x-1 border-t-2 shadow-sm">
-      <div className="flex mx-auto items-center w-3/5 text-gray-400 h-1/5 text-md my-4">
+      <div className="flex mx-auto items-center w-3/5 text-gray-600 h-1/5 text-md my-4">
         {data?.data?.data.title}
       </div>
       <hr className="w-4/5 m-2 mx-auto" />
-      <div className="text-gray-400 text-sm my-auto sm:text-lg w-5/6 mx-auto">
+      <div className="text-gray-600 text-sm my-auto sm:text-lg w-5/6 mx-auto">
         {data?.data?.data.contents}
       </div>
     </div>

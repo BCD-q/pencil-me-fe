@@ -149,7 +149,7 @@ function BottomComponent({ data }: { data: any }) {
 
   if (InspiTodo.isPending) {
     return (
-      <div className="flex flex-col rounded-xl skeleton bg-accent shadow-xl text-white">
+      <div className="flex flex-col rounded-md skeleton bg-accent shadow-xl text-white">
         <div className="mx-auto flex h-1/6 my-auto text-center">
           할일 추가중 ...
         </div>
@@ -158,7 +158,7 @@ function BottomComponent({ data }: { data: any }) {
   }
 
   return (
-    <li className="rounded-xl shadow-xl flex-col bg-white">
+    <li className="rounded-md shadow-xl flex-col bg-white">
       {SummaryTodo.isSuccess && <Toast>할일 추가 완료!</Toast>}
       <Link href={`../External?url=${url}&title=${title}`}>
         {data.thumbnail_url !== '' ? (
@@ -167,7 +167,7 @@ function BottomComponent({ data }: { data: any }) {
               src={data?.thumbnail_url}
               alt="thumbnail"
               fill={true}
-              className="object-cover rounded-t-xl"
+              className="object-cover rounded-t-md"
             />
           </div>
         ) : (

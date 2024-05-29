@@ -77,8 +77,8 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
   };
 
   return (
-    <div className="flex flex-col flex-1 z-0 overflow-y-auto">
-      <ul className="h-full">
+    <div className="flex-1 z-0 overflow-y-auto">
+      <ul>
         {data?.data.data.length === 0 && <BlankText />}
         {data &&
           data?.data.data.map((item: TodoItem, index: number) => (
