@@ -71,11 +71,11 @@ export default function AddInspiFooter({ url }: { url: string }) {
 
   if (InspiTodo.isPending) {
     return (
-      <div className="absolute bg-white skeleton z-50 shadow-2xl left-[8%] top-1/3 w-5/6 h-1/3">
-        <div className="mx-auto text-center text-gray-400 my-16">
+      <div className="absolute bg-white skeleton z-50 shadow-2xl left-[8%] top-1/3 w-5/6 py-12">
+        <div className="mx-auto text-center text-gray-400 mb-8">
           할일 추가중 ...{' '}
         </div>
-        <div className="flex w-1/4 mx-auto loading loading-spinner justify-center my-auto text-gray-400 text-md sm:text-2xl md:text-3xl border-t-2"></div>
+        <div className="flex w-16 mx-auto loading loading-spinner justify-center my-auto text-gray-400  border-t-2"></div>
       </div>
     );
   }
@@ -84,6 +84,7 @@ export default function AddInspiFooter({ url }: { url: string }) {
     <div className="flex bg-white flex-row sticky bottom-0 h-16 z-40">
       {SummaryTodo.isSuccess && <Toast>할일 추가 완료!</Toast>}
       {summarize && <Summarize url={url} />}
+
       <button
         className={`btn relative text-accent w-1/4 border-none my-auto text-sm sm:text-md z-50
         ${clicked ? '' : 'animate-pulse'}`}
