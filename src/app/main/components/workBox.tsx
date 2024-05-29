@@ -58,7 +58,9 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
   }, [groupModalOpen, todoList, isChanged]);
 
   if (isLoading)
-    return <div className="flex loading loading-spinner w-2/5 mx-auto"></div>;
+    return (
+      <div className="flex-1 loading loading-spinner w-1/6 m-auto text-gray-600"></div>
+    );
 
   const deleteTodo = async (id: number | undefined) => {
     try {
@@ -75,7 +77,7 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
   };
 
   return (
-    <div className="flex flex-col h-[100vh] z-0 overflow-y-auto">
+    <div className="flex flex-col flex-1 z-0 overflow-y-auto">
       <ul className="h-full">
         {data?.data.data.length === 0 && <BlankText />}
         {data &&

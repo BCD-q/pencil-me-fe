@@ -14,7 +14,7 @@ const TodayPage = () => {
   const id = searchParams.get('id');
 
   return (
-    <div className="flex flex-col w-[100vw]">
+    <div className="flex flex-col w-[100vw] h-full flex-1">
       <div className="sticky top-0 z-50">
         <Cartegory>{category}</Cartegory>
         <WorkBar>{category == null ? '모든' : category} 할 일들</WorkBar>
