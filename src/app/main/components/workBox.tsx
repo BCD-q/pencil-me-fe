@@ -5,7 +5,6 @@ import React, { useEffect } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-// reg는 빈별
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -14,6 +13,7 @@ import useGroupStore from '@/modules/groupStore';
 import useTodayStore from '@/modules/todayStore';
 
 import TodoBox from './TodoBox';
+import './workBox.style.css';
 
 export interface TodoItem {
   id?: number;
@@ -75,37 +75,34 @@ export default function WorkBox({ id }: { id: string | null }): JSX.Element {
   };
 
   return (
-    <div className="flex flex-col flex-1 h-[100vh] z-0 overflow-y-auto">
+    <div className="flex flex-col h-[100vh] z-0 overflow-y-auto">
       <ul className="h-full">
         {data?.data.data.length === 0 && <BlankText />}
         {data &&
           data?.data.data.map((item: TodoItem, index: number) => (
-            <Swiper key={index}>
-              <SwiperSlide key={index}>
+            <Swiper key={index} slidesPerView={'auto'}>
+              <SwiperSlide>
                 <TodoBox item={item} />
               </SwiperSlide>
               <SwiperSlide>
-                <div className="flex items-center w-full bg-white">
-                  <div className="flex flex-row w-full h-16 text-sm text-white border-t">
-                    <div className="flex-1"></div>
-                    <button
-                      className="w-1/6 bg-orange-400"
-                      onClick={() => {
-                        setModifyTodo(item);
-                        router.push('/main/modify/999');
-                      }}
-                    >
-                      수정
-                    </button>
-                    <button
-                      className="w-1/6 bg-red-500"
-                      onClick={() => {
-                        deleteTodo(item.id);
-                      }}
-                    >
-                      삭제
-                    </button>
-                  </div>
+                <div className="flex bg-white text-white">
+                  <button
+                    className="p-5 bg-orange-400"
+                    onClick={() => {
+                      setModifyTodo(item);
+                      router.push('/main/modify/999');
+                    }}
+                  >
+                    수정
+                  </button>
+                  <button
+                    className="p-5 bg-red-500 "
+                    onClick={() => {
+                      deleteTodo(item.id);
+                    }}
+                  >
+                    삭제
+                  </button>
                 </div>
               </SwiperSlide>
             </Swiper>
