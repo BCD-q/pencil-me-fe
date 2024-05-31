@@ -46,10 +46,6 @@ export default function InfinityCarousel() {
   });
 
   useEffect(() => {
-    refetch();
-  }, []);
-
-  useEffect(() => {
     if (inView) {
       !isFetching && hasNextPage && fetchNextPage();
     }
